@@ -1,0 +1,13 @@
+@media (max-width: 501px) {
+    .row {
+        flex-direction: column;
+
+        .col-half {
+            width: 100%;
+
+            div {
+                flex-direction: column;
+            }
+        }
+    }
+}

@@ -1,95 +1,47 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { CtaButton } from "@/components/CtaButton";
+import { Footer } from "@/components/Footer";
+import { LandingPageSession } from "@/components/LandingPageSession";
+import Logo from "./assets/logo.webp"
+import OutsideBox from "./assets/outside-box.webp"
+import Example3d from "./assets/3dexample.webp"
+import Calendar from "./assets/calendar.webp"
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <>
+      <LandingPageSession imgSrc={Logo}>
+        <h1>tudoaqui</h1>
+        <p>Encontre, conecte, resolva. Tudo aqui.</p>
+        <div>
+          <a href="#about-session" className="btn">Saiba mais</a>
+          <a href="#cta-session" className="btn">Quero experimentar!</a>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </LandingPageSession>
+      <LandingPageSession imgSrc={OutsideBox} id="about-session" reverse secondaryBg>
+        <p>
+          Chega do mesmo layout padrão para mostrar seus links!
+          Nós oferecemos uma interface diferenciada de <strong>links in bio</strong>, para te destacar da multidão.
+        </p>
+        <a href="#demo-session" className="btn">Diferente como?</a>
+      </LandingPageSession>
+      <LandingPageSession imgSrc={Example3d} id="demo-session">
+        <p>
+          Use a tecnologia 3d para encantar seus visitantes, com os icones de suas redes sociais
+          animados, se movendo conforme a interação do usuário.
+        </p>
+        <div>
+          <a href="https://paschoalinks.vercel.app" className="btn" target="_blank" rel="noopener noreferrer">Ver demo</a>
+          <a href="#cta-session" className="btn">Quero experimentar!</a>
+        </div>
+      </LandingPageSession>
+      <LandingPageSession imgSrc={Calendar} reverse id="cta-session" secondaryBg>
+        <p>
+          Em breve, disponível, para você!
+          Daremos 1 mês de Premium para os 20 primeiros a se cadastrarem em nossa lista de interessados!
+        </p>
+        <CtaButton />
+      </LandingPageSession>
+      <Footer />
+    </>
   );
 }
