@@ -1,0 +1,20 @@
+.subscribe-content{
+    h2,p,form{
+        margin-bottom: 1rem;
+    }
+    h2{
+        font-size: 1.2rem;
+        font-weight: 300;
+    }
+    p{
+        font-size: 0.9rem;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        input{
+            max-width: 15rem;
+        }
+    }
+}
