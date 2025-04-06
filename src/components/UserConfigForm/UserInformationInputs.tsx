@@ -4,7 +4,7 @@ interface UserInformationsInputsProps {
     updateData: (key: string, value: any) => void
 }
 
-const UserInformationsInputs = ({ name, bio, updateData }: UserInformationsInputsProps) => {
+export const UserInformationsInputs = ({ name, bio, updateData }: UserInformationsInputsProps) => {
     return (
         <>
             <p>Mais algumas informaçõezinhas sobre você...</p>
@@ -13,5 +13,3 @@ const UserInformationsInputs = ({ name, bio, updateData }: UserInformationsInput
         </>
     )
 }
-
-export default UserInformationsInputs

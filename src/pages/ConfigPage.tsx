@@ -1,5 +1,5 @@
 import { Header } from "../components/Header";
-import UserConfigForm from "../components/UserConfigForm";
+import { UserConfigForm } from "../components/UserConfigForm";
 import { useUserData } from "../context/UserDataContext";
 
 const ConfigPage = () => {

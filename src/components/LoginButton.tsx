@@ -20,6 +20,7 @@ export const LoginButton = () => {
           uid: user.uid,
           name: user.displayName,
           email: user.email,
+          isPremium: false,
           lastLogin: new Date(),
         });
       }

@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useUserData } from "../../context/UserDataContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-import AvatarUpload from "./AvatarUpload";
-import HandleUserUrlInput from "./HandleUserUrlInput";
-import UserInformationsInputs from "./UserInformationInputs";
+import { AvatarUpload } from "./AvatarUpload";
+import { HandleUserUrlInput } from "./HandleUserUrlInput";
+import { UserInformationsInputs } from "./UserInformationInputs";
+import { SetAppearenceData } from "./SetAppearenceData";
 
 export interface UserLinksPageData {
     userUrl: string;
@@ -29,7 +30,7 @@ export interface UserLinksPageData {
     buttons: any[];
 }
 
-const UserConfigForm = () => {
+export const UserConfigForm = () => {
 
     const { user } = useUserData();
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>({
@@ -39,12 +40,12 @@ const UserConfigForm = () => {
         name: "",
         bio: "",
         colors: {
-            main: "",
-            mainSecondary: "",
-            bg: "",
-            bgSecondary: "",
-            contrast: "",
-            shadow: ""
+            main: "#fff",
+            mainSecondary: "#fff",
+            bg: "#fff",
+            bgSecondary: "#fff",
+            contrast: "#000",
+            shadow: "rgba(0,0,0, 0.4)"
         },
         bgImage: "",
         font: "",
@@ -109,6 +110,9 @@ const UserConfigForm = () => {
             <UserInformationsInputs name={userLinksPageData.name} bio={userLinksPageData.bio} updateData={handleChange} />
             <hr className="custom-hr-secondary" />
 
+            <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font}/>
+            <hr className="custom-hr-terciary" />
+
             <div id="save-div">
                 <p>Tudo certo ? Salve suas alterações: </p>
                 <button className="btn" onClick={handleSaveData}> Salvar </button>
@@ -117,5 +121,3 @@ const UserConfigForm = () => {
         </div>
     )
 }
-
-export default UserConfigForm

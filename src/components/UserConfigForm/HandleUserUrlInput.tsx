@@ -3,7 +3,7 @@ interface HandleUserUrlInputProps {
     updateUserUrl: (key: string, value: any) => void
 }
 
-const HandleUserUrlInput = ({userUrl, updateUserUrl}: HandleUserUrlInputProps) => {
+export const HandleUserUrlInput = ({userUrl, updateUserUrl}: HandleUserUrlInputProps) => {
 
     return (
         <>
@@ -18,5 +18,3 @@ const HandleUserUrlInput = ({userUrl, updateUserUrl}: HandleUserUrlInputProps) =
         </>
     )
 }
-
-export default HandleUserUrlInput

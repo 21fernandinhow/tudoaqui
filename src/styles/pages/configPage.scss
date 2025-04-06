@@ -10,14 +10,14 @@
         p{
             margin: 1rem 0rem;
         }
+        input, textarea{
+            width: 100%;
+        }
         input, .btn{
             margin: 0.5rem 0.5rem 0.5rem 0rem;
         }
         .img-input{
             margin-bottom: 1.25rem;
-        }
-        input, textarea{
-            width: 100%;
         }
         #save-div{
             display: flex;

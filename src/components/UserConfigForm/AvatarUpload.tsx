@@ -9,7 +9,7 @@ interface AvatarUploadProps {
     updateData: (key: string, value: any) => void
 }
 
-const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
+export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -53,5 +53,3 @@ const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
         </>
     )
 }
-
-export default AvatarUpload

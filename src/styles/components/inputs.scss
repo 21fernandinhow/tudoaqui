@@ -1,35 +1,39 @@
 @use './buttons.scss';
 
-input, textarea {
+input,
+textarea {
     border: 1px solid var(--shadow-color);
     border-radius: 1rem;
     padding: 0.5rem 1.5rem;
     margin-bottom: 0.75rem;
     background: none;
+
     &:focus {
         outline: none;
         border: 1px solid var(--secondary-color);
     }
 }
 
-textarea{
+textarea {
     min-height: 4rem;
     resize: none;
 }
 
-.img-input{
+.img-input {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    
-    input{
+
+    input {
         display: none;
     }
-    label{
+
+    label {
         @extend .btn;
         font-size: 0.8rem;
     }
-    span{
+
+    span {
         padding: 8px;
         font-size: 0.8rem;
         font-weight: bold;
@@ -50,4 +54,42 @@ textarea::-webkit-scrollbar-thumb {
     background-color: var(--shadow-color);
     border-radius: 20px;
     border: 1px solid var(--bg-secondary-color);
+}
+
+.color-input-wrapper {
+    position: relative;
+    margin: 1rem 0rem;
+
+    .color-input-field {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 1rem;
+        font-size: 0.85rem;
+
+        .color-preview {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 100%;
+            box-shadow: 1px 1px 6px var(--shadow-color);
+        }
+    }
+
+    .color-picker-popover {
+        position: absolute;
+        z-index: 100;
+        bottom: 120%;
+        left: 0;
+        margin-top: 8px;
+        background: var(--bg-color);
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+
+        input{
+            border: none;
+            padding: 0.25rem 0.75rem;
+            text-align: center;
+        }
+    }
 }
