@@ -1,0 +1,35 @@
+#config-page{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    #user-config-form{
+        padding: 1.5rem;
+        box-shadow: 1px 1px 6px var(--shadow-color);
+        min-height: 100%;
+        max-width: 525px;
+        p{
+            margin: 1rem 0rem;
+        }
+        input, .btn{
+            margin: 0.5rem 0.5rem 0.5rem 0rem;
+        }
+        .img-input{
+            margin: 1rem 0rem;
+        }
+    }
+    #preview{
+        flex-grow: 1;
+    }
+}
+
+.custom-hr-primary{
+    border: 1px solid var(--primary-color);
+}
+
+.custom-hr-secondary{
+    border: 1px solid var(--secondary-color);
+}
+
+.custom-hr-terciary{
+    border: 1px solid var(--terciary-color);
+}

@@ -1,13 +1,32 @@
+@use './button.scss';
+
 input {
-    border: none;
+    border: 1px solid var(--shadow-color);
     border-radius: 1rem;
     padding: 0.5rem 1.5rem;
     margin-bottom: 0.75rem;
-    border: 1px solid var(--shadow-color);
     background: none;
-
     &:focus {
         outline: none;
         border: 1px solid var(--secondary-color);
+    }
+}
+
+.img-input{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    input{
+        display: none;
+    }
+    label{
+        @extend .btn;
+        font-size: 0.8rem;
+    }
+    span{
+        padding: 8px;
+        font-size: 0.8rem;
+        font-weight: bold;
     }
 }

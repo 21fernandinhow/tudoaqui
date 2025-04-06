@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
 const UserLinksPage = () => {
@@ -18,6 +18,7 @@ const UserLinksPage = () => {
                     const userDoc = querySnapshot.docs[0];
                     const data = userDoc.data()
                     setUserLinksPageData(data.userLinksPageData);
+                    // fazer mudancas do head tbm
                 } else {
                     console.log("Usuário não encontrado");
                 }
@@ -32,10 +33,6 @@ const UserLinksPage = () => {
     useEffect(() => {
         fetchUserLinksPageData();
     }, [userUrl]);
-
-    if (loading) {
-        return <div>Carregando...</div>;
-    }
 
     return (
         <div>

@@ -23,3 +23,43 @@
         transition: 0.3s;
     }
 }
+
+.btn-primary{
+    @extend .btn;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    &:hover {
+        box-shadow: 0px 0px 10px var(--primary-color);
+        transition: 0.3s;
+    }
+}
+
+.btn-secondary{
+    @extend .btn;
+    background: var(--secondary-color);
+    color: var(--bg-color);
+    &:hover {
+        box-shadow: 0px 0px 10px var(--secondary-color);
+        transition: 0.3s;
+    }
+}
+
+.btn-terciary{
+    @extend .btn;
+    background: var(--terciary-color);
+    color: var(--bg-color);
+    &:hover {
+        box-shadow: 0px 0px 10px var(--terciary-color);
+        transition: 0.3s;
+    }
+}
+
+.btn-dark{
+    @extend .btn;
+    background: var(--contrast-color);
+    color: var(--bg-color);
+    &:hover {
+        box-shadow: 0px 0px 10px var(--contrast-color);
+        transition: 0.3s;
+    }
+}

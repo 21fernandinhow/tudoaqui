@@ -1,4 +1,4 @@
-@media (max-width: 501px) {
+@media (max-width: 769px) {
     .row {
         flex-direction: column;
 
@@ -8,6 +8,12 @@
             div {
                 flex-direction: column;
             }
+        }
+    }
+    #config-page{
+        flex-direction: column !important;
+        #user-config-form{
+            min-width: 100%;
         }
     }
 }

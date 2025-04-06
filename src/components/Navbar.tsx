@@ -36,6 +36,7 @@ export const Navbar = () => {
                     {user ? (
                         <>
                             <li><a href={"/config"}>Minha página</a></li>
+                            <li><a href={"/premium"}>Assinatura</a></li>
                             <li><LogoutButton /></li>
                         </>
                     ) : (

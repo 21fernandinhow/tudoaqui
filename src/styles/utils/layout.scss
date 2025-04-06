@@ -23,6 +23,10 @@ body {
     padding: 2rem;
 }
 
+.hidden{
+    display: none;
+}
+
 .fade-in-up {
     opacity: 0;
     transform: translateY(20px);

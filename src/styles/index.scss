@@ -2,12 +2,13 @@
 @use './utils/animations.scss';
 @use './utils/layout.scss';
 @use './utils/responsivity.scss';
+@use './pages/configPage.scss';
 @use './components/header.scss';
 @use './components/modal.scss';
-@use './components/lp-session.scss';
+@use './components/lpSession.scss';
 @use './components/button.scss';
 @use './components/input.scss';
-@use './components/subscribe-content.scss';
+@use './components/subscribeContent.scss';
 @use './components/footer.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
