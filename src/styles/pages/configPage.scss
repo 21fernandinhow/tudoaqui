@@ -6,7 +6,7 @@
         padding: 1.5rem;
         box-shadow: 1px 1px 6px var(--shadow-color);
         min-height: 100%;
-        max-width: 525px;
+        max-width: 500px;
         p{
             margin: 1rem 0rem;
         }
@@ -14,12 +14,29 @@
             margin: 0.5rem 0.5rem 0.5rem 0rem;
         }
         .img-input{
-            margin: 1rem 0rem;
+            margin-bottom: 1.25rem;
+        }
+        input, textarea{
+            width: 100%;
+        }
+        #save-div{
+            display: flex;
+            align-items: center;
+            p{
+                margin: 0rem;
+            }
+            .btn{
+                margin: 0rem 1rem;
+            }
         }
     }
     #preview{
         flex-grow: 1;
     }
+}
+
+.custom-hr-primary, .custom-hr-secondary, .custom-hr-terciary{
+    margin: 1.5rem 0rem;
 }
 
 .custom-hr-primary{

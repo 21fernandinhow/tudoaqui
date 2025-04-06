@@ -1,6 +1,6 @@
-@use './button.scss';
+@use './buttons.scss';
 
-input {
+input, textarea {
     border: 1px solid var(--shadow-color);
     border-radius: 1rem;
     padding: 0.5rem 1.5rem;
@@ -10,6 +10,11 @@ input {
         outline: none;
         border: 1px solid var(--secondary-color);
     }
+}
+
+textarea{
+    min-height: 4rem;
+    resize: none;
 }
 
 .img-input{
@@ -29,4 +34,20 @@ input {
         font-size: 0.8rem;
         font-weight: bold;
     }
+}
+
+textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+    margin: 10px;
+    background: var(--bg-secondary-color);
+    border-radius: 20px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: var(--shadow-color);
+    border-radius: 20px;
+    border: 1px solid var(--bg-secondary-color);
 }

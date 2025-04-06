@@ -3,7 +3,8 @@ import { useUserData } from "../../context/UserDataContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import AvatarUpload from "./AvatarUpload";
-import HandleUserUrlName from "./HandleUserUrlname";
+import HandleUserUrlInput from "./HandleUserUrlInput";
+import UserInformationsInputs from "./UserInformationInputs";
 
 export interface UserLinksPageData {
     userUrl: string;
@@ -95,7 +96,7 @@ const UserConfigForm = () => {
             <p>Aqui você configura a sua página de links personalizada!</p>
             <hr className="custom-hr-secondary" />
 
-            <HandleUserUrlName updateUserUrl={handleChange} handleSave={handleSaveData} userUrl={userLinksPageData.userUrl} />
+            <HandleUserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
             <hr className="custom-hr-terciary" />
 
             <AvatarUpload
@@ -103,8 +104,15 @@ const UserConfigForm = () => {
                 updateData={handleChange}
                 userUid={user?.uid}
             />
-
             <hr className="custom-hr-primary" />
+
+            <UserInformationsInputs name={userLinksPageData.name} bio={userLinksPageData.bio} updateData={handleChange} />
+            <hr className="custom-hr-secondary" />
+
+            <div id="save-div">
+                <p>Tudo certo ? Salve suas alterações: </p>
+                <button className="btn" onClick={handleSaveData}> Salvar </button>
+            </div>
 
         </div>
     )
