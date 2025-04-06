@@ -1,7 +1,8 @@
 @use './buttons.scss';
 
 input,
-textarea {
+textarea,
+select {
     border: 1px solid var(--shadow-color);
     border-radius: 1rem;
     padding: 0.5rem 1.5rem;
@@ -86,10 +87,20 @@ textarea::-webkit-scrollbar-thumb {
         border-radius: 8px;
         overflow: hidden;
 
-        input{
+        input {
             border: none;
             padding: 0.25rem 0.75rem;
             text-align: center;
         }
+    }
+}
+
+.select-input {
+    label {
+        margin-right: 0.75rem;
+        font-size: 0.9rem;
+    }
+    select{
+        padding-right: 1rem;
     }
 }
