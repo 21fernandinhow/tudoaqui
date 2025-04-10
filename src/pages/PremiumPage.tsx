@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { useUserData } from "../context/UserDataContext";
 
-const PremiumPage = () => {
+export const PremiumPage = () => {
 
     //lp pra assinar com um popup pro pagamento
     const { user } = useUserData()
@@ -17,5 +17,3 @@ const PremiumPage = () => {
         </>
     );
 };
-
-export default PremiumPage;

@@ -3,9 +3,11 @@ import { useUserData } from "../../context/UserDataContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AvatarUpload } from "./AvatarUpload";
-import { HandleUserUrlInput } from "./HandleUserUrlInput";
 import { UserInformationsInputs } from "./UserInformationInputs";
 import { SetAppearenceData } from "./SetAppearenceData";
+import { UserUrlInput } from "./UserUrlInput";
+import { MannageUserLinks } from "./MannageUserLinks";
+import { PersonalizeButtons } from "./PersonalizeButtons";
 
 export interface UserLinksPageData {
     userUrl: string;
@@ -26,8 +28,18 @@ export interface UserLinksPageData {
     showShareBtn: boolean;
     showAIAssistant: boolean;
     showCredits: boolean;
-    icons: any[];
-    buttons: any[];
+    links: UserLinkOption[];
+    buttonOptions: {
+        style: "default" | "outline"
+        borderRadius: "0" | "0.5" | "1.5" | "2"
+    }
+}
+
+export interface UserLinkOption {
+    icon?: string,
+    label: string
+    url: string
+    type: "icon" | "button";
 }
 
 export const UserConfigForm = () => {
@@ -52,8 +64,11 @@ export const UserConfigForm = () => {
         showShareBtn: false,
         showAIAssistant: false,
         showCredits: true,
-        icons: [],
-        buttons: []
+        links: [],
+        buttonOptions: {
+            style: "default",
+            borderRadius: "0.5"
+        }
     })
 
     const getUserLinksPageData = async () => {
@@ -97,7 +112,7 @@ export const UserConfigForm = () => {
             <p>Aqui você configura a sua página de links personalizada!</p>
             <hr className="custom-hr-secondary" />
 
-            <HandleUserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
+            <UserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
             <hr className="custom-hr-terciary" />
 
             <AvatarUpload
@@ -110,8 +125,17 @@ export const UserConfigForm = () => {
             <UserInformationsInputs name={userLinksPageData.name} bio={userLinksPageData.bio} updateData={handleChange} />
             <hr className="custom-hr-secondary" />
 
-            <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font}/>
+            <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} />
             <hr className="custom-hr-terciary" />
+
+            <MannageUserLinks updateLinksArray={(value) => handleChange("links", value)} links={userLinksPageData.links} />
+            {userLinksPageData?.links.some(item => item.type === "button") &&
+                <PersonalizeButtons 
+                    buttonsData={userLinksPageData.buttonOptions}
+                    updateData={(key: string, value: string) => handleChange("buttonOptions", {...userLinksPageData.buttonOptions, [key]: value})}
+                />
+            }
+            <hr className="custom-hr-primary" />
 
             <div id="save-div">
                 <p>Tudo certo ? Salve suas alterações: </p>

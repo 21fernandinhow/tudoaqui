@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 
-const HomePage = () => {
+export const HomePage = () => {
 
     return (
         <>
@@ -9,5 +9,3 @@ const HomePage = () => {
         </>
     );
 };
-
-export default HomePage;

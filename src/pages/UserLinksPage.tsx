@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 
-const UserLinksPage = () => {
+export const UserLinksPage = () => {
     const { userUrl } = useParams();
     const [userLinksPageData, setUserLinksPageData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -46,5 +46,3 @@ const UserLinksPage = () => {
         </div>
     );
 };
-
-export default UserLinksPage;

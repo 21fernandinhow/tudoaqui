@@ -1,16 +1,16 @@
-interface HandleUserUrlInputProps {
+interface UserUrlInputProps {
     userUrl: string
     updateUserUrl: (key: string, value: any) => void
 }
 
-export const HandleUserUrlInput = ({userUrl, updateUserUrl}: HandleUserUrlInputProps) => {
+export const UserUrlInput = ({userUrl, updateUserUrl}: UserUrlInputProps) => {
 
     return (
         <>
             <p>Vamos começar definindo o seu link personalizado:</p>
             <input
                 type="text"
-                onChange={(e) => updateUserUrl("userUrl", e.target.value)}
+                onChange={(e) => updateUserUrl("userUrl", e.target.value.slice(0, 40))}
                 value={userUrl}
                 placeholder="Digite aqui..."
             />

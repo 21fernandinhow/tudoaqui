@@ -1,0 +1,99 @@
+import { MdDeleteSweep } from "react-icons/md"
+import { UserLinkOption } from "."
+import { SelectInput } from "../SelectInput"
+import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6"
+import { Modal } from "../Modal"
+import { useState } from "react"
+
+interface UserLinkOptionConfigBoxProps {
+    linkOptionData: UserLinkOption
+    index: number
+    updateLinkOptionData: (index: number, key: keyof UserLinkOption, value: string) => void
+    deleteLinkOption: (index: number) => void
+    moveLinkBackward: (index: number) => void
+    moveLinkForward: (index: number) => void
+    showMoveLinkForward: boolean
+    showMoveLinkBackward: boolean
+}
+
+export const UserLinkOptionConfigBox = ({
+    index,
+    linkOptionData,
+    updateLinkOptionData,
+    deleteLinkOption,
+    moveLinkBackward,
+    moveLinkForward,
+    showMoveLinkForward,
+    showMoveLinkBackward
+}: UserLinkOptionConfigBoxProps) => {
+
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
+    const iconOptions = [
+        { label: "Youtube", value: "urlDoYoutube" },
+        { label: "Outro", value: "urlDaImg" },
+    ]
+
+    return (
+        <>
+            <div className="user-link-option-config-wrapper">
+                
+                <div className="change-order-arrows">
+                    {showMoveLinkForward && <FaArrowUpLong onClick={() => moveLinkForward(index)}/>}
+                    {showMoveLinkBackward && <FaArrowDownLong onClick={() => moveLinkBackward(index)} />}
+                </div>
+
+                <div className="user-link-option-config-box">
+
+                    <SelectInput
+                        name={`select-link-type-${index}`}
+                        label="Tipo de Link:"
+                        options={[{ label: "Ícone", value: "icon" }, { label: "Botão", value: "button" }]}
+                        value={linkOptionData.type}
+                        onChange={(e) => updateLinkOptionData(index, "type", e.target.value)}
+                    />
+
+                    {linkOptionData.type === "icon" &&
+                        <SelectInput
+                            name={`select-link-icon-${index}`}
+                            label="Icone"
+                            options={iconOptions}
+                            value={linkOptionData.icon ?? ""}
+                            onChange={(e) => updateLinkOptionData(index, "icon", e.target.value)}
+                        />
+                    }
+
+                    <input
+                        placeholder={linkOptionData.type === "button" ? "Texto" : "Texto (opcional)"}
+                        value={linkOptionData.label.slice(0, 20)}
+                        onChange={(e) => updateLinkOptionData(index, "label", e.target.value)}
+                    />
+
+                    <input
+                        placeholder={"Link"}
+                        value={linkOptionData.url.slice(0, 512)}
+                        onChange={(e) => updateLinkOptionData(index, "url", e.target.value)}
+                    />
+
+                    <span className="delete-box-btn" onClick={() => setDeleteModalIsOpen(true)}> <MdDeleteSweep /> Deletar Link </span>
+                </div>
+
+            </div>
+
+            <Modal isOpen={deleteModalIsOpen} onClose={() => setDeleteModalIsOpen(false)}>
+                <p>Tem certeza que deseja deletar esse link?</p>
+                <div className="modal-actions">
+                    <button className="btn" onClick={() => setDeleteModalIsOpen(false)}>Cancelar</button>
+                    <button
+                        className="btn btn-error"
+                        onClick={() => {
+                            setDeleteModalIsOpen(false)
+                            deleteLinkOption(index)
+                        }}
+                    >
+                        Deletar
+                    </button>
+                </div>
+            </Modal>
+        </>
+    )
+}

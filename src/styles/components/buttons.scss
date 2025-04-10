@@ -54,6 +54,16 @@
     }
 }
 
+.btn-error{
+    @extend .btn;
+    background: var(--error-color);
+    color: var(--bg-color);
+    &:hover {
+        box-shadow: 0px 0px 10px var(--error-color);
+        transition: 0.3s;
+    }
+}
+
 .btn-dark{
     @extend .btn;
     background: var(--contrast-color);

@@ -17,5 +17,11 @@
         box-shadow: 2px 3px 4px var(--shadow-color);
         border-radius: 1rem;
         padding: 1.5rem;
+        .modal-actions{
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
     }
 }

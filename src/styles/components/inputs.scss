@@ -24,7 +24,7 @@ textarea {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-
+    
     input {
         display: none;
     }
@@ -60,6 +60,7 @@ textarea::-webkit-scrollbar-thumb {
 .color-input-wrapper {
     position: relative;
     margin: 1rem 0rem;
+    max-width: 240px;
 
     .color-input-field {
         display: flex;
@@ -96,11 +97,15 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .select-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
     label {
-        margin-right: 0.75rem;
         font-size: 0.9rem;
     }
     select{
         padding-right: 1rem;
+        cursor: pointer;
     }
 }

@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { UserConfigForm } from "../components/UserConfigForm";
 import { useUserData } from "../context/UserDataContext";
 
-const ConfigPage = () => {
+export const ConfigPage = () => {
     const { user } = useUserData();
 
     return (
@@ -20,5 +20,3 @@ const ConfigPage = () => {
         </>
     );
 };
-
-export default ConfigPage;

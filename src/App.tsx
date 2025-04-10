@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserDataProvider } from "./context/UserDataContext";
-import AppRoutes from "./AppRoutes"
+import { AppRoutes } from "./AppRoutes"
 import "./styles/index.scss";
 
 const App = () => {
@@ -15,4 +15,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App
