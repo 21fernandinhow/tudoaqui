@@ -11,7 +11,7 @@ interface PersonalizeButtonsProps {
 export const PersonalizeButtons = ({buttonsData, updateData}: PersonalizeButtonsProps) => {
 
     const buttonTypeOptions = [
-        { label: "Com borda", value: "outline" },
+        { label: "Somente borda", value: "outline" },
         { label: "Preenchido", value: "default" }
     ]
 
