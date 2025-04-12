@@ -12,7 +12,7 @@ export const MannageUserLinks = ({ links, updateLinksArray }: MannageUserLinksPr
         const newDefaultLink: UserLinkOption = {
             url: "",
             label: "",
-            icon: "urlDeIconePadrao",
+            icon: "",
             type: "icon"
         }
         updateLinksArray(links?.length > 0 ? [newDefaultLink, ...links] : [newDefaultLink])

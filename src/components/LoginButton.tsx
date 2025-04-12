@@ -20,7 +20,32 @@ export const LoginButton = () => {
           uid: user.uid,
           name: user.displayName,
           email: user.email,
-          isPremium: false,
+          userLinksPageData: {
+            userUrl: "",
+            avatarImgUrl: "",
+            avatarImgName: "",
+            name: "",
+            bio: "",
+            colors: {
+              main: "#fff",
+              mainSecondary: "#fff",
+              bg: "#fff",
+              bgSecondary: "#fff",
+              contrast: "#000",
+              shadow: "rgba(0,0,0, 0.4)"
+            },
+            bgImage: "",
+            font: "",
+            showShareBtn: false,
+            showAIAssistant: false,
+            hideCredits: false,
+            links: [],
+            buttonOptions: {
+              style: "default",
+              borderRadius: "0.5"
+            },
+            isPremium: false
+          },
           lastLogin: new Date(),
         });
       }

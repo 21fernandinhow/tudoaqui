@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
+import { UserLinksPageData } from "../components/UserConfigForm";
 
 export const UserLinksPage = () => {
     const { userUrl } = useParams();
-    const [userLinksPageData, setUserLinksPageData] = useState<any>(null);
+    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData | null>(null);
     const [loading, setLoading] = useState(true);
 
     const fetchUserLinksPageData = async () => {
@@ -18,7 +19,7 @@ export const UserLinksPage = () => {
                     const userDoc = querySnapshot.docs[0];
                     const data = userDoc.data()
                     setUserLinksPageData(data.userLinksPageData);
-                    // fazer mudancas do head tbm
+                    document.title = data.userLinksPageData.userUrl + " - tudoaqui.click"
                 } else {
                     console.log("Usuário não encontrado");
                 }
