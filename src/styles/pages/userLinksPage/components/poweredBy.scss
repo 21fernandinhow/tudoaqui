@@ -2,9 +2,13 @@
     .powered-by {
         cursor: pointer;
         font-family: var(--font);
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         text-align: center;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.6);
         border-radius: 1.5rem 1.5rem 0rem 0rem;
         color: var(--contrast-color);
         text-decoration: none;
@@ -14,6 +18,10 @@
         &:hover {
             background: var(--bg-color);
             transition: 0.3s;
+        }
+
+        svg {
+            font-size: 1.2rem;
         }
     }
 }

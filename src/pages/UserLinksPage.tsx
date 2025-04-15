@@ -55,7 +55,7 @@ export const UserLinksPage = () => {
                     <UserLinksPageContent data={userLinksPageData} />
                 </>
             ) : (
-                <p>Usuário não encontrado</p>
+                <p>Erro: Usuário não encontrado</p>
             )}
         </div>
     );

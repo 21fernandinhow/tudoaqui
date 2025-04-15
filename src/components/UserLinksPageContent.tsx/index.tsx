@@ -14,7 +14,6 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
 
     const applyThemeVariables = () => {
         const root = document.documentElement;
-
         root.style.setProperty("--user-font", data.font);
         root.style.setProperty("--user-primary-color", data.colors.primary);
         root.style.setProperty("--user-secondary-color", data.colors.secondary);
@@ -31,15 +30,22 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
 
     return (
         <div id="user-links-page-content">
+
             <div className="user-links-page-container">
+
                 <UserLinksPageHeader imageUrl={data.avatarImgUrl} name={data.name} bio={data.bio} />
+
                 <IconsGrid icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)} />
+
                 <ButtonsGrid
                     buttons={data.links.filter(item => item.type === "button" && item.label && item.url)}
                     buttonStyle={data.buttonOptions.style}
                 />
+
                 {!data.hideCredits && <PoweredBy />}
+
             </div>
+
         </div>
     )
 }

@@ -8,15 +8,10 @@ export const ConfigPage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 769);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 769);
-        };
-
+        const handleResize = () => setIsMobile(window.innerWidth <= 769);
         window.addEventListener("resize", handleResize);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     useEffect(() => {
@@ -25,6 +20,8 @@ export const ConfigPage = () => {
         } else {
             document.body.classList.add("no-scroll");
         }
+        
+        return () => document.body.classList.remove("no-scroll");
     }, [isMobile]);
 
     if (loading) return <Header />;
