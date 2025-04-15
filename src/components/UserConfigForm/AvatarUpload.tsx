@@ -13,7 +13,7 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        console.log(e.target.files)
+
         if (!file || !userUid) return;
 
         try {

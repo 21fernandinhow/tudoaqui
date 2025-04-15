@@ -7,8 +7,6 @@ interface CustomizeIconsStyleProps {
 
 export const CustomizeIconsStyle = ({iconsColor, updateData}: CustomizeIconsStyleProps) => {
 
-    console.log("value", iconsColor)
-
     const selectBoxOptions = [
         { label: "Claro (padrão)", value: "#fff" },
         { label: "Escuro", value: "#000" }
