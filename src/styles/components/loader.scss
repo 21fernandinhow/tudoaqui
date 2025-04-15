@@ -1,0 +1,53 @@
+@use '../utils/animations.scss';
+
+.loader {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+
+    .circle {
+        cursor: pointer;
+        position: absolute;
+        border-radius: 100%;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        transform-origin: center center;
+
+        &.circle1 {
+            width: 4rem;
+            height: 4rem;
+            border: 0.2rem solid var(--primary-color);
+            border-top-color: transparent;
+            animation-name: spin-clockwise;
+        }
+
+        &.circle2 {
+            width: 2.4rem;
+            height: 2.4rem;
+            top: 0.8rem;
+            left: 0.8rem;
+            border: 0.15rem solid var(--secondary-color);
+            border-top-color: transparent;
+            animation-name: spin-counterclockwise;
+        }
+
+        &.circle3 {
+            width: 1.2rem;
+            height: 1.2rem;
+            top: 1.4rem;
+            left: 1.4rem;
+            border: 0.1rem solid var(--terciary-color);
+            border-top-color: transparent;
+            animation-name: spin-clockwise;
+        }
+    }
+}
+
+.loading-page{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

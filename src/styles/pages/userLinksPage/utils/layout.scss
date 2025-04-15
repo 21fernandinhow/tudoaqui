@@ -1,0 +1,37 @@
+#user-links-page-content {
+    height: 100vh;
+    color: var(--user-contrast-color);
+    font-family: var(--user-font);
+    background: linear-gradient(to bottom, var(--user-bg-color), var(--user-bg-secondary-color));
+    padding: 1rem 1rem 0rem 1rem;
+    overflow-y: auto;
+
+    canvas {
+        touch-action: none;
+    }
+
+    .user-links-page-container {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 450px;
+    }
+}
+
+#user-links-page-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+#user-links-page-content::-webkit-scrollbar-track {
+    background: var(--user-bg-secondary-color);
+}
+
+#user-links-page-content::-webkit-scrollbar-thumb {
+    background-color: var(--user-primary-color);
+    border-radius: 20px;
+    border: 1px solid var(--user-bg-secondary-color);
+}
+
+::selection {
+    background-color: var(--user-primary-color) !important;
+    color: var(--user-bg-color) !important;
+}

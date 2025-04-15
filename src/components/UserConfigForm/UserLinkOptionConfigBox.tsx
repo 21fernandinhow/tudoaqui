@@ -29,16 +29,34 @@ export const UserLinkOptionConfigBox = ({
 
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
     const iconOptions = [
-        { label: "Youtube", value: "urlDoYoutube" },
-        { label: "Outro", value: "urlDaImg" },
+        { label: "Outro...", value: "logos/default.webp" },
+        { label: "Whatsapp", value: "logos/whatsapp.webp" },
+        { label: "Instagram", value: "logos/instagram_logo.webp" },
+        { label: "Vsco", value: "logos/vsco.webp" },
+        { label: "Tiktok", value: "logos/tiktok.webp" },
+        { label: "Youtube", value: "logos/youtube_logo.webp" },
+        { label: "Twitch", value: "logos/twitch_logo.webp" },
+        { label: "Discord", value: "logos/discord_logo.webp" },
+        { label: "Spotify", value: "logos/spotify.webp" },
+        { label: "Soundcloud", value: "logos/soundcloud.webp" },
+        { label: "LinkedIn", value: "logos/linkedin.webp" },
+        { label: "Github", value: "logos/github.webp" },
+        { label: "Hotmart", value: "logos/hotmart.webp" },
+        { label: "Pix", value: "logos/pix.webp" },
+        { label: "Telegram", value: "logos/telegram.webp" },
+        { label: "Onlyfans", value: "logos/onlyfans.webp" },
+        { label: "Privacy", value: "logos/privacy.webp" },
+        { label: "Amazon", value: "logos/amazon_logo.webp" },
+        { label: "E-mail", value: "logos/email_logo.webp" },
+        { label: "Ligação", value: "logos/call.webp" },
     ]
 
     return (
         <>
             <div className="user-link-option-config-wrapper">
-                
+
                 <div className="change-order-arrows">
-                    {showMoveLinkForward && <FaArrowUpLong onClick={() => moveLinkForward(index)}/>}
+                    {showMoveLinkForward && <FaArrowUpLong onClick={() => moveLinkForward(index)} />}
                     {showMoveLinkBackward && <FaArrowDownLong onClick={() => moveLinkBackward(index)} />}
                 </div>
 
@@ -71,7 +89,12 @@ export const UserLinkOptionConfigBox = ({
                     <input
                         placeholder={"Link"}
                         value={linkOptionData.url.slice(0, 512)}
-                        onChange={(e) => updateLinkOptionData(index, "url", e.target.value)}
+                        onChange={(e) => updateLinkOptionData(index, "url", e.target.value.slice(0, 512))}
+                        onBlur={() => {
+                            if (!linkOptionData.url.startsWith("http://") && !linkOptionData.url.startsWith("https://")) {
+                                updateLinkOptionData(index, "url", `https://${linkOptionData.url}`)
+                            }
+                        }}
                     />
 
                     <span className="delete-box-btn" onClick={() => setDeleteModalIsOpen(true)}> <MdDeleteSweep /> Deletar Link </span>

@@ -3,7 +3,7 @@ import { SelectInput } from "../SelectInput"
 interface PersonalizeButtonsProps {
     buttonsData: {
         style: "default" | "outline"
-        borderRadius: "0" | "0.5" | "1.5" | "2"
+        borderRadius: "0" | "0.5" | "1" | "1.5"
     }
     updateData: (key: string, value: string) => void
 }
@@ -18,8 +18,8 @@ export const PersonalizeButtons = ({buttonsData, updateData}: PersonalizeButtons
     const buttonBorderRadiusOptions = [
         { label: "Sem arredondamento", value: "0" },
         { label: "Pouco arredondamento", value: "0.5" },
-        { label: "Arredondado", value: "1.5" },
-        { label: "Arredondamento total", value: "2" }
+        { label: "Arredondado", value: "1" },
+        { label: "Arredondamento total", value: "1.5" }
     ]
 
     return (

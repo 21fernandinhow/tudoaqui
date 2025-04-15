@@ -5,6 +5,7 @@ import { auth } from '../firebase';
 interface UserDataContextType {
   user: User | null;
   setUser: (user: User | null) => void;
+  loading: boolean
 }
 
 const UserDataContext = createContext<UserDataContextType | undefined>(undefined);
@@ -23,17 +24,19 @@ interface UserDataProviderProps {
 
 export const UserDataProvider = ({ children }: UserDataProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
   return (
-    <UserDataContext.Provider value={{ user, setUser }}>
+    <UserDataContext.Provider value={{ user, setUser, loading }}>
       {children}
     </UserDataContext.Provider>
   );

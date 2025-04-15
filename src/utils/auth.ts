@@ -1,4 +1,3 @@
-// src/utils/auth.js
 import { auth, googleAuthProvider } from '../firebase';
 
 export const loginWithGoogle = async () => {

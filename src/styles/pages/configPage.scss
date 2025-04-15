@@ -1,56 +1,73 @@
-#config-page{
+#config-page {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
-    position: relative;
-    #user-config-form{
+
+    #user-config-form {
+
+        height: 90vh;
         padding: 1.5rem;
+        padding-bottom: 3rem;
         box-shadow: 2px 2px 8px var(--shadow-color);
-        min-height: 100%;
         max-width: 488px;
-        p{
+        z-index: 10;
+        overflow-y: auto;
+
+        p {
             margin: 1rem 0rem;
         }
-        input, textarea{
+
+        input,
+        textarea {
             width: 100%;
         }
-        input, .btn{
+
+        input,
+        .btn {
             margin: 0.5rem 0.5rem 0.5rem 0rem;
         }
-        .img-input{
+
+        .img-input {
             margin-bottom: 1.25rem;
         }
-        #save-div{
+
+        #save-div {
             display: flex;
             align-items: center;
-            p{
+
+            p {
                 margin: 0rem;
             }
-            .btn{
+
+            .btn {
                 margin: 0rem 1rem;
             }
         }
     }
-    #preview{
+
+    #preview {
         flex-grow: 1;
-        position: sticky;
-        top: 0;
-        height: 100vh;
+
+        #user-links-page-content {
+            height: 90vh;
+            padding-bottom: 1rem;
+        }
     }
 }
 
-.custom-hr-primary, .custom-hr-secondary, .custom-hr-terciary{
+.custom-hr-primary,
+.custom-hr-secondary,
+.custom-hr-terciary {
     margin: 1.5rem 0rem;
 }
 
-.custom-hr-primary{
+.custom-hr-primary {
     border: 1px solid var(--primary-color);
 }
 
-.custom-hr-secondary{
+.custom-hr-secondary {
     border: 1px solid var(--secondary-color);
 }
 
-.custom-hr-terciary{
+.custom-hr-terciary {
     border: 1px solid var(--terciary-color);
 }

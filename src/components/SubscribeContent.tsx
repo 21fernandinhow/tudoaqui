@@ -1,5 +1,7 @@
 export const SubscribeContent = () => (
+    
     <div className="subscribe-content">
+
         <h2>🌟 Faça Parte da Nossa Lista Exclusiva! 🚀</h2>
         <p>Estamos preparando algo incrível e você pode ser um dos primeiros a conferir! 💡</p>
         <p>

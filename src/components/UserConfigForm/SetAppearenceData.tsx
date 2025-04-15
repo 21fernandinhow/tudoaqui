@@ -4,8 +4,8 @@ import { SelectInput } from "../SelectInput";
 interface SetAppearenceDataProps {
     updateData: (key: string, value: any) => void
     colors: {
-        main: string;
-        mainSecondary: string;
+        primary: string;
+        secondary: string;
         bg: string;
         bgSecondary: string;
         contrast: string;
@@ -18,7 +18,7 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
     const fontOptions = [
         { value: "Teko", label: "Teko" },
         { value: "Montserrat", label: "Montserrat" },
-        { value: "sans serif", label: "Sans Serif" },
+        { value: "sans-serif", label: "Sans Serif" },
         { value: "monospace", label: "Monospace" },
         { value: "Times New Roman", label: "Times New Roman" },
         { value: "Verdana", label: "Verdana" },
@@ -29,14 +29,14 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
 
             <ColorInput
                 label="Cor Principal"
-                value={colors?.main}
-                onChange={(color) => updateData("colors", { ...colors, main: color })}
+                value={colors?.primary}
+                onChange={(color) => updateData("colors", { ...colors, primary: color })}
             />
 
             <ColorInput
                 label="Cor Secundária"
-                value={colors?.mainSecondary}
-                onChange={(color) => updateData("colors", { ...colors, mainSecondary: color })}
+                value={colors?.secondary}
+                onChange={(color) => updateData("colors", { ...colors, secondary: color })}
             />
 
             <ColorInput

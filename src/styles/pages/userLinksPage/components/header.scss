@@ -1,0 +1,33 @@
+#user-links-page-content {
+    .user-links-page-header {
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+
+        .avatar {
+            margin: 0.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 100%;
+            border: 0.25rem solid var(--user-primary-color);
+            box-shadow: 1px 2px 2px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--user-secondary-color);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--user-contrast-color);
+        }
+
+        h1,
+        p {
+            max-width: 400px;
+        }
+    }
+}

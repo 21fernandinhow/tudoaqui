@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { UserLinksPageData } from "../components/UserConfigForm";
+import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx";
+import { Loader } from "../components/Loader.tsx";
 
 export const UserLinksPage = () => {
     const { userUrl } = useParams();
@@ -35,11 +37,22 @@ export const UserLinksPage = () => {
         fetchUserLinksPageData();
     }, [userUrl]);
 
+    useEffect(() => {
+        document.body.classList.add("no-scroll");
+        return () => {
+            document.body.classList.remove("no-scroll");
+        };
+    }, []);
+
+    if (loading) {
+        return <div className="loading-page"> <Loader /> </div>
+    }
+
     return (
         <div>
             {userLinksPageData ? (
                 <>
-                    <p>URL personalizada: {userLinksPageData.userUrl}</p>
+                    <UserLinksPageContent data={userLinksPageData} />
                 </>
             ) : (
                 <p>Usuário não encontrado</p>

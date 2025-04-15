@@ -1,0 +1,35 @@
+#user-links-page-content{
+    .buttons-grid{
+        padding: 1rem;
+        .user-btn-default, .user-btn-outline{
+            cursor: pointer;
+            margin: 1rem 0rem;
+            width: 100%;
+            padding: 1rem;
+            border-radius: var(--user-button-border-radius);
+            font-size: 1rem;
+        }
+        .user-btn-default{
+            color: var(--user-secondary-color);
+            background: var(--user-primary-color);
+            box-shadow: 1px 1px 6px var(--shadow-color);
+            border: none;
+
+            &:hover{
+                transform: scale(1.1);
+                transition: 0.3s;
+            }
+        }
+        .user-btn-outline{
+            color: var(--user-primary-color);
+            background: none;
+            border: 1px solid var(--user-primary-color);
+            
+            &:hover{
+                color: var(--user-secondary-color);
+                background: var(--user-primary-color);
+                transition: 0.3s;
+            }
+        }
+    }
+}
