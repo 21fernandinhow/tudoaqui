@@ -49,7 +49,9 @@
 
         #user-links-page-content {
             height: 90vh;
-            padding-bottom: 1rem;
+            #user-links-page-container{
+                min-height: 90vh;
+            }
         }
     }
 }

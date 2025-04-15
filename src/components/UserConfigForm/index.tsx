@@ -5,11 +5,11 @@ import { UserInformationsInputs } from "./UserInformationInputs"
 import { SetAppearenceData } from "./SetAppearenceData"
 import { UserUrlInput } from "./UserUrlInput"
 import { MannageUserLinks } from "./MannageUserLinks"
-import { PersonalizeButtons } from "./PersonalizeButtons"
 import { DisableCredits } from "./DisableCredits"
 import { UserLinksPageContent } from "../UserLinksPageContent.tsx"
 import { saveUserData } from "../../utils/saveUserData.ts"
 import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid.tsx"
+import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -36,6 +36,7 @@ export interface UserLinksPageData {
         style: "default" | "outline"
         borderRadius: "0" | "0.5" | "1" | "1.5"
     }
+    iconsColor: "#fff" | "#000"
 }
 
 export interface UserLinkOption {
@@ -73,7 +74,8 @@ export const UserConfigForm = () => {
             style: "default",
             borderRadius: "0.5"
         },
-        isPremium: false
+        isPremium: false,
+        iconsColor: "#fff"
     }
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultData)
@@ -123,20 +125,24 @@ export const UserConfigForm = () => {
                 <hr className="custom-hr-terciary" />
 
                 <MannageUserLinks updateLinksArray={(value) => handleChange("links", value)} links={userLinksPageData.links} />
-                {userLinksPageData?.links.some(item => item.type === "button") &&
-                    <PersonalizeButtons
-                        buttonsData={userLinksPageData.buttonOptions}
-                        updateData={(key: string, value: string) => handleChange("buttonOptions", { ...userLinksPageData.buttonOptions, [key]: value })}
+                <hr className="custom-hr-primary" />
+
+                {userLinksPageData?.links?.length > 0 &&
+                    <CustomizeLinksStyle
+                        hasButton={userLinksPageData.links.some(item => item.type === "button")}
+                        hasIcon={userLinksPageData.links.some(item => item.type === "icon")}
+                        buttonOptions={userLinksPageData.buttonOptions}
+                        iconsColor={userLinksPageData.iconsColor}
+                        handleChange={handleChange}
                     />
                 }
-                <hr className="custom-hr-primary" />
 
                 <DisableCredits
                     handleChange={handleChange}
                     isUserPremium={userLinksPageData.isPremium}
                     hideCredits={userLinksPageData.hideCredits}
                 />
-                <hr className="custom-hr-secondary" />
+                <hr className="custom-hr-terciary" />
 
                 <div id="save-div">
                     {JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData) ?

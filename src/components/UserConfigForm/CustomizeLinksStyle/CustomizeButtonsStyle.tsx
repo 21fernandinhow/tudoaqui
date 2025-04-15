@@ -1,6 +1,6 @@
-import { SelectInput } from "../SelectInput"
+import { SelectInput } from "../../SelectInput"
 
-interface PersonalizeButtonsProps {
+interface CustomizeButtonsStyleProps {
     buttonsData: {
         style: "default" | "outline"
         borderRadius: "0" | "0.5" | "1" | "1.5"
@@ -8,7 +8,7 @@ interface PersonalizeButtonsProps {
     updateData: (key: string, value: string) => void
 }
 
-export const PersonalizeButtons = ({buttonsData, updateData}: PersonalizeButtonsProps) => {
+export const CustomizeButtonsStyle = ({buttonsData, updateData}: CustomizeButtonsStyleProps) => {
 
     const buttonTypeOptions = [
         { label: "Somente borda", value: "outline" },
@@ -24,7 +24,6 @@ export const PersonalizeButtons = ({buttonsData, updateData}: PersonalizeButtons
 
     return (
         <>
-            <p>Você pode personalizar o estilo dos botões!</p>
             <SelectInput
                 name="button-option-link-style"
                 label="Estilo dos Botões:"

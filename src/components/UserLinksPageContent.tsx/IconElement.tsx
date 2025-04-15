@@ -11,6 +11,7 @@ export const IconElement = ({ iconUrl, position, onClick, label }: IconElementPr
 
   const texture = useTexture(iconUrl);
   const rootStyle = getComputedStyle(document.documentElement);
+  const iconBackgroundColor = rootStyle.getPropertyValue("--user-icons-background-color").trim();
   const fontColor = rootStyle.getPropertyValue("--user-contrast-color").trim();
 
   return (
@@ -32,7 +33,7 @@ export const IconElement = ({ iconUrl, position, onClick, label }: IconElementPr
         onPointerEnter={() => (document.body.style.cursor = "pointer")}
         onPointerLeave={() => (document.body.style.cursor = "auto")}
       >
-        <meshStandardMaterial color="#fff" roughness={0.5} metalness={0.2} transparent />
+        <meshStandardMaterial color={iconBackgroundColor} roughness={0.5} metalness={0.2} transparent />
       </RoundedBox>
 
       {label && (

@@ -27,8 +27,8 @@ export const LoginButton = () => {
             name: "",
             bio: "",
             colors: {
-              main: "#fff",
-              mainSecondary: "#fff",
+              primary: "#fff",
+              secondary: "#fff",
               bg: "#fff",
               bgSecondary: "#fff",
               contrast: "#000",
@@ -44,7 +44,8 @@ export const LoginButton = () => {
               style: "default",
               borderRadius: "0.5"
             },
-            isPremium: false
+            isPremium: false,
+            iconsColor: "#fff"
           },
           lastLogin: new Date(),
         });

@@ -25,7 +25,7 @@ export const saveUserData = async (user: User | null, data: UserLinksPageData) =
             return
         }
 
-        if (data.links && data.links.some(item => (item.type === "icon" && !item.icon) || !item.label || !item.url)) {
+        if (data.links && data.links.some(item => (item.type === "icon" && !item.icon) || (item.type === "button" && !item.label) || !item.url)) {
             alert("Erro: você tem uma opção de link com informações incompletas e/ou inválidas!")
             return
         }
