@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-type ToggleSwitchProps = {
+interface ToggleSwitchProps {
   isOn?: boolean;
   onToggle?: (newState: boolean) => void;
   label: string
@@ -8,17 +6,15 @@ type ToggleSwitchProps = {
 };
 
 const ToggleSwitch = ({ isOn = false, onToggle, label, disabled }: ToggleSwitchProps) => {
-  const [toggled, setToggled] = useState(isOn);
 
   const handleToggle = () => {
     if (!disabled) {
-      onToggle?.(!toggled);
-      setToggled(prevState => !prevState);
+      onToggle?.(!isOn);
     }
   };
 
   return (
-    <div className={`toggle ${toggled ? 'on' : 'off'} ${disabled && 'disabled'}`} onClick={handleToggle}>
+    <div className={`toggle ${isOn ? 'on' : 'off'} ${disabled && 'disabled'}`} onClick={handleToggle}>
       <div className="switch" />
       <span className="label">{label}</span>
     </div>

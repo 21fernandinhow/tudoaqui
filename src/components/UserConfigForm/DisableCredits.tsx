@@ -7,6 +7,7 @@ interface DisableCreditsProps {
 }
 
 export const DisableCredits = ({ isUserPremium, handleChange, hideCredits }: DisableCreditsProps) => {
+    console.log(hideCredits)
     return (
         <>
             <p>Nós sempre deixamos uma mensagem de rodapé, incentivando os seus visitantes a também criarem seu <strong>tudoaqui.click</strong> !</p>

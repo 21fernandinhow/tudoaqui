@@ -4,16 +4,16 @@ import { useUserData } from "../context/UserDataContext";
 export const PremiumPage = () => {
 
     //lp pra assinar com um popup pro pagamento
-    const { user } = useUserData()
+    const { user, loading } = useUserData()
+
+    if (loading) return <Header />;
+
+    if (!loading && !user) window.location.href = '/'
 
     return (
         <>
             <Header />
-            {user ?
-                <p>assine!</p>
-                :
-                <p>cade o login meu caro ???</p>
-            }
+            <p>assine</p>
         </>
     );
 };

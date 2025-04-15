@@ -20,16 +20,18 @@ export const ConfigPage = () => {
         } else {
             document.body.classList.add("no-scroll");
         }
-        
+
         return () => document.body.classList.remove("no-scroll");
     }, [isMobile]);
 
     if (loading) return <Header />;
 
+    if(!loading && !user) window.location.href = '/'
+
     return (
         <>
             <Header />
-            {user ? <UserConfigForm /> : <p>Faça login</p>}
+            <UserConfigForm />
         </>
     );
 };

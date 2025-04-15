@@ -11,13 +11,13 @@
             width: 8rem;
             height: 8rem;
             border-radius: 100%;
-            border: 0.25rem solid var(--user-primary-color);
+            border: 0.25rem solid var(--user-secondary-color);
             box-shadow: 1px 2px 2px var(--shadow-color);
         }
 
         h1 {
             font-size: 1.5rem;
-            color: var(--user-secondary-color);
+            color: var(--user-primary-color);
         }
 
         p {
