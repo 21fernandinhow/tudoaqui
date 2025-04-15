@@ -81,3 +81,45 @@
         transition: 0.3s;
     }
 }
+
+.btn-outline{
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    box-shadow: none;
+    background: none;
+
+    &:hover{
+        color: var(--bg-color);
+        background: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        box-shadow: none;
+    }
+}
+
+.btn-outline-secondary{
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    box-shadow: none;
+    background: none;
+
+    &:hover{
+        color: var(--bg-color);
+        background: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+        box-shadow: none;
+    }
+}
+
+.btn-outline-terciary{
+    color: var(--terciary-color);
+    border: 1px solid var(--terciary-color);
+    box-shadow: none;
+    background: none;
+
+    &:hover{
+        color: var(--bg-color);
+        background: var(--terciary-color);
+        border: 1px solid var(--terciary-color);
+        box-shadow: none;
+    }
+}

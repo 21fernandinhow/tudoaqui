@@ -1,0 +1,39 @@
+#not-found-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 100vh;
+    text-align: center;
+    background: var(--bg-secondary-color);
+
+    h2,
+    svg {
+        color: var(--shadow-color);
+
+        &:hover {
+            color: var(--secondary-color);
+            transition: 0.3s;
+        }
+    }
+
+    svg {
+        font-size: 8rem;
+    }
+
+    button{
+        margin-top: 1rem;
+        svg{
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+
+        &:hover{
+            svg{
+                color: var(--bg-color);
+            }
+        }
+    }
+}
