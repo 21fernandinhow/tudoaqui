@@ -10,6 +10,7 @@ import { UserLinksPageContent } from "../UserLinksPageContent.tsx"
 import { saveUserData } from "../../utils/saveUserData.ts"
 import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid.tsx"
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
+import ToggleSwitch from "../ToggleSwitch.tsx"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -31,6 +32,7 @@ export interface UserLinksPageData {
     showAIAssistant: boolean
     hideCredits: boolean
     isPremium: boolean
+    showPremiumIcon: boolean
     links: UserLinkOption[]
     buttonOptions: {
         style: "default" | "outline"
@@ -82,6 +84,7 @@ export const UserConfigForm = () => {
             floatingMode: false
         },
         isPremium: false,
+        showPremiumIcon: false
     }
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultData)
@@ -124,7 +127,19 @@ export const UserConfigForm = () => {
                 />
                 <hr className="custom-hr-primary" />
 
-                <UserInformationsInputs name={userLinksPageData.name} bio={userLinksPageData.bio} updateData={handleChange} />
+                <UserInformationsInputs
+                    name={userLinksPageData.name}
+                    bio={userLinksPageData.bio}
+                    updateData={handleChange}
+                />
+                <ToggleSwitch
+                    isOn={userLinksPageData.isPremium && userLinksPageData.showPremiumIcon}
+                    onToggle={(e) => handleChange("showPremiumIcon", e)}
+                    label="Exibir ícone premium: "
+                    disabled={!userLinksPageData.isPremium}
+                    disabledMessage={"Recurso Premium"}
+                    disabledMessagePosition="right"
+                />
                 <hr className="custom-hr-secondary" />
 
                 <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} />

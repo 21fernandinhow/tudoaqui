@@ -16,6 +16,8 @@ export const DisableCredits = ({ isUserPremium, handleChange, hideCredits }: Dis
             label="Ocultar créditos no rodapé: "
             isOn={hideCredits}
             disabled={!isUserPremium}
+            disabledMessage={"Recurso Premium"}
+            disabledMessagePosition="right"
             onToggle={(value) => handleChange("hideCredits", value)}
         />
     </>

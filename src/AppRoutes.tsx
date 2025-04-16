@@ -1,4 +1,3 @@
-// AppRoutes.tsx
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { ConfigPage } from "./pages/ConfigPage";

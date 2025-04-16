@@ -10,13 +10,38 @@
             height: 8rem;
             border-radius: 100%;
             border: 0.25rem solid var(--user-secondary-color);
-            box-shadow: 1px 2px 2px var(--shadow-color);
+            box-shadow: 1px 2px 2px var(--user-shadow-color);
             object-fit: cover;
         }
 
-        h1 {
-            font-size: 1.5rem;
-            color: var(--user-primary-color);
+        .title-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+
+            h1 {
+                font-size: 1.5rem;
+                color: var(--user-primary-color);
+            }
+
+            .premium-icon {
+                padding: 0.2rem;
+                color: invert($color: var(--user-bg-color));
+                background-color: var(--shadow-color);
+                border-radius: 100%;
+                font-size: 1.2rem;
+                opacity: 0.4;
+
+                &:hover {
+                    color: #fff;
+                    padding: 0.15rem;
+                    box-shadow: 1px 1px 5px var(--shadow-color);
+                    background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
+                    opacity: 1;
+                    transition: 0.3s;
+                }
+            }
         }
 
         p {

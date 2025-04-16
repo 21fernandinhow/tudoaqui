@@ -34,9 +34,17 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
 
             <div className="user-links-page-container">
 
-                <UserLinksPageHeader imageUrl={data.avatarImgUrl} name={data.name} bio={data.bio} />
+                <UserLinksPageHeader
+                    imageUrl={data.avatarImgUrl}
+                    name={data.name}
+                    bio={data.bio}
+                    showPremiumIcon={data.isPremium && data.showPremiumIcon}
+                />
 
-                <IconsGrid icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)} activateFloating={data.iconOptions.floatingMode} />
+                <IconsGrid
+                    icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)}
+                    activateFloating={data.iconOptions.floatingMode}
+                />
 
                 <ButtonsGrid
                     buttons={data.links.filter(item => item.type === "button" && item.label && item.url)}
