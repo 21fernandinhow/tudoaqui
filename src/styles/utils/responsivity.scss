@@ -1,6 +1,6 @@
-@media (max-width: 769px) {
+@media(max-width: 530px) {
     .row {
-        flex-direction: column;
+        flex-direction: column-reverse !important;
 
         .col-half {
             width: 100%;
@@ -10,7 +10,9 @@
             }
         }
     }
+}
 
+@media (max-width: 769px) {
     #config-page {
         flex-direction: column !important;
 
