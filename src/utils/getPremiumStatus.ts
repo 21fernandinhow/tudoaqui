@@ -1,7 +1,5 @@
-import { FirebaseApp } from "firebase/app";
 import {
     collection,
-    getFirestore,
     onSnapshot,
     query,
     where,
