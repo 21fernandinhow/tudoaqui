@@ -49,6 +49,7 @@ export const LoginButton = () => {
               floatingMode: false
             },
             isPremium: false,
+            showPremiumIcon: false
           },
           lastLogin: new Date(),
         });
