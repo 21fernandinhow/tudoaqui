@@ -34,8 +34,3 @@
     border-radius: 20px;
     border: 1px solid var(--user-bg-secondary-color);
 }
-
-::selection {
-    background-color: var(--user-primary-color) !important;
-    color: var(--user-bg-color) !important;
-}

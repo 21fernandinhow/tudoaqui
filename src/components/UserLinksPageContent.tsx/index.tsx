@@ -11,9 +11,9 @@ interface UserLinksPageContentProps {
 }
 
 export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
+    const root = document.documentElement;
 
     const applyThemeVariables = () => {
-        const root = document.documentElement;
         root.style.setProperty("--user-font", data.font);
         root.style.setProperty("--user-primary-color", data.colors.primary);
         root.style.setProperty("--user-secondary-color", data.colors.secondary);
@@ -23,10 +23,16 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
         root.style.setProperty("--user-shadow-color", data.colors.shadow);
         root.style.setProperty("--user-button-border-radius", data.buttonOptions.borderRadius + "rem");
         root.style.setProperty("--user-icons-background-color", data.iconOptions.bgColor);
+        root.style.setProperty("--select-color", data.colors.bg);
+        root.style.setProperty("--select-background", data.colors.primary);
     }
 
     useEffect(() => {
         applyThemeVariables()
+        return () => {
+            root.style.setProperty("--select-color", "#fff");
+            root.style.setProperty("--select-background", "#e63946");
+        }
     }, [data])
 
     return (

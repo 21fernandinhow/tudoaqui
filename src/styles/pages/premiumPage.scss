@@ -1,0 +1,28 @@
+#premium-page {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, var(--secondary-color), var(--terciary-color));
+    padding: 2rem;
+
+    .container {
+        // text-align: center;
+        box-shadow: 1px 1px 6px var(--shadow-color);
+        background: var(--bg-secondary-color);
+        border-radius: 2rem;
+    }
+
+    p {
+        margin: 1rem 0rem;
+    }
+
+    .sign-premium-please {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

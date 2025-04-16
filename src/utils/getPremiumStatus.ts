@@ -6,12 +6,12 @@ import {
     query,
     where,
 } from "firebase/firestore";
+import { db } from "../firebase";
 
-export const getPremiumStatus = async (app: FirebaseApp, userId: string) => {
+export const getPremiumStatus = async ( userId: string) => {
 
     if (!userId) throw new Error("User not logged in");
 
-    const db = getFirestore(app);
     const subscriptionsRef = collection(db, "customers", userId, "subscriptions");
     const q = query(
         subscriptionsRef,

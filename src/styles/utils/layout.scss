@@ -51,6 +51,6 @@ body {
 }
 
 ::selection {
-    background-color: var(--secondary-color);
-    color: var(--bg-color);
+    background-color: var(--select-background);
+    color: var(--select-color);
 }
