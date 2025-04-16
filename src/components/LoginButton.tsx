@@ -44,8 +44,11 @@ export const LoginButton = () => {
               style: "default",
               borderRadius: "0.5"
             },
+            iconOptions: {
+              bgColor: "#fff",
+              floatingMode: false
+            },
             isPremium: false,
-            iconsColor: "#fff"
           },
           lastLogin: new Date(),
         });
@@ -59,7 +62,7 @@ export const LoginButton = () => {
 
   return (
     <button onClick={handleLogin} className="btn">
-      <FcGoogle /> Login com Google
+      <FcGoogle /> Entrar com Google
     </button>
   );
 }

@@ -6,9 +6,10 @@ export interface IconCanvasProps {
     iconUrl: string
     onClick: () => any
     label: string
+    activateFloating: boolean
 }
 
-export const IconCanvas = ({ iconUrl, onClick, label }: IconCanvasProps) => {
+export const IconCanvas = ({ iconUrl, onClick, label, activateFloating }: IconCanvasProps) => {
     return (
         <div className="icons-grid-item">
             <Canvas shadows>
@@ -19,6 +20,7 @@ export const IconCanvas = ({ iconUrl, onClick, label }: IconCanvasProps) => {
                     position={[0, 0.5, 1.5]}
                     onClick={onClick}
                     label={label}
+                    activateFloating={activateFloating}
                 />
             </Canvas>
         </div>

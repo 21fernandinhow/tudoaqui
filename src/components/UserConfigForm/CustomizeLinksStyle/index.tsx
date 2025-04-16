@@ -9,7 +9,10 @@ interface CustomizeLinksStyleProps {
     style: "default" | "outline"
     borderRadius: "0" | "0.5" | "1" | "1.5"
   };
-  iconsColor: "#fff" | "#000";
+  iconOptions: {
+    bgColor: "#fff" | "#000";
+    floatingMode: boolean
+  }
   handleChange: (key: string, value: any) => void;
 };
 
@@ -17,7 +20,7 @@ export const CustomizeLinksStyle = ({
   hasButton,
   hasIcon,
   buttonOptions,
-  iconsColor,
+  iconOptions,
   handleChange,
 }: CustomizeLinksStyleProps) => {
   return (
@@ -27,16 +30,14 @@ export const CustomizeLinksStyle = ({
       {hasButton && (
         <CustomizeButtonsStyle
           buttonsData={buttonOptions}
-          updateData={(key: string, value: string) =>
-            handleChange("buttonOptions", { ...buttonOptions, [key]: value })
-          }
+          updateData={(key: string, value: string) => handleChange("buttonOptions", { ...buttonOptions, [key]: value })}
         />
       )}
 
       {hasIcon && (
         <CustomizeIconsStyle
-          iconsColor={iconsColor}
-          updateData={handleChange}
+          iconsData={iconOptions}
+          updateData={(key: string, value: string) => handleChange("iconOptions", { ...iconOptions, [key]: value })}
         />
       )}
 

@@ -13,7 +13,7 @@ export const DisableCredits = ({ isUserPremium, handleChange, hideCredits }: Dis
         <p>Porém um segredo 🤫🤫 é que você pode desativar isso (se for um assinante premium).</p>
 
         <ToggleSwitch
-            label="Ocultar créditos no rodapé"
+            label="Ocultar créditos no rodapé: "
             isOn={hideCredits}
             disabled={!isUserPremium}
             onToggle={(value) => handleChange("hideCredits", value)}

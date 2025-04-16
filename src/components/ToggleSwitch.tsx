@@ -15,8 +15,8 @@ const ToggleSwitch = ({ isOn = false, onToggle, label, disabled }: ToggleSwitchP
 
   return (
     <div className={`toggle ${isOn ? 'on' : 'off'} ${disabled && 'disabled'}`} onClick={handleToggle}>
-      <div className="switch" />
       <span className="label">{label}</span>
+      <div className="switch" />
     </div>
   );
 };

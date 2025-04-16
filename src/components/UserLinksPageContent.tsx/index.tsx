@@ -22,7 +22,7 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
         root.style.setProperty("--user-contrast-color", data.colors.contrast);
         root.style.setProperty("--user-shadow-color", data.colors.shadow);
         root.style.setProperty("--user-button-border-radius", data.buttonOptions.borderRadius + "rem");
-        root.style.setProperty("--user-icons-background-color", data.iconsColor);
+        root.style.setProperty("--user-icons-background-color", data.iconOptions.bgColor);
     }
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
 
                 <UserLinksPageHeader imageUrl={data.avatarImgUrl} name={data.name} bio={data.bio} />
 
-                <IconsGrid icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)} />
+                <IconsGrid icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)} activateFloating={data.iconOptions.floatingMode} />
 
                 <ButtonsGrid
                     buttons={data.links.filter(item => item.type === "button" && item.label && item.url)}

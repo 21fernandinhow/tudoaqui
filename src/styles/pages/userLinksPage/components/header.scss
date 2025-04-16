@@ -1,6 +1,5 @@
 #user-links-page-content {
     .user-links-page-header {
-        width: 100%;
         text-align: center;
 
         .avatar {
@@ -20,13 +19,9 @@
         }
 
         p {
+            margin: 0.5rem 0rem;
             font-size: 1.1rem;
             color: var(--user-contrast-color);
-        }
-
-        h1,
-        p {
-            max-width: 400px;
         }
     }
 }

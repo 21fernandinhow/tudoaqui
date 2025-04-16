@@ -36,7 +36,10 @@ export interface UserLinksPageData {
         style: "default" | "outline"
         borderRadius: "0" | "0.5" | "1" | "1.5"
     }
-    iconsColor: "#fff" | "#000"
+    iconOptions: {
+        bgColor: "#fff" | "#000"
+        floatingMode: boolean
+    }
 }
 
 export interface UserLinkOption {
@@ -74,8 +77,11 @@ export const UserConfigForm = () => {
             style: "default",
             borderRadius: "0.5"
         },
+        iconOptions: {
+            bgColor: "#fff",
+            floatingMode: false
+        },
         isPremium: false,
-        iconsColor: "#fff"
     }
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultData)
@@ -85,7 +91,6 @@ export const UserConfigForm = () => {
         if (user?.uid) {
             const data = await getUserLinksPageDataByUid(user.uid)
             if (data) {
-                console.log(data)
                 setUserLinksPageData(data)
                 setBackupUserLinksPageData(data)
             }
@@ -133,7 +138,7 @@ export const UserConfigForm = () => {
                         hasButton={userLinksPageData.links.some(item => item.type === "button")}
                         hasIcon={userLinksPageData.links.some(item => item.type === "icon")}
                         buttonOptions={userLinksPageData.buttonOptions}
-                        iconsColor={userLinksPageData.iconsColor}
+                        iconOptions={userLinksPageData.iconOptions}
                         handleChange={handleChange}
                     />
                 }

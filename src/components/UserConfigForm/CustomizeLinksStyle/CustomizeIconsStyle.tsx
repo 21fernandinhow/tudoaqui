@@ -1,11 +1,15 @@
 import { SelectInput } from "../../SelectInput"
+import ToggleSwitch from "../../ToggleSwitch"
 
 interface CustomizeIconsStyleProps {
-    iconsColor: "#fff" | "#000"
-    updateData: (key: string, value: string) => void
+    iconsData: {
+        bgColor: "#fff" | "#000"
+        floatingMode: boolean
+    }
+    updateData: (key: string, value: any) => void
 }
 
-export const CustomizeIconsStyle = ({iconsColor, updateData}: CustomizeIconsStyleProps) => {
+export const CustomizeIconsStyle = ({ iconsData, updateData }: CustomizeIconsStyleProps) => {
 
     const selectBoxOptions = [
         { label: "Claro (padrão)", value: "#fff" },
@@ -17,9 +21,15 @@ export const CustomizeIconsStyle = ({iconsColor, updateData}: CustomizeIconsStyl
             <SelectInput
                 name="button-option-link-style"
                 label="Cor da caixa de ícone: "
-                value={iconsColor}
-                onChange={(e) => updateData("iconsColor", e.target.value)}
+                value={iconsData?.bgColor}
+                onChange={(e) => updateData("bgColor", e.target.value)}
                 options={selectBoxOptions}
+            />
+
+            <ToggleSwitch
+                isOn={iconsData?.floatingMode}
+                label="Ícones flutuantes: "
+                onToggle={(e) => updateData("floatingMode", e)}
             />
         </>
     )
