@@ -1,5 +1,6 @@
 import { doc, getDoc } from "firebase/firestore"
-import { db } from "../firebase"
+import { app, db } from "../firebase"
+import { getPremiumStatus } from "./getPremiumStatus"
 
 export const getUserLinksPageDataByUid = async (uid: string) => {
     if (uid) {
@@ -7,7 +8,10 @@ export const getUserLinksPageDataByUid = async (uid: string) => {
         try {
             const docSnap = await getDoc(userRef)
             if (docSnap.exists()) {
-                return docSnap.data().userLinksPageData
+                const userLinksPageData = docSnap.data().userLinksPageData
+                const isUserPremium = await getPremiumStatus(app, uid)
+                userLinksPageData.isPremium = isUserPremium
+                return userLinksPageData
             }
         } catch (error) {
             console.error("Erro ao buscar dados do usuário:", error)

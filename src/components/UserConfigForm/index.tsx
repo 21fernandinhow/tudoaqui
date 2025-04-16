@@ -85,6 +85,7 @@ export const UserConfigForm = () => {
         if (user?.uid) {
             const data = await getUserLinksPageDataByUid(user.uid)
             if (data) {
+                console.log(data)
                 setUserLinksPageData(data)
                 setBackupUserLinksPageData(data)
             }
