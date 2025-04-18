@@ -40,6 +40,7 @@ export const UserLinkOptionConfigBox = ({
         { label: "Discord", value: "logos/discord_logo.webp" },
         { label: "Spotify", value: "logos/spotify.webp" },
         { label: "Soundcloud", value: "logos/soundcloud.webp" },
+        { label: "Deezer", value: "logos/deezer.webp" },
         { label: "LinkedIn", value: "logos/linkedin.webp" },
         { label: "Github", value: "logos/github.webp" },
         { label: "Hotmart", value: "logos/hotmart.webp" },
