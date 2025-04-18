@@ -5,9 +5,15 @@ import { auth, db, googleAuthProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export const LoginButton = () => {
-  const { setUser } = useUserData();
+  const { user, setUser } = useUserData();
 
   const handleLogin = async () => {
+
+    if (user) {
+      alert("Você ja está logado!")
+      return
+    }
+    
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       const user = result.user;

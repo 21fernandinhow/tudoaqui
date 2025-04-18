@@ -33,6 +33,7 @@ export const UserLinkOptionConfigBox = ({
         { label: "Whatsapp", value: "logos/whatsapp.webp" },
         { label: "Instagram", value: "logos/instagram_logo.webp" },
         { label: "Vsco", value: "logos/vsco.webp" },
+        { label: "X", value: "logos/x.webp" },
         { label: "Tiktok", value: "logos/tiktok.webp" },
         { label: "Youtube", value: "logos/youtube_logo.webp" },
         { label: "Twitch", value: "logos/twitch_logo.webp" },
