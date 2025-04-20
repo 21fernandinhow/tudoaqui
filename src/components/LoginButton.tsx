@@ -29,14 +29,18 @@ export const LoginButton = () => {
     const isMobileDevice = /iphone|ipad|android/i.test(userAgent);
 
     if (isMobileDevice && isInAppBrowser) {
-      
+
+      alert('caiu aqui')
+
       // For iOS devices
       if (/iphone|ipad/i.test(userAgent)) {
+        alert('identificou iphone')
         window.location.href = 'x-safari-' + url;
         return;
       }
       // For Android devices
       if (/android/i.test(userAgent)) {
+        alert('identificou android')
         window.location.href = 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
         return;
       }
