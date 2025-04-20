@@ -28,15 +28,11 @@ export const LoginButton = () => {
     const isInAppBrowser = inAppBrowsers.some(app => userAgent.includes(app));
     const isMobileDevice = /iphone|ipad|android/i.test(userAgent);
 
-    alert(`passou por aqui ${userAgent} ${isInAppBrowser} ${isMobileDevice}`)
 
     if (isMobileDevice && isInAppBrowser) {
 
-      alert('caiu aqui' + userAgent)
-
       // For iOS devices
       if (/iphone|ipad/i.test(userAgent)) {
-        alert('identificou iphone')
         window.location.href = 'x-safari-' + url;
         return;
       }
