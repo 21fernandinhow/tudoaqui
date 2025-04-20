@@ -28,7 +28,6 @@ export const LoginButton = () => {
     const isInAppBrowser = inAppBrowsers.some(app => userAgent.includes(app));
     const isMobileDevice = /iphone|ipad|android/i.test(userAgent);
 
-
     if (isMobileDevice && isInAppBrowser) {
 
       // For iOS devices
