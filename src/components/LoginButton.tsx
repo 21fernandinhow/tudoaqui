@@ -32,7 +32,7 @@ export const LoginButton = () => {
 
     if (isMobileDevice && isInAppBrowser) {
 
-      alert('caiu aqui')
+      alert('caiu aqui' + userAgent)
 
       // For iOS devices
       if (/iphone|ipad/i.test(userAgent)) {
