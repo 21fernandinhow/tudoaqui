@@ -14,7 +14,7 @@ export const LoginButton = () => {
       return
     }
 
-    const userAgent = window.navigator.userAgent;
+    const userAgent = window.navigator.userAgent.toLowerCase();
     const url = window.location.href
     const inAppBrowsers = [
       'linkedinapp',
