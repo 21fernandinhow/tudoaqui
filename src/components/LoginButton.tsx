@@ -28,6 +28,8 @@ export const LoginButton = () => {
     const isInAppBrowser = inAppBrowsers.some(app => userAgent.includes(app));
     const isMobileDevice = /iphone|ipad|android/i.test(userAgent);
 
+    alert('passou por aqui')
+
     if (isMobileDevice && isInAppBrowser) {
 
       alert('caiu aqui')
@@ -40,7 +42,6 @@ export const LoginButton = () => {
       }
       // For Android devices
       if (/android/i.test(userAgent)) {
-        alert('identificou android')
         window.location.href = 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
         return;
       }
