@@ -62,6 +62,7 @@ export const LoginButton = () => {
       }
 
       setUser(user);
+      window.location.href = "/config"
     } catch (error) {
       console.error('Erro ao autenticar com o Google:', error);
     }
