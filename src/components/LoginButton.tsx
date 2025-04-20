@@ -13,7 +13,35 @@ export const LoginButton = () => {
       alert("Você ja está logado!")
       return
     }
-    
+
+    const userAgent = window.navigator.userAgent;
+    const url = window.location.href
+    const inAppBrowsers = [
+      'linkedinapp',
+      'fban', // Facebook App
+      'fbav', // Facebook App
+      'instagram',
+      'line',
+      'wv', // WebView
+      'fb_iab', // Facebook in-app browser
+    ];
+    const isInAppBrowser = inAppBrowsers.some(app => userAgent.includes(app));
+    const isMobileDevice = /iphone|ipad|android/i.test(userAgent);
+
+    if (isMobileDevice && isInAppBrowser) {
+      
+      // For iOS devices
+      if (/iphone|ipad/i.test(userAgent)) {
+        window.location.href = 'x-safari-' + url;
+        return;
+      }
+      // For Android devices
+      if (/android/i.test(userAgent)) {
+        window.location.href = 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        return;
+      }
+    }
+
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       const user = result.user;
