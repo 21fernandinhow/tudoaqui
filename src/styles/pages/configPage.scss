@@ -1,10 +1,12 @@
 #config-page {
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
+    position: relative;
 
     #user-config-form {
 
-        height: 90vh;
+        min-height: 100%;
         padding: 1.5rem;
         padding-bottom: 3rem;
         box-shadow: 2px 2px 8px var(--shadow-color);
@@ -46,13 +48,9 @@
 
     #preview {
         flex-grow: 1;
-
-        #user-links-page-content {
-            height: 90vh;
-            #user-links-page-container{
-                min-height: 90vh;
-            }
-        }
+        position: sticky;
+        top: 0;
+        height: 100%;
     }
 }
 

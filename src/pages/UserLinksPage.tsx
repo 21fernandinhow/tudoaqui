@@ -38,11 +38,6 @@ export const UserLinksPage = () => {
         fetchUserLinksPageData();
     }, [userUrl]);
 
-    useEffect(() => {
-        document.body.classList.add("no-scroll");
-        return () => document.body.classList.remove("no-scroll")
-    }, []);
-
     if (loading) {
         return <div className="loading-page"> <Loader /> </div>
     }

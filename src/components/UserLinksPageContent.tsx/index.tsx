@@ -8,9 +8,10 @@ import { PoweredBy } from "./PoweredBy";
 
 interface UserLinksPageContentProps {
     data: UserLinksPageData
+    isPreview?: boolean
 }
 
-export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
+export const UserLinksPageContent = ({ data, isPreview }: UserLinksPageContentProps) => {
     const root = document.documentElement;
 
     const applyThemeVariables = () => {
@@ -25,6 +26,11 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
         root.style.setProperty("--user-icons-background-color", data.iconOptions.bgColor);
         root.style.setProperty("--select-color", data.colors.bg);
         root.style.setProperty("--select-background", data.colors.primary);
+
+        if(!isPreview){
+            root.style.setProperty("--scrollbar-color", data.colors.bg);
+            root.style.setProperty("--scrollbar-background", data.colors.primary);
+        }
     }
 
     useEffect(() => {
@@ -32,6 +38,8 @@ export const UserLinksPageContent = ({ data }: UserLinksPageContentProps) => {
         return () => {
             root.style.setProperty("--select-color", "#fff");
             root.style.setProperty("--select-background", "#e63946");
+            root.style.setProperty("--scrollbar-color", "#ef529c");
+            root.style.setProperty("--scrollbar-background", "#f5f5f5");
         }
     }, [data])
 

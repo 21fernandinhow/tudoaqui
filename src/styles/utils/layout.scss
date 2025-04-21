@@ -15,10 +15,6 @@ body {
     background: var(--bg-color);
 }
 
-.no-scroll {
-    overflow: hidden;
-}
-
 .container {
     margin-left: auto;
     margin-right: auto;
@@ -41,13 +37,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary-color);
+    background: var(--scrollbar-background);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--scrollbar-color);
     border-radius: 20px;
-    border: 1px solid var(--bg-secondary-color);
+    border: 1px solid var(--scrollbar-background);
 }
 
 ::selection {

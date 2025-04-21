@@ -183,7 +183,7 @@ export const UserConfigForm = () => {
             </div>
 
             <div id="preview">
-                <UserLinksPageContent data={userLinksPageData} />
+                <UserLinksPageContent data={userLinksPageData} isPreview />
             </div>
 
         </div>
