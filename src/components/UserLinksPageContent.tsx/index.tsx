@@ -28,8 +28,8 @@ export const UserLinksPageContent = ({ data, isPreview }: UserLinksPageContentPr
         root.style.setProperty("--select-background", data.colors.primary);
 
         if(!isPreview){
-            root.style.setProperty("--scrollbar-color", data.colors.bg);
-            root.style.setProperty("--scrollbar-background", data.colors.primary);
+            root.style.setProperty("--scrollbar-color", data.colors.primary);
+            root.style.setProperty("--scrollbar-background", data.colors.bgSecondary);
         }
     }
 
