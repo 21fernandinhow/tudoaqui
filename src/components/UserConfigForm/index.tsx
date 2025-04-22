@@ -81,7 +81,7 @@ export const UserConfigForm = () => {
         },
         iconOptions: {
             bgColor: "#fff",
-            floatingMode: false
+            floatingMode: true
         },
         isPremium: false,
         showPremiumIcon: false
