@@ -1,6 +1,5 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db, storage } from "../../firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { storage } from "../../firebase";
 import { UserLinksPageData } from "../UserConfigForm";
 
 interface AvatarUploadProps {
@@ -16,18 +15,16 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
 
         if (!file || !userUid) return;
 
+        if (!file.type.startsWith('image/')) {
+            alert("Por favor, selecione um arquivo de imagem válido.");
+            return;
+        }
+
         try {
             const storageRef = ref(storage, `users/${userUid}/${file.name}`);
             await uploadBytes(storageRef, file);
             const downloadURL = await getDownloadURL(storageRef);
 
-            await setDoc(doc(db, 'users', userUid), {
-                userLinksPageData: {
-                    ...data,
-                    avatarImgUrl: downloadURL,
-                    avatarImgName: file.name
-                }
-            }, { merge: true });
             updateData("avatarImgUrl", downloadURL)
             updateData("avatarImgName", file.name)
 
