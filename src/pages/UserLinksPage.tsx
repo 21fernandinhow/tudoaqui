@@ -22,7 +22,7 @@ export const UserLinksPage = () => {
                     const userDoc = querySnapshot.docs[0];
                     const data = userDoc.data()
                     setUserLinksPageData(data.userLinksPageData);
-                    document.title = data.userLinksPageData.userUrl + " - tudoaqui.click"
+                    document.title = data.userLinksPageData.name
                 } else {
                     console.log("Usuário não encontrado");
                 }
