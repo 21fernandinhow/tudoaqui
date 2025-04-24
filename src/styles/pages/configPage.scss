@@ -1,7 +1,8 @@
 #config-page {
     display: flex;
     flex-direction: row;
-    min-height: 100vh;
+    min-height: 100vh; // fallback for dvh
+    min-height: 100dvh;
     position: relative;
 
     #user-config-form {

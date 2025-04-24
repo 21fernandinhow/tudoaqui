@@ -1,5 +1,6 @@
 .lp-session {
-    min-height: 90vh;
+    min-height: 90vh; // fallback for dvh
+    min-height: 90dvh;
     display: flex;
     align-items: center;
 }

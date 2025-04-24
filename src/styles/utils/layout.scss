@@ -9,7 +9,8 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100vh; // fallback for dvh
+    min-height: 100dvh;
     color: var(--contrast-color);
     font-family: var(--font);
     background: var(--bg-color);

@@ -1,5 +1,6 @@
 #premium-page {
-    min-height: 90vh;
+    min-height: 90vh; // fallback for dvh
+    min-height: 90dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -7,7 +8,6 @@
     padding: 2rem;
 
     .container {
-        // text-align: center;
         box-shadow: 1px 1px 6px var(--shadow-color);
         background: var(--bg-secondary-color);
         border-radius: 2rem;
