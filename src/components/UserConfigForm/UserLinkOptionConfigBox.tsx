@@ -95,8 +95,10 @@ export const UserLinkOptionConfigBox = ({
                         value={linkOptionData.url.slice(0, 512)}
                         onChange={(e) => updateLinkOptionData(index, "url", e.target.value.slice(0, 512))}
                         onBlur={() => {
-                            if (!linkOptionData.url.startsWith("http://") && !linkOptionData.url.startsWith("https://")) {
-                                updateLinkOptionData(index, "url", `https://${linkOptionData.url}`)
+                            const cleanUrl = linkOptionData.url.replace(/^(https?:\/\/)+/i, "");
+                            const sanitizedUrl = `https://${cleanUrl}`;
+                            if (linkOptionData.url !== sanitizedUrl) {
+                                updateLinkOptionData(index, "url", sanitizedUrl);
                             }
                         }}
                     />
