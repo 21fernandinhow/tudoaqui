@@ -31,6 +31,7 @@ export const UserLinkOptionConfigBox = ({
     const iconOptions = [
         { label: "Outro...", value: "logos/default.webp" },
         { label: "Whatsapp", value: "logos/whatsapp.webp" },
+        { label: "Facebook", value: "logos/facebook.webp" },
         { label: "Instagram", value: "logos/instagram_logo.webp" },
         { label: "Vsco", value: "logos/vsco.webp" },
         { label: "X", value: "logos/x.webp" },
@@ -41,6 +42,7 @@ export const UserLinkOptionConfigBox = ({
         { label: "Spotify", value: "logos/spotify.webp" },
         { label: "Soundcloud", value: "logos/soundcloud.webp" },
         { label: "Deezer", value: "logos/deezer.webp" },
+        { label: "iFood", value: "logos/ifood.webp" },
         { label: "LinkedIn", value: "logos/linkedin.webp" },
         { label: "Github", value: "logos/github.webp" },
         { label: "Hotmart", value: "logos/hotmart.webp" },
