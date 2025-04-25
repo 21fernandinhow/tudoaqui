@@ -10,7 +10,7 @@ export const UserUrlInput = ({userUrl, updateUserUrl}: UserUrlInputProps) => {
             <p>Vamos começar definindo o seu link personalizado:</p>
             <input
                 type="text"
-                onChange={(e) => updateUserUrl("userUrl", e.target.value.slice(0, 40))}
+                onChange={(e) => updateUserUrl("userUrl", e.target.value.replace(/\s+/g, '').slice(0, 40))}
                 value={userUrl}
                 placeholder="Digite aqui..."
             />
