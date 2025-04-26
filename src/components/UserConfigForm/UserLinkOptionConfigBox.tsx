@@ -52,6 +52,7 @@ export const UserLinkOptionConfigBox = ({
         { label: "Privacy", value: "logos/privacy.webp" },
         { label: "Amazon", value: "logos/amazon_logo.webp" },
         { label: "E-mail", value: "logos/email_logo.webp" },
+        { label: "Localização", value: "logos/location.webp" },
         { label: "Ligação", value: "logos/call.webp" },
     ]
 
