@@ -1,6 +1,8 @@
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase";
 import { UserLinksPageData } from "../UserConfigForm";
+import { useState } from "react";
+import { Loader } from "../Loader";
 
 interface AvatarUploadProps {
     data: UserLinksPageData, // use all data and not just avatarImgName because this component made a save for himself
@@ -10,7 +12,11 @@ interface AvatarUploadProps {
 
 export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
 
+    const [showButtonLoader, setShowButtonLoader] = useState(false)
+
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        setShowButtonLoader(true)
+
         const file = e.target.files?.[0];
 
         if (!file || !userUid) return;
@@ -28,11 +34,14 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
             updateData("avatarImgUrl", downloadURL)
             updateData("avatarImgName", file.name)
 
+            setShowButtonLoader(false)
             alert('Foto de perfil enviada com sucesso!');
         } catch (error) {
+            setShowButtonLoader(false)
             console.error("Erro ao fazer upload da imagem:", error);
             alert("Erro ao fazer upload da imagem!");
         }
+
     };
 
     return (
@@ -40,11 +49,12 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
             <p>Escolha uma foto para ser seu avatar: </p>
             <div className="img-input">
                 <input type="file" accept="image/*" onChange={handleImageUpload} id="img-input" />
-                <label htmlFor="img-input">Selecionar imagem</label>
+                <label htmlFor="img-input" className={showButtonLoader ? "disabled" : ""}> Selecionar Imagem </label>
                 <span>
                     {data.avatarImgName && data.avatarImgName.length > 16 ?
                         data.avatarImgName.slice(0, 16) + "..." : data.avatarImgName
                     }
+                    {showButtonLoader && <Loader isSmall />}
                 </span>
             </div>
         </>

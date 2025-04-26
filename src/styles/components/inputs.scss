@@ -38,6 +38,16 @@ textarea {
         padding: 8px;
         font-size: 0.8rem;
         font-weight: bold;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .loader{
+            margin-left: 110%;
+            margin-bottom: 0.75rem;
+        }
     }
 }
 

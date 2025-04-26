@@ -10,20 +10,28 @@ export const PremiumPage = () => {
 
     const { user, loading } = useUserData()
     const [isPremium, setIsPremium] = useState(false)
+    const [showButtonLoader, setShowButtonLoader] = useState(false)
 
     const openCheckout = async () => {
         if (!user?.uid) return
 
         const priceId = "price_1RELVLCKszI7rOf1rgKhjspA"
+
+        setShowButtonLoader(true)
         const checkoutUrl = await getCheckoutUrl(user.uid, priceId)
         if (checkoutUrl) window.open(checkoutUrl)
+        setShowButtonLoader(false)
+
     }
 
     const openStripeDashboard = async () => {
         if (!user?.uid) return
 
+        setShowButtonLoader(true)
         const portalUrl = await getPortalUrl()
         if (portalUrl) window.open(portalUrl)
+        setShowButtonLoader(false)
+
     }
 
     const verifyIsPremium = async (uid: string) => {
@@ -60,8 +68,13 @@ export const PremiumPage = () => {
                     }
 
                     {isPremium ?
-                        <button className="btn" onClick={openStripeDashboard}> Gerenciar Assinatura </button>
-                        : <button className="btn" onClick={openCheckout}> Assine Premium </button>
+                        <button className="btn" onClick={openStripeDashboard} disabled={showButtonLoader}>
+                            Gerenciar Assinatura {showButtonLoader && <Loader isSmall />}
+                        </button>
+                        :
+                        <button className="btn" onClick={openCheckout} disabled={showButtonLoader}>
+                            Assine Premium {showButtonLoader && <Loader isSmall />}
+                        </button>
                     }
 
                     <hr className="custom-hr-secondary" />

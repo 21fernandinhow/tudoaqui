@@ -1,7 +1,7 @@
 @use '../utils/animations.scss';
 
 .loader {
-    position: relative;
+    position: absolute;
     width: 4rem;
     height: 4rem;
 
@@ -42,9 +42,16 @@
             animation-name: spin-clockwise;
         }
     }
+
+    &-small {
+        width: 1.5rem;
+        height: 1.5rem;
+        transform: scale(0.35);
+        transform-origin: center center;
+    }
 }
 
-.loading-page{
+.loading-page {
     min-height: 100vh; // fallback for dvh
     min-height: 100dvh;
     width: 100%;
