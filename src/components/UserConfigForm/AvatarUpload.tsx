@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Loader } from "../Loader";
 import { MdDeleteSweep } from "react-icons/md";
 import { Modal } from "../Modal";
+import { useSnackbar } from "../../contexts/SnackbarContext";
 
 interface AvatarUploadProps {
     data: UserLinksPageData, // use all data and not just avatarImgName because this component made a save for himself
@@ -15,6 +16,7 @@ interface AvatarUploadProps {
 export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
     const [showButtonLoader, setShowButtonLoader] = useState(false);
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+    const { showSnackbar } = useSnackbar();
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setShowButtonLoader(true)
@@ -24,7 +26,7 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
         if (!file || !userUid) return;
 
         if (!file.type.startsWith('image/')) {
-            alert("Por favor, selecione um arquivo de imagem válido.");
+            showSnackbar("Por favor, selecione um arquivo de imagem válido.");
             setShowButtonLoader(false)
             return;
         }
@@ -38,16 +40,16 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
             updateData("avatarImgName", file.name)
 
             setShowButtonLoader(false)
-            alert('Foto de perfil enviada com sucesso!');
+            showSnackbar("Foto de perfil enviada com sucesso!");
         } catch (error) {
             setShowButtonLoader(false)
             console.error("Erro ao fazer upload da imagem:", error);
-            alert("Erro ao fazer upload da imagem!");
+            showSnackbar("Erro ao fazer upload da imagem!");
         }
     };
 
     const handleDeleteImage = async () => {
-        if (!userUid || !data.avatarImgName) return;
+        if (!userUid || !data.avatarImgName || showButtonLoader) return;
 
         try {
             const storageRef = ref(storage, `users/${userUid}/${data.avatarImgName}`);
@@ -56,10 +58,10 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
             updateData("avatarImgUrl", "");
             updateData("avatarImgName", "");
             setDeleteModalIsOpen(false);
-            alert('Foto de perfil deletada com sucesso!');
+            showSnackbar("Foto de perfil deletada com sucesso!");
         } catch (error) {
             console.error("Erro ao deletar a imagem:", error);
-            alert("Erro ao deletar a imagem!");
+            showSnackbar("Erro ao deletar a imagem!");
         }
     };
 

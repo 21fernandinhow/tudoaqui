@@ -11,6 +11,7 @@ import { saveUserData } from "../../utils/saveUserData.ts"
 import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid.tsx"
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 import ToggleSwitch from "../ToggleSwitch.tsx"
+import { useSnackbar } from "../../contexts/SnackbarContext"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -54,6 +55,7 @@ export interface UserLinkOption {
 export const UserConfigForm = () => {
 
     const { user } = useUserData()
+    const { showSnackbar } = useSnackbar()
 
     const defaultData: UserLinksPageData = {
         userUrl: "",
@@ -174,7 +176,7 @@ export const UserConfigForm = () => {
                         :
                         <>
                             <p>Tudo certo ? Salve suas alterações: </p>
-                            <button className="btn" onClick={() => saveUserData(user, userLinksPageData)}> Salvar </button>
+                            <button className="btn" onClick={() => saveUserData(user, userLinksPageData, showSnackbar)}> Salvar </button>
                         </>
                     }
 

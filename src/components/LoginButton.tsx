@@ -3,14 +3,16 @@ import { useUserData } from "../context/UserDataContext";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, googleAuthProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useSnackbar } from "../contexts/SnackbarContext";
 
 export const LoginButton = () => {
   const { user, setUser } = useUserData();
+  const { showSnackbar } = useSnackbar();
 
   const handleLogin = async () => {
 
     if (user) {
-      alert("Você ja está logado!")
+      showSnackbar("Você ja está logado!")
       return
     }
 
