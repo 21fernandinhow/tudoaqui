@@ -1,18 +1,20 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 import { storage } from "../../firebase";
 import { UserLinksPageData } from "../UserConfigForm";
 import { useState } from "react";
 import { Loader } from "../Loader";
+import { MdDeleteSweep } from "react-icons/md";
+import { Modal } from "../Modal";
 
 interface AvatarUploadProps {
     data: UserLinksPageData, // use all data and not just avatarImgName because this component made a save for himself
     userUid?: string,
-    updateData: (key: string, value: any) => void
+    updateData: (key: string, value: string) => void
 }
 
 export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) => {
-
-    const [showButtonLoader, setShowButtonLoader] = useState(false)
+    const [showButtonLoader, setShowButtonLoader] = useState(false);
+    const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setShowButtonLoader(true)
@@ -23,6 +25,7 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
 
         if (!file.type.startsWith('image/')) {
             alert("Por favor, selecione um arquivo de imagem válido.");
+            setShowButtonLoader(false)
             return;
         }
 
@@ -41,7 +44,23 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
             console.error("Erro ao fazer upload da imagem:", error);
             alert("Erro ao fazer upload da imagem!");
         }
+    };
 
+    const handleDeleteImage = async () => {
+        if (!userUid || !data.avatarImgName) return;
+
+        try {
+            const storageRef = ref(storage, `users/${userUid}/${data.avatarImgName}`);
+            await deleteObject(storageRef);
+            
+            updateData("avatarImgUrl", "");
+            updateData("avatarImgName", "");
+            setDeleteModalIsOpen(false);
+            alert('Foto de perfil deletada com sucesso!');
+        } catch (error) {
+            console.error("Erro ao deletar a imagem:", error);
+            alert("Erro ao deletar a imagem!");
+        }
     };
 
     return (
@@ -56,7 +75,25 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
                     }
                     {showButtonLoader && <Loader isSmall />}
                 </span>
+                {data.avatarImgName && (
+                    <span className="delete-box-btn" onClick={() => setDeleteModalIsOpen(true)}>
+                        <MdDeleteSweep />
+                    </span>
+                )}
             </div>
+
+            <Modal isOpen={deleteModalIsOpen} onClose={() => setDeleteModalIsOpen(false)}>
+                <p>Tem certeza que deseja deletar sua foto de perfil?</p>
+                <div className="modal-actions">
+                    <button className="btn" onClick={() => setDeleteModalIsOpen(false)}>Cancelar</button>
+                    <button
+                        className="btn btn-error"
+                        onClick={handleDeleteImage}
+                    >
+                        Deletar
+                    </button>
+                </div>
+            </Modal>
         </>
     )
 }

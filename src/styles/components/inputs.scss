@@ -48,6 +48,17 @@ textarea {
             margin-left: 110%;
             margin-bottom: 0.75rem;
         }
+
+        svg{
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--shadow-color);
+
+            &:hover{
+                color: var(--error-color);
+                transition: 0.3s;
+            }
+        }
     }
 }
 

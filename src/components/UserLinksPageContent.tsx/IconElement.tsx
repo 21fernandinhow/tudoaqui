@@ -6,7 +6,7 @@ import * as THREE from "three";
 interface IconElementProps {
   iconUrl: string;
   position: [number, number, number];
-  onClick: () => any;
+  onClick: () => void;
   label?: string;
   activateFloating?: boolean;
 }
