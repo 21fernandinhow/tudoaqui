@@ -18,15 +18,24 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const checkoutUrl = await getCheckoutUrl(user.uid, priceId);
+    
     if (checkoutUrl) {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
         window.location.href = checkoutUrl;
       } else {
-        window.open(checkoutUrl, "_blank");
+        const newWindow = window.open(checkoutUrl, "_blank");
+        if (newWindow) {
+          newWindow.onload = () => {
+            setShowButtonLoader(false);
+          };
+        } else {
+          setShowButtonLoader(false);
+        }
       }
+    } else {
+      setShowButtonLoader(false);
     }
-    setShowButtonLoader(false);
   };
 
   const openStripeDashboard = async () => {
@@ -34,17 +43,24 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const portalUrl = await getPortalUrl();
-
+    
     if (portalUrl) {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
         window.location.href = portalUrl;
       } else {
-        window.open(portalUrl, "_blank");
+        const newWindow = window.open(portalUrl, "_blank");
+        if (newWindow) {
+          newWindow.onload = () => {
+            setShowButtonLoader(false);
+          };
+        } else {
+          setShowButtonLoader(false);
+        }
       }
+    } else {
+      setShowButtonLoader(false);
     }
-
-    setShowButtonLoader(false);
   };
 
   const verifyIsPremium = async (uid: string) => {
