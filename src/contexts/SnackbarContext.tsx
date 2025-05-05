@@ -7,7 +7,7 @@ interface SnackbarContextType {
 
 const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined);
 
-export const SnackbarProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SnackbarProvider = ({ children }: { children: React.ReactNode }) => {
   const [snackbar, setSnackbar] = useState<{
     message: string;
   } | null>(null);
