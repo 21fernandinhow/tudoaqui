@@ -24,14 +24,8 @@ export const PremiumPage = () => {
       if (isMobile) {
         window.location.href = checkoutUrl;
       } else {
-        const newWindow = window.open(checkoutUrl, "_blank");
-        if (newWindow) {
-          newWindow.onload = () => {
-            setShowButtonLoader(false);
-          };
-        } else {
-          setShowButtonLoader(false);
-        }
+        window.open(checkoutUrl, "_blank");
+        setShowButtonLoader(false);
       }
     } else {
       setShowButtonLoader(false);
@@ -49,14 +43,8 @@ export const PremiumPage = () => {
       if (isMobile) {
         window.location.href = portalUrl;
       } else {
-        const newWindow = window.open(portalUrl, "_blank");
-        if (newWindow) {
-          newWindow.onload = () => {
-            setShowButtonLoader(false);
-          };
-        } else {
-          setShowButtonLoader(false);
-        }
+        window.open(portalUrl, "_blank");
+        setShowButtonLoader(false);
       }
     } else {
       setShowButtonLoader(false);
