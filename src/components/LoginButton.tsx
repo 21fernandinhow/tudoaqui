@@ -4,6 +4,7 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, db, googleAuthProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useSnackbar } from "../contexts/SnackbarContext";
+import { defaultUserLinksPageData } from "../utils/defaultUserLinksPageData";
 
 export const LoginButton = () => {
   const { user, setUser } = useUserData();
@@ -56,37 +57,7 @@ export const LoginButton = () => {
           uid: user.uid,
           name: user.displayName,
           email: user.email,
-          userLinksPageData: {
-            userUrl: "",
-            avatarImgUrl: "",
-            avatarImgName: "",
-            name: "",
-            bio: "",
-            colors: {
-              primary: "#fff",
-              secondary: "#fff",
-              bg: "#fff",
-              bgSecondary: "#fff",
-              contrast: "#000",
-              shadow: "rgba(0,0,0, 0.4)"
-            },
-            bgImage: "",
-            font: "",
-            showShareBtn: false,
-            showAIAssistant: false,
-            hideCredits: false,
-            links: [],
-            buttonOptions: {
-              style: "default",
-              borderRadius: "0.5"
-            },
-            iconOptions: {
-              bgColor: "#fff",
-              floatingMode: true
-            },
-            isPremium: false,
-            showPremiumIcon: false
-          },
+          userLinksPageData: defaultUserLinksPageData,
           lastLogin: new Date(),
         });
       }

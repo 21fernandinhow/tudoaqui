@@ -50,8 +50,8 @@ export const UserLinksPageContent = ({ data, isPreview }: UserLinksPageContentPr
 
                 <UserLinksPageHeader
                     imageUrl={data.avatarImgUrl}
-                    name={data.name}
-                    bio={data.bio}
+                    name={data.name ? data.name : isPreview ? "Aqui aparecerá seu nome" : ""}
+                    bio={data.bio ? data.bio : isPreview ? "Aqui aparecerá sua bio" : ""}
                     showPremiumIcon={data.isPremium && data.showPremiumIcon}
                 />
 

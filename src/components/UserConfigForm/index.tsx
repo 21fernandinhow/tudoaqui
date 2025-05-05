@@ -12,6 +12,7 @@ import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 import ToggleSwitch from "../ToggleSwitch.tsx"
 import { useSnackbar } from "../../contexts/SnackbarContext"
+import { defaultUserLinksPageData } from "../../utils/defaultUserLinksPageData.ts"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -57,40 +58,8 @@ export const UserConfigForm = () => {
     const { user } = useUserData()
     const { showSnackbar } = useSnackbar()
 
-    const defaultData: UserLinksPageData = {
-        userUrl: "",
-        avatarImgUrl: "",
-        avatarImgName: "",
-        name: "",
-        bio: "",
-        colors: {
-            primary: "#fff",
-            secondary: "#fff",
-            bg: "#fff",
-            bgSecondary: "#fff",
-            contrast: "#000",
-            shadow: "rgba(0,0,0, 0.4)"
-        },
-        bgImage: "",
-        font: "",
-        showShareBtn: false,
-        showAIAssistant: false,
-        hideCredits: false,
-        links: [],
-        buttonOptions: {
-            style: "default",
-            borderRadius: "0.5"
-        },
-        iconOptions: {
-            bgColor: "#fff",
-            floatingMode: true
-        },
-        isPremium: false,
-        showPremiumIcon: false
-    }
-
-    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultData)
-    const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultData)
+    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
+    const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
 
     const getUserLinksPageData = async () => {
         if (user?.uid) {
@@ -104,6 +73,11 @@ export const UserConfigForm = () => {
 
     const handleChange = (key: string, value: any) => {
         setUserLinksPageData((prevState => ({ ...prevState, [key]: value })))
+    }
+
+    const handleSave = async () => {
+        const successfullSave = await saveUserData(user, userLinksPageData, showSnackbar)
+        if (successfullSave) setBackupUserLinksPageData(userLinksPageData)
     }
 
     useEffect(() => {
@@ -176,7 +150,12 @@ export const UserConfigForm = () => {
                         :
                         <>
                             <p>Tudo certo ? Salve suas alterações: </p>
-                            <button className="btn" onClick={() => saveUserData(user, userLinksPageData, showSnackbar)}> Salvar </button>
+                            <button 
+                                className="btn" 
+                                onClick={handleSave}
+                            > 
+                                Salvar 
+                            </button>
                         </>
                     }
 

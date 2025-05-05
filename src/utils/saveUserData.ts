@@ -4,12 +4,12 @@ import { collection, doc, getDocs, query, setDoc, where } from "firebase/firesto
 import { db } from "../firebase"
 
 export const saveUserData = async (user: User | null, data: UserLinksPageData, showSnackbar: (message: string) => void) => {
-    if (!user) return
+    if (!user) return false
 
     const userUrl = data.userUrl
     if (!userUrl) {
         showSnackbar("Você precisa definir uma URL personalizada!")
-        return
+        return false
     }
 
     try {
@@ -21,20 +21,22 @@ export const saveUserData = async (user: User | null, data: UserLinksPageData, s
 
         if (urlUsedByOther) {
             showSnackbar("Erro: essa URL já está em uso por outro usuário.")
-            return
+            return false
         }
 
         if (data.links && data.links.some(item => (item.type === "icon" && !item.icon) || (item.type === "button" && !item.label) || !item.url)) {
             showSnackbar("Erro: você tem uma opção de link com informações incompletas e/ou inválidas!")
-            return
+            return false
         }
 
         const userRef = doc(db, 'users', user.uid)
         await setDoc(userRef, { userLinksPageData: data }, { merge: true })
 
         showSnackbar('Dados salvos com sucesso!')
+        return true
     } catch (error) {
         showSnackbar('Erro ao salvar dados!')
         console.error('Erro ao salvar dados:', error)
+        return false
     }
 }
