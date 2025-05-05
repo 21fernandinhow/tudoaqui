@@ -14,13 +14,13 @@
   background-color: var(--bg-color);
   border-bottom: 2px solid var(--primary-color);
 
-  &__content {
+  .snackbar-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  &__message {
+  .snackbar-message {
     font-family: var(--font);
     font-size: 0.875rem;
   }

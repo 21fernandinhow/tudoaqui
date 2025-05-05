@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 interface SnackbarProps {
   message: string;
   duration?: number;
   onClose?: () => void;
 }
 
-export const Snackbar: React.FC<SnackbarProps> = ({
-  message,
-  duration = 3000,
-  onClose,
-}) => {
+export const Snackbar = ({ message, duration = 3000, onClose }: SnackbarProps) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -25,8 +21,8 @@ export const Snackbar: React.FC<SnackbarProps> = ({
 
   return (
     <div className="snackbar">
-      <div className="snackbar__content">
-        <span className="snackbar__message">{message}</span>
+      <div className="snackbar-content">
+        <span className="snackbar-message">{message}</span>
       </div>
     </div>
   );
