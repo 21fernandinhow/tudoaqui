@@ -18,7 +18,14 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const checkoutUrl = await getCheckoutUrl(user.uid, priceId);
-    if (checkoutUrl) window.open(checkoutUrl, "_blank");
+    if (checkoutUrl) {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = checkoutUrl;
+      } else {
+        window.open(checkoutUrl, "_blank");
+      }
+    }
     setShowButtonLoader(false);
   };
 
@@ -27,7 +34,16 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const portalUrl = await getPortalUrl();
-    if (portalUrl) window.open(portalUrl, "_blank");
+
+    if (portalUrl) {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = portalUrl;
+      } else {
+        window.open(portalUrl, "_blank");
+      }
+    }
+
     setShowButtonLoader(false);
   };
 
