@@ -1,0 +1,40 @@
+.user-links-page-options-menu {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    color: var(--contrast-color);
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 1rem;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    box-shadow: 0px 0px 10px var(--shadow-color);
+    max-height: 3rem;
+
+    svg{
+        font-size: 1rem;
+        &:hover{
+            scale: 1.1;
+            transition: 0.3s;
+        }
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    &.open {
+        max-height: 10rem;
+        transition: all 0.3s ease;
+    }
+
+    .liked, .disliked{
+        fill: var(--primary-color);
+    }
+}

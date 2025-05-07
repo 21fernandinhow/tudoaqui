@@ -5,13 +5,15 @@ import { UserLinksPageHeader } from "./UserLinksPageHeader";
 import { IconsGrid } from "./IconsGrid";
 import { ButtonsGrid } from "./ButtonsGrid";
 import { PoweredBy } from "./PoweredBy";
+import { UserLinksPageOptionsMenu } from "./UserLinksPageOptionsMenu";
 
 interface UserLinksPageContentProps {
     data: UserLinksPageData
     isPreview?: boolean
+    uid: string
 }
 
-export const UserLinksPageContent = ({ data, isPreview }: UserLinksPageContentProps) => {
+export const UserLinksPageContent = ({ data, isPreview, uid }: UserLinksPageContentProps) => {
     const root = document.documentElement;
 
     const applyThemeVariables = () => {
@@ -47,6 +49,8 @@ export const UserLinksPageContent = ({ data, isPreview }: UserLinksPageContentPr
         <div id="user-links-page-content">
 
             <div className="user-links-page-container">
+
+                <UserLinksPageOptionsMenu isPreview={isPreview} uid={uid}/>
 
                 <UserLinksPageHeader
                     imageUrl={data.avatarImgUrl}

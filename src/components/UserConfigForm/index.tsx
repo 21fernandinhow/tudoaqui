@@ -164,7 +164,7 @@ export const UserConfigForm = () => {
             </div>
 
             <div id="preview">
-                <UserLinksPageContent data={userLinksPageData} isPreview />
+                <UserLinksPageContent data={userLinksPageData} isPreview uid={user?.uid ?? ""}/>
             </div>
 
         </div>

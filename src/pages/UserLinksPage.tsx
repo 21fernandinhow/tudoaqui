@@ -10,6 +10,7 @@ import { UserNotFound } from "./UserNotFound.tsx";
 export const UserLinksPage = () => {
     const { userUrl } = useParams();
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData | null>(null);
+    const [uid, setUid] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
     const fetchUserLinksPageData = async () => {
@@ -21,6 +22,7 @@ export const UserLinksPage = () => {
                 if (!querySnapshot.empty) {
                     const userDoc = querySnapshot.docs[0];
                     const data = userDoc.data()
+                    setUid(data.uid);
                     setUserLinksPageData(data.userLinksPageData);
                     document.title = data.userLinksPageData.name
                 } else {
@@ -42,5 +44,5 @@ export const UserLinksPage = () => {
         return <div className="loading-page"> <Loader /> </div>
     }
 
-    return userLinksPageData ? <UserLinksPageContent data={userLinksPageData} /> : <UserNotFound />
+    return userLinksPageData && uid ? <UserLinksPageContent data={userLinksPageData} uid={uid}/> : <UserNotFound />
 };
