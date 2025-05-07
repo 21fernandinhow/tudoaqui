@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { doc, setDoc, increment } from "firebase/firestore";
+import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useSnackbar } from "../../contexts/SnackbarContext";
 import { BiDislike, BiLike, BiSolidDislike, BiSolidLike } from "react-icons/bi";
@@ -42,7 +42,7 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
                             : type === "like" && liked === "dislike" ? 2 
                                 : type === "like" ? 1 : -1;
 
-            await setDoc(userRef, { likes: increment(incrementValue) }, { merge: true });
+            await updateDoc(userRef, { likes: increment(incrementValue) });
 
             if(liked !== type){
                 localStorage.setItem(storageLikeDislikeKey, type);

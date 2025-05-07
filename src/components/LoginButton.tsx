@@ -59,6 +59,7 @@ export const LoginButton = () => {
           email: user.email,
           userLinksPageData: defaultUserLinksPageData,
           lastLogin: new Date(),
+          likes: 0,
         });
       }
 
