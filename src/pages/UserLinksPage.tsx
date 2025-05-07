@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, updateDoc, increment } from "firebase/firestore";
 import { db } from "../firebase";
 import { UserLinksPageData } from "../components/UserConfigForm";
 import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx";
@@ -13,6 +13,15 @@ export const UserLinksPage = () => {
     const [uid, setUid] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
+    const incrementViews = async (userId: string) => {
+        try {
+            const userRef = doc(db, "users", userId);
+            await updateDoc(userRef, {views: increment(1)});
+        } catch (error) {
+            console.error("Erro ao incrementar visualizações:", error);
+        }
+    };
+
     const fetchUserLinksPageData = async () => {
         if (userUrl) {
             const q = query(collection(db, "users"), where("userLinksPageData.userUrl", "==", userUrl));
@@ -22,11 +31,15 @@ export const UserLinksPage = () => {
                 if (!querySnapshot.empty) {
                     const userDoc = querySnapshot.docs[0];
                     const data = userDoc.data()
-                    setUid(data.uid);
                     setUserLinksPageData(data.userLinksPageData);
                     document.title = data.userLinksPageData.name
+                    
+                    if(data.uid) {
+                        setUid(data.uid);
+                        await incrementViews(data.uid);
+                    }
                 } else {
-                    console.log("Usuário não encontrado");
+                    console.error("Usuário não encontrado");
                 }
             } catch (error) {
                 console.error("Erro ao buscar dados do usuário:", error);
