@@ -12,9 +12,13 @@ interface UserLinksPageOptionsMenuProps {
 }
 
 export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOptionsMenuProps) => {
-    const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
+
     const { showSnackbar } = useSnackbar();
-    const [liked, setLiked] = useState<"like" | "dislike" | null>(localStorage.getItem("liked") as "like" | "dislike" | null);
+
+    const storageLikeDislikeKey = `liked-${window.location.pathname.slice(1)}`;
+    
+    const [liked, setLiked] = useState<"like" | "dislike" | null>(localStorage.getItem(storageLikeDislikeKey) as "like" | "dislike" | null);
+    const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
 
     const handleShare = () => {
         if(isPreview) return;
@@ -32,20 +36,20 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
             const userRef = doc(db, "users", uid);
 
             const incrementValue = 
-                type === "dislike" && localStorage.getItem("liked") === "dislike"? 1 
-                    : type === "dislike" && localStorage.getItem("liked") === "like" ? -2 
-                        : type === "like" && localStorage.getItem("liked") === "like" ? -1 
-                            : type === "like" && localStorage.getItem("liked") === "dislike" ? 2 
+                type === "dislike" && liked === "dislike"? 1 
+                    : type === "dislike" && liked === "like" ? -2 
+                        : type === "like" && liked === "like" ? -1 
+                            : type === "like" && liked === "dislike" ? 2 
                                 : type === "like" ? 1 : -1;
 
             await setDoc(userRef, { likes: increment(incrementValue) }, { merge: true });
 
-            if(localStorage.getItem("liked") !== type){
-                localStorage.setItem("liked", type);
-                setLiked(type)
+            if(liked !== type){
+                localStorage.setItem(storageLikeDislikeKey, type);
+                setLiked(type);
             } else {
-                localStorage.removeItem("liked");
-                setLiked(null)
+                localStorage.removeItem(storageLikeDislikeKey);
+                setLiked(null);
             }
 
         } catch (error) {
