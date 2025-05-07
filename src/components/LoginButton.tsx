@@ -69,6 +69,7 @@ export const LoginButton = () => {
       setUser(user);
       window.location.href = "/config"
     } catch (error) {
+      showSnackbar("Erro ao autenticar com o Google!")
       console.error('Erro ao autenticar com o Google:', error);
     }
   };
