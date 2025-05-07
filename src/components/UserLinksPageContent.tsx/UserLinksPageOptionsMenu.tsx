@@ -14,10 +14,11 @@ interface UserLinksPageOptionsMenuProps {
 export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOptionsMenuProps) => {
     const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
     const { showSnackbar } = useSnackbar();
+    const [liked, setLiked] = useState<"like" | "dislike" | null>(localStorage.getItem("liked") as "like" | "dislike" | null);
 
     const handleShare = () => {
         if(isPreview) return;
-        
+
         const url = window.location.href;
         const message = `Olha só! Criei minha página no tudoaqui.click! \n\n${url}`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
@@ -41,8 +42,10 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
 
             if(localStorage.getItem("liked") !== type){
                 localStorage.setItem("liked", type);
+                setLiked(type)
             } else {
                 localStorage.removeItem("liked");
+                setLiked(null)
             }
 
         } catch (error) {
@@ -52,25 +55,24 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
     };
 
     return (
-        <div 
-        className={`user-links-page-options-menu ${isOptionsMenuOpen ? 'open' : ''}`} 
-        onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}
-        >
-            <SlOptionsVertical className="user-links-page-options-menu-icon" />
-
+        <div className={`user-links-page-options-menu ${isOptionsMenuOpen ? 'open' : ''}`} >
+            
+            <SlOptionsVertical className="user-links-page-options-menu-icon" onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}/>
+            
             {isOptionsMenuOpen &&
                 <>
                     <FiShare onClick={handleShare} />
 
-                    {localStorage.getItem("liked") === "like" ? 
+                    {liked === "like" ? 
                         <BiSolidLike onClick={() => handleLikeDislike("like")}/> : <BiLike onClick={() => handleLikeDislike("like")}/>
                     }
 
-                    {localStorage.getItem("liked") === "dislike" ? 
+                    {liked === "dislike" ? 
                         <BiSolidDislike onClick={() => handleLikeDislike("dislike")}/> : <BiDislike onClick={() => handleLikeDislike("dislike")}/>
                     }
                 </>
             }
+
         </div>
     );
 };
