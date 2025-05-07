@@ -35,14 +35,9 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
         try {  
             const userRef = doc(db, "users", uid);
 
-            const incrementValue = 
-                type === "dislike" && liked === "dislike"? 1 
-                    : type === "dislike" && liked === "like" ? -2 
-                        : type === "like" && liked === "like" ? -1 
-                            : type === "like" && liked === "dislike" ? 2 
-                                : type === "like" ? 1 : -1;
+            const incrementValue =  type === liked ? -1 : 1
 
-            await updateDoc(userRef, { likes: increment(incrementValue) });
+            await updateDoc(userRef, type === "like" ? { likes: increment(incrementValue) } : { dislikes: increment(incrementValue) });
 
             if(liked !== type){
                 localStorage.setItem(storageLikeDislikeKey, type);

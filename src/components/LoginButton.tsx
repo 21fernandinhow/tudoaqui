@@ -60,6 +60,9 @@ export const LoginButton = () => {
           userLinksPageData: defaultUserLinksPageData,
           lastLogin: new Date(),
           likes: 0,
+          dislikes: 0,
+          views: 0,
+          totalClicks: 0,
         });
       }
 
