@@ -35,7 +35,7 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
         try {  
             const userRef = doc(db, "users", uid);
 
-            const incrementValue =  type === liked ? -1 : 1
+            const incrementValue = type === liked ? -1 : 1
 
             await updateDoc(userRef, type === "like" ? { likes: increment(incrementValue) } : { dislikes: increment(incrementValue) });
 
@@ -63,12 +63,16 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
                     <FiShare onClick={handleShare} />
 
                     {liked === "like" ? 
-                        <BiSolidLike onClick={() => handleLikeDislike("like")}/> : <BiLike onClick={() => handleLikeDislike("like")}/>
+                        <BiSolidLike onClick={() => handleLikeDislike("like")}/> 
+                            : liked === "dislike" ? 
+                                <BiSolidDislike onClick={() => handleLikeDislike("dislike")}/>
+                                : 
+                                <>
+                                    <BiLike onClick={() => handleLikeDislike("like")}/>
+                                    <BiDislike onClick={() => handleLikeDislike("dislike")}/>
+                                </>
                     }
 
-                    {liked === "dislike" ? 
-                        <BiSolidDislike onClick={() => handleLikeDislike("dislike")}/> : <BiDislike onClick={() => handleLikeDislike("dislike")}/>
-                    }
                 </>
             }
 
