@@ -29,7 +29,7 @@ export const HomePage = () => {
                 <p>Encante seus visitantes com ícones 3D animados que se movem conforme a interação.</p>
                 <p>Simples, bonito, impactante. E altamente personalizável!</p>
                 <div>
-                    <a href="https://paschoalinks.vercel.app" className="btn" target="_blank" rel="noopener noreferrer">Ver demo</a>
+                    <a href="/community" className="btn">Veja na prática</a>
                     <LoginButton />
                 </div>
             </LandingPageSession>

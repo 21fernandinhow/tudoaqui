@@ -3,6 +3,13 @@ import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
 import { useUserData } from '../context/UserDataContext'
+import { TbSeeding } from 'react-icons/tb'
+
+// Another icons options
+// import { CgMenuGridO } from 'react-icons/cg'
+// import { BsFillGrid3X3GapFill } from 'react-icons/bs'
+// import { BiMerge } from 'react-icons/bi'
+// import { PiEyesFill } from 'react-icons/pi'
 
 export const Navbar = () => {
     const { user } = useUserData();
@@ -44,6 +51,7 @@ export const Navbar = () => {
                     )}
                 </ul>
             )}
+            <TbSeeding className='explore-menu-icon' onClick={() => window.location.href = '/community'}/>
         </nav>
     );
 }
