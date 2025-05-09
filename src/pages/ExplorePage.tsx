@@ -95,7 +95,7 @@ export const ExplorePage = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className="no-users-found">
+                        <div className="loading-page">
                             <h3>Erro ao carregar :/ </h3>
                         </div>
                     )
