@@ -29,7 +29,7 @@ export const HomePage = () => {
                 <p>Encante seus visitantes com ícones 3D animados que se movem conforme a interação.</p>
                 <p>Simples, bonito, impactante. E altamente personalizável!</p>
                 <div>
-                    <a href="/community" className="btn">Veja na prática</a>
+                    <a href="/explore" className="btn">Veja na prática</a>
                     <LoginButton />
                 </div>
             </LandingPageSession>

@@ -3,12 +3,13 @@ import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
 import { useUserData } from '../context/UserDataContext'
-import { TbSeeding } from 'react-icons/tb'
+// import { TbSeeding } from 'react-icons/tb'
 
 // Another icons options
 // import { CgMenuGridO } from 'react-icons/cg'
 // import { BsFillGrid3X3GapFill } from 'react-icons/bs'
 // import { BiMerge } from 'react-icons/bi'
+import { HiViewGrid } from 'react-icons/hi'
 // import { PiEyesFill } from 'react-icons/pi'
 
 export const Navbar = () => {
@@ -34,6 +35,7 @@ export const Navbar = () => {
 
     return (
         <nav ref={menuRef}>
+            <HiViewGrid className='explore-menu-icon' onClick={() => window.location.href = '/explore'}/>
             <FaUser 
                 onClick={() => setMenuIsOpen(prev => !prev)} 
                 className='user-menu-icon'
@@ -51,7 +53,6 @@ export const Navbar = () => {
                     )}
                 </ul>
             )}
-            <TbSeeding className='explore-menu-icon' onClick={() => window.location.href = '/community'}/>
         </nav>
     );
 }
