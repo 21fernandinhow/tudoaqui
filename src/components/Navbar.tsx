@@ -11,20 +11,13 @@ export const Navbar = () => {
     const [isMenuOpen, setMenuIsOpen] = useState(false);
     const menuRef = useRef<HTMLElement | null>(null);
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (menuRef.current && !menuRef.current.contains(event.target as Node)) setMenuIsOpen(false);
+    };
+
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-                setMenuIsOpen(false);
-            }
-        };
-
-        if (isMenuOpen) {
-            document.addEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+        if (isMenuOpen) document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isMenuOpen]);
 
     return (
