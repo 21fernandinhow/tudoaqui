@@ -3,14 +3,8 @@ import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
 import { useUserData } from '../context/UserDataContext'
-// import { TbSeeding } from 'react-icons/tb'
-
-// Another icons options
-// import { CgMenuGridO } from 'react-icons/cg'
-// import { BsFillGrid3X3GapFill } from 'react-icons/bs'
-// import { BiMerge } from 'react-icons/bi'
 import { HiViewGrid } from 'react-icons/hi'
-// import { PiEyesFill } from 'react-icons/pi'
+import { Tooltip } from './Tooltip'
 
 export const Navbar = () => {
     const { user } = useUserData();
@@ -46,6 +40,7 @@ export const Navbar = () => {
                         <>
                             <li><a href={"/config"}>Minha página</a></li>
                             <li><a href={"/premium"}>Assinatura</a></li>
+                            <li className='disabled'><Tooltip text="Em breve" position='left'>Métricas</Tooltip></li>
                             <li><LogoutButton /></li>
                         </>
                     ) : (

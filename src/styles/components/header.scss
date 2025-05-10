@@ -49,6 +49,11 @@ header {
             font-size: 0.9rem;
             list-style: none;
 
+            .disabled{
+                color: var(--shadow-color);
+                cursor: not-allowed;
+            }
+
             a{
                 color: var(--contrast-color);
                 text-decoration: none;
