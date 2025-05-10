@@ -14,6 +14,12 @@ export const UserLinksPage = () => {
     const [loading, setLoading] = useState(true);
 
     const incrementViews = async (userId: string) => {
+        
+        // Don't increment views if the page is being viewed in an iframe (because of explore page)
+        if (window.self !== window.top) {
+            return;
+        }
+
         try {
             const userRef = doc(db, "users", userId);
             await updateDoc(userRef, {views: increment(1)});
