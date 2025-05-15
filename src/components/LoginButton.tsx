@@ -62,7 +62,7 @@ export const LoginButton = () => {
           likes: 0,
           dislikes: 0,
           views: 0,
-          totalClicks: 0,
+          receivedClicks: []
         });
       }
 

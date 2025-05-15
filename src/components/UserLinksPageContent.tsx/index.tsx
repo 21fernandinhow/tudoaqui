@@ -62,6 +62,7 @@ export const UserLinksPageContent = ({ data, isPreview, uid }: UserLinksPageCont
                 <IconsGrid
                     icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)}
                     activateFloating={data.iconOptions.floatingMode}
+                    isPreview={isPreview}
                 />
 
                 <ButtonsGrid
