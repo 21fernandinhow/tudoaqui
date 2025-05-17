@@ -16,7 +16,7 @@ export const MetricsPage = () => {
 
     const verifyIsPremium = async (uid: string) => {
         const answer = await getPremiumStatus(uid);
-        console.log(answer)
+        console.log(isPremium)
         setIsPremium(answer);
     };
 
