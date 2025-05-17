@@ -6,14 +6,16 @@ import { IconsGrid } from "./IconsGrid";
 import { ButtonsGrid } from "./ButtonsGrid";
 import { PoweredBy } from "./PoweredBy";
 import { UserLinksPageOptionsMenu } from "./UserLinksPageOptionsMenu";
+import { VisitLocationData } from "../../pages/UserLinksPage";
 
 interface UserLinksPageContentProps {
     data: UserLinksPageData
     isPreview?: boolean
     uid: string
+    visitLocation?: VisitLocationData
 }
 
-export const UserLinksPageContent = ({ data, isPreview, uid }: UserLinksPageContentProps) => {
+export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: UserLinksPageContentProps) => {
     const root = document.documentElement;
 
     const applyThemeVariables = () => {
@@ -63,6 +65,8 @@ export const UserLinksPageContent = ({ data, isPreview, uid }: UserLinksPageCont
                     icons={data.links.filter(item => item.type === "icon" && item.icon && item.url)}
                     activateFloating={data.iconOptions.floatingMode}
                     isPreview={isPreview}
+                    uid={uid}
+                    visitLocation={visitLocation}
                 />
 
                 <ButtonsGrid

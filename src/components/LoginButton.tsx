@@ -61,7 +61,7 @@ export const LoginButton = () => {
           lastLogin: new Date(),
           likes: 0,
           dislikes: 0,
-          views: 0,
+          views: [],
           receivedClicks: []
         });
       }

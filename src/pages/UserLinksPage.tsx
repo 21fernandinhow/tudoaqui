@@ -1,32 +1,71 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
-import { collection, getDocs, query, where, doc, updateDoc, increment } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase";
 import { UserLinksPageData } from "../components/UserConfigForm";
 import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx";
 import { Loader } from "../components/Loader.tsx";
 import { UserNotFound } from "./UserNotFound.tsx";
 
+export interface VisitLocationData {
+    city: string;
+    state: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+};
+
 export const UserLinksPage = () => {
     const { userUrl } = useParams();
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData | null>(null);
     const [uid, setUid] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
+    const [visitLocation, setVisitLocation] = useState<VisitLocationData>()
 
-    const incrementViews = async (userId: string) => {
-        
-        // Don't increment views if the page is being viewed in an iframe (because of explore page)
-        if (window.self !== window.top) {
-            return;
-        }
-
+    const getUserLocation = async () => {
         try {
-            const userRef = doc(db, "users", userId);
-            await updateDoc(userRef, {views: increment(1)});
+          const res = await fetch("https://ipapi.co/json/");
+          const data = await res.json();
+          const formattedData = {
+            city: data.city,
+            state: data.region,
+            country: data.country_name,
+            latitude: data.latitude,
+            longitude: data.longitude
+          };
+
+          setVisitLocation(formattedData)
+          return formattedData
         } catch (error) {
-            console.error("Erro ao incrementar visualizações:", error);
+          console.error("Erro ao obter localização por IP:", error);
+          return null;
         }
-    };
+      };
+      
+      const trackVisit = async (userId: string) => {
+
+        // Don't track in iframes
+        if (window.self !== window.top) return;
+      
+        try {
+          const location = await getUserLocation()
+      
+          const visit = {
+            visitedAt: new Date().toISOString(),
+            origin: document.referrer || "Acesso direto",
+            location: location,
+            device: navigator.userAgent
+          };
+      
+          const userRef = doc(db, "users", userId);
+          await updateDoc(userRef, {
+            views: arrayUnion(visit)
+          });
+      
+        } catch (error) {
+          console.error("Erro ao registrar visita:", error);
+        }
+      };
 
     const fetchUserLinksPageData = async () => {
         if (userUrl) {
@@ -39,10 +78,10 @@ export const UserLinksPage = () => {
                     const data = userDoc.data()
                     setUserLinksPageData(data.userLinksPageData);
                     document.title = data.userLinksPageData.name
-                    
-                    if(data.uid) {
+
+                    if (data.uid) {
                         setUid(data.uid);
-                        await incrementViews(data.uid);
+                        await trackVisit(data.uid);
                     }
                 } else {
                     console.error("Usuário não encontrado");
@@ -63,5 +102,5 @@ export const UserLinksPage = () => {
         return <div className="loading-page"> <Loader /> </div>
     }
 
-    return userLinksPageData && uid ? <UserLinksPageContent data={userLinksPageData} uid={uid}/> : <UserNotFound />
+    return userLinksPageData && uid ? <UserLinksPageContent data={userLinksPageData} uid={uid} visitLocation={visitLocation} /> : <UserNotFound />
 };
