@@ -9,9 +9,9 @@ import { LoginButton } from "../components/LoginButton";
 import { useUserData } from "../context/UserDataContext";
 
 interface User {
-  id: string;
-  userUrl?: string;
-  score: number;
+    id: string;
+    userUrl?: string;
+    score: number;
 }
 
 export const ExplorePage = () => {
@@ -23,39 +23,39 @@ export const ExplorePage = () => {
 
     const fetchUsers = async () => {
         try {
-        const usersRef = collection(db, "users");
-        const querySnapshot = await getDocs(usersRef);
+            const usersRef = collection(db, "users");
+            const querySnapshot = await getDocs(usersRef);
 
-        const fetchedUsers = querySnapshot.docs
-            .map((doc) => {
-            const data = doc.data();
-            const userUrl = data.userLinksPageData?.userUrl;
+            const fetchedUsers = querySnapshot.docs
+                .map((doc) => {
+                    const data = doc.data();
+                    const userUrl = data.userLinksPageData?.userUrl;
 
-            const views = data.views.length || 0;
-            const likes = data.likes || 0;
-            const dislikes = data.dislikes || 0;
+                    const views = data.views.length || 0;
+                    const likes = data.likes || 0;
+                    const dislikes = data.dislikes || 0;
 
-            const score = views + likes / 2 - dislikes * 2;
+                    const score = views + likes / 2 - dislikes * 2;
 
-            return {
-                id: doc.id,
-                score,
-                userUrl,
-            };
-            })
-            .filter(
-            (user) =>
-                typeof user.userUrl === "string" &&
-                user.userUrl.length > 0 &&
-                !blackList.includes(user.userUrl)
-            )
-            .sort((a, b) => b.score - a.score);
+                    return {
+                        id: doc.id,
+                        score,
+                        userUrl,
+                    };
+                })
+                .filter(
+                    (user) =>
+                        typeof user.userUrl === "string" &&
+                        user.userUrl.length > 0 &&
+                        !blackList.includes(user.userUrl)
+                )
+                .sort((a, b) => b.score - a.score);
 
-        setUsers(fetchedUsers);
+            setUsers(fetchedUsers);
         } catch (error) {
-        console.error("Erro ao buscar usuários:", error);
+            console.error("Erro ao buscar usuários:", error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
@@ -69,10 +69,10 @@ export const ExplorePage = () => {
             <div id="explore-page" className="container">
                 <h2>Explorar</h2>
                 <p>
-                    Conheça os perfis que estão se destacando no <strong>tudoaqui</strong>. <br/>
+                    Conheça os perfis que estão se destacando no <strong>tudoaqui</strong>. <br />
                     Gente como você, criando páginas únicas e cheias de personalidade.
                 </p>
-                {loading ? 
+                {loading ?
 
                     (
                         <div className="loading-page">
