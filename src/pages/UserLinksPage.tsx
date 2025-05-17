@@ -24,48 +24,48 @@ export const UserLinksPage = () => {
 
     const getUserLocation = async () => {
         try {
-          const res = await fetch("https://ipapi.co/json/");
-          const data = await res.json();
-          const formattedData = {
-            city: data.city,
-            state: data.region,
-            country: data.country_name,
-            latitude: data.latitude,
-            longitude: data.longitude
-          };
+            const res = await fetch("https://ipapi.co/json/");
+            const data = await res.json();
+            const formattedData = {
+                city: data.city,
+                state: data.region,
+                country: data.country_name,
+                latitude: data.latitude,
+                longitude: data.longitude
+            };
 
-          setVisitLocation(formattedData)
-          return formattedData
+            setVisitLocation(formattedData)
+            return formattedData
         } catch (error) {
-          console.error("Erro ao obter localização por IP:", error);
-          return null;
+            console.error("Erro ao obter localização por IP:", error);
+            return null;
         }
-      };
-      
-      const trackVisit = async (userId: string) => {
+    };
+
+    const trackVisit = async (userId: string) => {
 
         // Don't track in iframes
         if (window.self !== window.top) return;
-      
+
         try {
-          const location = await getUserLocation()
-      
-          const visit = {
-            visitedAt: new Date().toISOString(),
-            origin: document.referrer || "Acesso direto",
-            location: location,
-            device: navigator.userAgent
-          };
-      
-          const userRef = doc(db, "users", userId);
-          await updateDoc(userRef, {
-            views: arrayUnion(visit)
-          });
-      
+            const location = await getUserLocation()
+
+            const visit = {
+                visitedAt: new Date().toISOString(),
+                origin: document.referrer || "Acesso direto",
+                location: location,
+                device: navigator.userAgent
+            };
+
+            const userRef = doc(db, "users", userId);
+            await updateDoc(userRef, {
+                views: arrayUnion(visit)
+            });
+
         } catch (error) {
-          console.error("Erro ao registrar visita:", error);
+            console.error("Erro ao registrar visita:", error);
         }
-      };
+    };
 
     const fetchUserLinksPageData = async () => {
         if (userUrl) {
