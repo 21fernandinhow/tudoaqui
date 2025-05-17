@@ -115,7 +115,7 @@ export const MetricsPage = () => {
                         />
                     </div>
 
-                    {metrics?.receivedClicks && metrics.views &&
+                    {metrics &&
                         <LineGraph
                             title="Atividade"
                             data={formatMetricsForActivityGraph({ receivedClicks: metrics.receivedClicks, views: metrics.views })}
