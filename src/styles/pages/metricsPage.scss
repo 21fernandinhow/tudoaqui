@@ -1,9 +1,13 @@
 #metrics-page{
     // background-color: var(--bg-secondary-color);
+    h2{
+        text-align: center;
+    }
     .stats-list{
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
         padding: 1rem 0rem;
         gap: 1rem;
     }

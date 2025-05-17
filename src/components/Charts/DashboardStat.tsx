@@ -27,7 +27,7 @@ export const animateNumber = (from: number, to: number, duration: number, callba
   requestAnimationFrame(step);
 }
 
-export function DashboardStat({ label, value, duration = 1000, showInPercentage = false, color = "terciary" }: DashboardStatProps) {
+export const DashboardStat = ({ label, value, duration = 1000, showInPercentage = false, color = "terciary" }: DashboardStatProps) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
