@@ -31,7 +31,7 @@ export const IconsGrid = ({ icons, activateFloating, isPreview, uid, visitLocati
 
         const clickData = {
           ...itemData,
-          clickedAt: new Date(),
+          clickedAt: new Date().toISOString(),
           device: window.navigator.userAgent,
           location: visitLocation
         }

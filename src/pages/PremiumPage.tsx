@@ -120,8 +120,7 @@ export const PremiumPage = () => {
             rodapé
           </p>
           <p>
-            📊 Tem acesso ao <strong>dashboard de métricas</strong> (ainda em
-            construção) e outros recursos futuros
+            📊 Tem acesso as <strong>métricas avançadas</strong> e outros recursos futuros
           </p>
           <p>💖 Ajuda o TudoAqui a continuar existindo!</p>
           <h4>Por apenas R$ 9,90 !!!</h4>

@@ -4,7 +4,6 @@ import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
 import { useUserData } from '../context/UserDataContext'
 import { HiViewGrid } from 'react-icons/hi'
-import { Tooltip } from './Tooltip'
 
 export const Navbar = () => {
     const { user } = useUserData();
@@ -31,9 +30,9 @@ export const Navbar = () => {
                 <ul>
                     {user ? (
                         <>
-                            <li><a href={"/config"}>Minha página</a></li>
-                            <li><a href={"/premium"}>Assinatura</a></li>
-                            <li className='disabled'><Tooltip text="Em breve" position='left'>Métricas</Tooltip></li>
+                            <li><a href="/config">Minha página</a></li>
+                            <li><a href="/premium">Assinatura</a></li>
+                            <li><a href="/metrics">Métricas</a></li>
                             <li><LogoutButton /></li>
                         </>
                     ) : (

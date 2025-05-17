@@ -1,0 +1,10 @@
+#metrics-page{
+    // background-color: var(--bg-secondary-color);
+    .stats-list{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1rem 0rem;
+        gap: 1rem;
+    }
+}

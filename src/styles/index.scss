@@ -4,6 +4,7 @@
 @use './utils/responsivity.scss';
 @use './pages/configPage.scss';
 @use './pages/premiumPage.scss';
+@use './pages/metricsPage.scss';
 @use './pages/notFoundUser.scss';
 @use './pages/explorePage.scss';
 @use './components/header.scss';
@@ -17,6 +18,7 @@
 @use './components/loader.scss';
 @use './components/tooltip.scss';
 @use './components/snackbar.scss';
+@use './components/dashboardStat.scss';
 @use './components/footer.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
