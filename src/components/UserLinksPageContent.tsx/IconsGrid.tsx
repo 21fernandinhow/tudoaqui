@@ -17,8 +17,8 @@ export const IconsGrid = ({ icons, activateFloating, isPreview, uid, visitLocati
   const handleClickIcon = (itemData: UserLinkOption) => {
     if (!isPreview) {
 
-      handleSaveClickMetric(itemData)
       window.open(itemData.url, "_blank")
+      handleSaveClickMetric(itemData)
 
     }
   }
