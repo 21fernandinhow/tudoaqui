@@ -1,4 +1,3 @@
-import { TbWorld } from "react-icons/tb";
 import { ReceivedClicksData } from "../../../utils/getUserMetrics";
 import { MostClickedLinksItem } from "./MostClickedLinksItem";
 
