@@ -33,7 +33,7 @@ export const IconsGrid = ({ icons, activateFloating, isPreview, uid, visitLocati
           ...itemData,
           clickedAt: new Date().toISOString(),
           device: window.navigator.userAgent,
-          location: visitLocation
+          location: visitLocation ?? null
         }
 
         await updateDoc(userRef, { receivedClicks: arrayUnion(clickData) });

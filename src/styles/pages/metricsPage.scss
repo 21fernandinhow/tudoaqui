@@ -1,9 +1,12 @@
 #metrics-page{
     min-height: 100vh;
     background-color: var(--bg-secondary-color);
+
     h2{
         text-align: center;
+        margin-bottom: 1rem;
     }
+
     .stats-list{
         display: flex;
         justify-content: space-around;
@@ -11,5 +14,9 @@
         flex-wrap: wrap;
         padding: 1rem 0rem;
         gap: 1rem;
+    }
+
+    .line-graph{
+        margin: 1rem 0rem;
     }
 }
