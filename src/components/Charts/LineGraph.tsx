@@ -1,6 +1,6 @@
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -26,9 +26,9 @@ export const LineGraph = ({ data, xKey, lines, height = 350, title }: LineGraphP
     {title && <h3 className="line-graph-title">{title}</h3>}
 
     <ResponsiveContainer width="100%" height={height}>
-      <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+      <AreaChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
 
-        <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false}/>
+        <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
 
         <XAxis
           dataKey={xKey}
@@ -47,19 +47,20 @@ export const LineGraph = ({ data, xKey, lines, height = 350, title }: LineGraphP
         <Legend wrapperStyle={{ marginTop: "1rem" }} />
 
         {lines.map((line, index) => (
-          <Line
-            key={line.key}
+          <Area
             type="monotone"
             dataKey={line.key}
             stroke={line.color || `hsl(${(index * 100) % 360}, 70%, 50%)`}
+            fill={line.color || `hsl(${(index * 100) % 360}, 70%, 50%)`}
+            fillOpacity={0.1}
             name={line.name || line.key}
             strokeWidth={2}
-            dot={{ r: 3 }}
+            dot={{ r: 3, fillOpacity: 1 }}
             activeDot={{ r: 6 }}
           />
         ))}
 
-      </LineChart>
+      </AreaChart>
     </ResponsiveContainer>
   </div>
 );

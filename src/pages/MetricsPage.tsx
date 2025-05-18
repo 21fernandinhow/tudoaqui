@@ -32,33 +32,38 @@ export const MetricsPage = () => {
             return items.reduce((acc, item) => {
                 const rawDate = item[dateKey];
                 if (typeof rawDate !== "string") return acc;
-    
+
                 const date = new Date(rawDate).toISOString().split("T")[0];
                 acc[date] = (acc[date] || 0) + 1;
                 return acc;
             }, {} as Record<string, number>);
         }
-    
+
         const viewCounts = countByDate(metrics.views, "visitedAt");
         const clickCounts = countByDate(metrics.receivedClicks, "clickedAt");
-    
+
         const allDates = new Set([...Object.keys(viewCounts), ...Object.keys(clickCounts)]);
-    
+
         const today = new Date();
         const sevenDaysAgo = new Date(today);
         sevenDaysAgo.setDate(today.getDate() - 6); // Includes today
-    
+
+        const formatter = new Intl.DateTimeFormat("pt-BR", { weekday: "short" });
+
         return Array.from(allDates)
             .filter(date => {
                 const d = new Date(date);
                 return d >= sevenDaysAgo && d <= today;
             })
             .sort()
-            .map(date => ({
-                date,
-                visits: viewCounts[date] || 0,
-                clicks: clickCounts[date] || 0,
-            }));
+            .map(date => {
+                const weekDay = formatter.format(new Date(date)); // Ex: "seg.", "ter.", "qua."
+                return {
+                    date: weekDay.charAt(0).toUpperCase() + weekDay.slice(1), // Capitalize
+                    visits: viewCounts[date] || 0,
+                    clicks: clickCounts[date] || 0,
+                };
+            });
     };
 
     useEffect(() => {

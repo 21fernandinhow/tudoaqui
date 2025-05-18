@@ -31,7 +31,7 @@ export const ExplorePage = () => {
                     const data = doc.data();
                     const userUrl = data.userLinksPageData?.userUrl;
 
-                    const views = data.views.length || 0;
+                    const views = data.views?.length || 0;
                     const likes = data.likes || 0;
                     const dislikes = data.dislikes || 0;
 
