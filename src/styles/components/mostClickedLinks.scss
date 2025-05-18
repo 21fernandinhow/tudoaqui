@@ -50,9 +50,11 @@
 
         .clicks-value {
             margin-left: auto;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem;
+            min-width: 2.5rem;
             background: var(--bg-color);
             border-radius: 0.25rem;
+            text-align: center;
         }
 
         &:hover{

@@ -1,5 +1,6 @@
 import { TbWorld } from "react-icons/tb";
-import { ReceivedClicksData } from "../../utils/getUserMetrics";
+import { ReceivedClicksData } from "../../../utils/getUserMetrics";
+import { MostClickedLinksItem } from "./MostClickedLinksItem";
 
 interface MostClickedLinksProps {
     data: ReceivedClicksData[] | null
@@ -27,14 +28,9 @@ export const MostClickedLinks = ({ data, isPremium }: MostClickedLinksProps) => 
                 Bateu a curiosidade né? Você precisa ser <a href="/premium">assinante premium</a> para visualizar métricas avançadas!
             </p>
             : data ?
-                countClicksByUrl(data).map(item => (
-                    <div className="most-clicked-links-item">
-                        <TbWorld />
-                        <h4 className="url-value">{item.url}</h4>
-                        <h4 className="clicks-value">{item.clicks}</h4>
-                    </div>
-                ))
-                : <p className="warning">Você ainda não recebeu nenhum clique :/</p>
+                countClicksByUrl(data).map(item => <MostClickedLinksItem value={item.clicks} url={item.url} key={item.url}/>)
+                : 
+                <p className="warning">Você ainda não recebeu nenhum clique :/</p>
         }
     </div>
 )
