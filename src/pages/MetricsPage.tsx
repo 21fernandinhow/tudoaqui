@@ -113,7 +113,7 @@ export const MetricsPage = () => {
                                 metrics?.receivedClicks.length && metrics?.views.length ?
                                     metrics?.receivedClicks.length / metrics?.views.length : 0
                             }
-                            label={"Clickrate"}
+                            label={"ClickRate"}
                             showInPercentage
                             color="secondary"
                         />
