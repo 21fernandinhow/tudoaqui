@@ -27,8 +27,8 @@ export const MostClickedLinks = ({ data, isPremium }: MostClickedLinksProps) => 
                 Bateu a curiosidade né? Você precisa ser <a href="/premium">assinante premium</a> para visualizar métricas avançadas!
             </p>
             : data ?
-                countClicksByUrl(data).map(item => <MostClickedLinksItem value={item.clicks} url={item.url} key={item.url}/>)
-                : 
+                countClicksByUrl(data).sort((a, b) => b.clicks - a.clicks).map(item => <MostClickedLinksItem value={item.clicks} url={item.url} key={item.url} />)
+                :
                 <p className="warning">Você ainda não recebeu nenhum clique :/</p>
         }
     </div>
