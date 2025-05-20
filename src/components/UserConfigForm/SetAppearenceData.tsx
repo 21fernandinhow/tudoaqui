@@ -22,7 +22,7 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
         { value: "monospace", label: "Monospace" },
         { value: "Times New Roman", label: "Times New Roman" },
         { value: "Verdana", label: "Verdana" },
-        { value: "Comic Sans MS, Comic Sans", label: "Comic Sans MS" },
+        { value: "Comic Sans MS, Comic Sans, Comic Relief", label: "Comic Sans MS" },
         { value: "cursive ", label: "Caligrafia" },
     ]
     return (
