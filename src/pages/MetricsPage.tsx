@@ -131,9 +131,11 @@ export const MetricsPage = () => {
                         />
                     }
 
-                    <ListChart title={"Links mais clickados"} isPremium={isPremium} data={metrics?.receivedClicks ?? null}/>
+                    <div className="charts-row">
+                        <ListChart title={"Links mais clickados"} isPremium={isPremium} data={metrics?.receivedClicks ?? null} />
 
-                    <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} isPremium={isPremium} data={metrics?.views ? metrics.views.map(item => ({origin: item.origin})) : null}/>
+                        <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} isPremium={isPremium} data={metrics?.views ? metrics.views.map(item => ({ origin: item.origin })) : null} />
+                    </div>
 
                 </div>
             </div>

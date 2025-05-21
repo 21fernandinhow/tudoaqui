@@ -24,7 +24,7 @@ const countClicksByKey = <T extends Record<string, any>>(items: T[], key: keyof 
 };
 
 export const ListChart = <T extends Record<string, any>>({ data, isPremium, title, keyField = "url" as keyof T }: ListChartProps<T>) => (
-    <div className="most-clicked-links-wrapper">
+    <div className="list-chart-wrapper">
         <h3>{title}</h3>
         {!isPremium ? (
             <p className="warning">

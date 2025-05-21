@@ -1,13 +1,13 @@
-#metrics-page{
+#metrics-page {
     min-height: 100vh;
     background-color: var(--bg-secondary-color);
 
-    h2{
+    h2 {
         text-align: center;
         margin-bottom: 1rem;
     }
 
-    .stats-list{
+    .stats-list {
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -16,7 +16,19 @@
         gap: 1rem;
     }
 
-    .line-graph{
+    .line-graph {
         margin: 1rem 0rem;
+    }
+
+    .charts-row {
+        margin-top: 2rem;
+        max-width: 100%;
+        display: flex;
+        align-items: stretch;
+        gap: 2rem;
+
+        >* {
+            width: 50%;
+        }
     }
 }

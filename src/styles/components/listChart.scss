@@ -1,7 +1,6 @@
-.most-clicked-links-wrapper {
+.list-chart-wrapper {
     background: var(--bg-color);
     padding: 1rem;
-    margin: 2rem 0rem;
     border-radius: 1rem;
     box-shadow: 2px 2px 6px var(--shadow-color);
 
@@ -24,14 +23,14 @@
     }
 
     .warning,
-    .most-clicked-links-item {
+    .list-chart-item {
         background: var(--bg-secondary-color);
         border-radius: 1rem;
         padding: 1rem;
         margin: 1rem 0rem;
     }
 
-    .most-clicked-links-item {
+    .list-chart-item {
         display: flex;
         align-items: center;
         gap: 0.5rem;

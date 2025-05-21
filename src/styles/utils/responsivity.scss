@@ -20,14 +20,23 @@
             flex-grow: 0;
         }
     }
-    #metrics-page{
-        .stats-list{
+
+    #metrics-page {
+        .stats-list {
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            
-            .dashboard-stat{
+
+            .dashboard-stat {
                 width: 100%;
+            }
+        }
+
+        .charts-row {
+            flex-wrap: wrap;
+
+            >* {
+                width: 100% !important;
             }
         }
     }

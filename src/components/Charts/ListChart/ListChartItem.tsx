@@ -16,7 +16,7 @@ export const ListChartItem = ({ url, value, duration = 1000 }: ListChartItemProp
     }, [value, duration]);
 
     return (
-        <div className="most-clicked-links-item">
+        <div className="list-chart-item">
             <TbWorld />
             <h4 className="url-value">{url}</h4>
             <h4 className="clicks-value">{displayValue}</h4>
