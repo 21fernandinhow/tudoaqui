@@ -17,7 +17,7 @@ export const ListChartItem = ({ url, value, duration = 1000 }: ListChartItemProp
 
     return (
         <div className="list-chart-item">
-            <TbWorld />
+            <div className="list-chart-item-icon"><TbWorld /></div>
             <h4 className="url-value">{url}</h4>
             <h4 className="clicks-value">{displayValue}</h4>
         </div>
