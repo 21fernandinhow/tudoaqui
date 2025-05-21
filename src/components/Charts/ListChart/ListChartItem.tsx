@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { animateNumber } from "../DashboardStat";
 import { TbWorld } from "react-icons/tb";
 
-interface MostClickedLinksItemProps {
+interface ListChartItemProps {
     url: string;
     value: number;
     duration?: number; // em milissegundos
 };
 
-export const MostClickedLinksItem = ({ url, value, duration = 1000 }: MostClickedLinksItemProps) => {
+export const ListChartItem = ({ url, value, duration = 1000 }: ListChartItemProps) => {
     const [displayValue, setDisplayValue] = useState(0);
 
     useEffect(() => {

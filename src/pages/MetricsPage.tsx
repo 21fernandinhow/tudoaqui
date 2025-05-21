@@ -7,7 +7,7 @@ import { Loader } from "../components/Loader";
 import { getUserMetrics, ReceivedClicksData, UserMetrics, ViewLinksPageData } from "../utils/getUserMetrics";
 import { DashboardStat } from "../components/Charts/DashboardStat";
 import { LineGraph } from "../components/Charts/LineGraph";
-import { MostClickedLinks } from "../components/Charts/MostClickedLinks";
+import { ListChart } from "../components/Charts/ListChart";
 
 const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicksData[], views: ViewLinksPageData[] }) => {
     function countByDate<T extends Record<string, any>>(items: T[], dateKey: keyof T) {
@@ -131,7 +131,9 @@ export const MetricsPage = () => {
                         />
                     }
 
-                    <MostClickedLinks isPremium={isPremium} data={metrics?.receivedClicks ?? null}/>
+                    <ListChart title={"Links mais clickados"} isPremium={isPremium} data={metrics?.receivedClicks ?? null}/>
+
+                    <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} isPremium={isPremium} data={metrics?.views ? metrics.views.map(item => ({origin: item.origin})) : null}/>
 
                 </div>
             </div>
