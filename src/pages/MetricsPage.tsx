@@ -24,28 +24,25 @@ const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicks
     const viewCounts = countByDate(metrics.views, "visitedAt");
     const clickCounts = countByDate(metrics.receivedClicks, "clickedAt");
 
-    const allDates = new Set([...Object.keys(viewCounts), ...Object.keys(clickCounts)]);
-
-    const today = new Date();
-    const sevenDaysAgo = new Date(today);
-    sevenDaysAgo.setDate(today.getDate() - 6); // Includes today
-
     const formatter = new Intl.DateTimeFormat("pt-BR", { weekday: "short" });
 
-    return Array.from(allDates)
-        .filter(date => {
-            const d = new Date(date);
-            return d >= sevenDaysAgo && d <= today;
-        })
-        .sort()
-        .map(date => {
-            const weekDay = formatter.format(new Date(date)); // Ex: "seg.", "ter.", "qua."
-            return {
-                date: weekDay.charAt(0).toUpperCase() + weekDay.slice(1), // Capitalize
-                visits: viewCounts[date] || 0,
-                clicks: clickCounts[date] || 0,
-            };
+    const result = [];
+    const today = new Date();
+
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+
+        const isoDate = date.toISOString().split("T")[0];
+        const weekDay = formatter.format(date); // Ex: "qui.", "sex."
+        result.push({
+            date: weekDay.charAt(0).toUpperCase() + weekDay.slice(1),
+            visits: viewCounts[isoDate] || 0,
+            clicks: clickCounts[isoDate] || 0,
         });
+    }
+
+    return result;
 };
 
 export const MetricsPage = () => {
