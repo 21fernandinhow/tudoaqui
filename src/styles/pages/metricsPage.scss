@@ -4,7 +4,6 @@
 
     h2 {
         text-align: center;
-        margin-bottom: 1rem;
     }
 
     .stats-list {
@@ -12,16 +11,14 @@
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
-        padding: 1rem 0rem;
         gap: 1rem;
     }
 
-    .line-graph, .bar-horizontal-graph {
-        margin: 1rem 0rem;
+    .stats-list, .line-graph, .charts-row, .bar-horizontal-graph, .comparative-chart {
+        margin: 2rem 0rem;
     }
 
     .charts-row {
-        margin: 2rem 0rem;
         max-width: 100%;
         display: flex;
         align-items: stretch;

@@ -9,6 +9,10 @@ import { DashboardStat } from "../components/Charts/DashboardStat";
 import { LineGraph } from "../components/Charts/LineGraph";
 import { ListChart } from "../components/Charts/ListChart";
 import { BarHorizontalGraph } from "../components/Charts/BarHorizontalGraph";
+import { checkDeviceType } from "../utils/checkDeviceType";
+import { ComparativeChart } from "../components/Charts/ComparativeChart";
+import { FaMobile } from "react-icons/fa6";
+import { MdComputer } from "react-icons/md";
 
 const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicksData[], views: ViewLinksPageData[] }) => {
     function countByDate<T extends Record<string, any>>(items: T[], dateKey: keyof T) {
@@ -60,6 +64,56 @@ const formatMetricsForLocationChart = (views: ViewLinksPageData[]) => {
         name: location,
         value: count,
     }));
+};
+
+const formatDevicesDataForComparativeChart = (views: ViewLinksPageData[], clicks: ReceivedClicksData[]) => {
+
+    const mobile = { views: 0, clicks: 0, clickRate: 0, percentageOfViews: 0 }
+    const desktop = { views: 0, clicks: 0, clickRate: 0, percentageOfViews: 0 }
+
+    views.forEach((view) => {
+        if (!view.device) return;
+
+        const typeOfDevice = checkDeviceType(view.device)
+        if (typeOfDevice === "mobile") {
+            mobile.views = mobile.views + 1
+        } else {
+            desktop.views = desktop.views + 1
+        }
+    });
+
+    clicks.forEach((click) => {
+        if (!click.device) return;
+
+        const typeOfDevice = checkDeviceType(click.device)
+        if (typeOfDevice === "mobile") {
+            mobile.clicks = mobile.clicks + 1
+        } else {
+            desktop.clicks = desktop.clicks + 1
+        }
+    });
+
+
+    mobile.clickRate = mobile.clicks / mobile.views * 100
+    desktop.clickRate = desktop.clicks / desktop.views * 100
+
+    mobile.percentageOfViews = mobile.views / (mobile.views + desktop.views) * 100
+    desktop.percentageOfViews = desktop.views / (mobile.views + desktop.views) * 100
+
+    return [
+        { 
+            label: "Mobile", 
+            value: mobile.percentageOfViews.toFixed(0), 
+            icon: <FaMobile />,
+            obs: `Clickrate: ${mobile.clickRate.toFixed(0)} %` 
+        },
+        { 
+            label: "Desktop", 
+            icon: <MdComputer />,
+            value: desktop.percentageOfViews.toFixed(0), 
+            obs: `Clickrate: ${desktop.clickRate.toFixed(0)} %` 
+        }
+    ]
 };
 
 export const MetricsPage = () => {
@@ -125,7 +179,7 @@ export const MetricsPage = () => {
                         <DashboardStat
                             value={
                                 metrics?.receivedClicks.length && metrics?.views.length ?
-                                    metrics?.receivedClicks.length / metrics?.views.length : 0
+                                    metrics?.receivedClicks.length / metrics?.views.length * 100 : 0
                             }
                             label={"ClickRate"}
                             showInPercentage
@@ -153,6 +207,12 @@ export const MetricsPage = () => {
                     <BarHorizontalGraph
                         title="Localização dos visitantes"
                         data={metrics?.views ? formatMetricsForLocationChart(metrics?.views) : null}
+                        isPremium={isPremium}
+                    />
+
+                    <ComparativeChart
+                        title="Dispositivos dos Visitantes"
+                        data={formatDevicesDataForComparativeChart(metrics?.views ?? [], metrics?.receivedClicks ?? [])}
                         isPremium={isPremium}
                     />
 

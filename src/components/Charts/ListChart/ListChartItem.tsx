@@ -3,12 +3,12 @@ import { animateNumber } from "../DashboardStat";
 import { TbWorld } from "react-icons/tb";
 
 interface ListChartItemProps {
-    url: string;
+    label: string;
     value: number;
     duration?: number; // em milissegundos
 };
 
-export const ListChartItem = ({ url, value, duration = 1000 }: ListChartItemProps) => {
+export const ListChartItem = ({ label, value, duration = 1000 }: ListChartItemProps) => {
     const [displayValue, setDisplayValue] = useState(0);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export const ListChartItem = ({ url, value, duration = 1000 }: ListChartItemProp
     return (
         <div className="list-chart-item">
             <div className="list-chart-item-icon"><TbWorld /></div>
-            <h4 className="url-value">{url}</h4>
+            <h4 className="label-value">{label}</h4>
             <h4 className="clicks-value">{displayValue}</h4>
         </div>
     );

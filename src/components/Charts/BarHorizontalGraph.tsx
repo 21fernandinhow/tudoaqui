@@ -22,7 +22,7 @@ export const BarHorizontalGraph = ({ data, title, isPremium = false }: BarHorizo
       {!isPremium ?
 
         <p className="warning">
-          Bateu a curiosidade né? Você precisa ser <a href="/premium">assinante premium</a> para visualizar métricas avançadas!
+          Bateu a curiosidade né? Você precisa ser um <a href="/premium">assinante premium</a> para visualizar métricas avançadas!
         </p>
 
         :
