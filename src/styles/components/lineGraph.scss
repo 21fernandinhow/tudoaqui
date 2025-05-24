@@ -5,8 +5,21 @@
     box-shadow: 2px 2px 6px var(--shadow-color);
 
     .line-graph-title {
-        font-size: 1rem;
         margin-bottom: 1rem;
         text-align: center;
+    }
+
+    .custom-legend {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .custom-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
     }
 }

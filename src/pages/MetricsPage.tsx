@@ -8,6 +8,7 @@ import { getUserMetrics, ReceivedClicksData, UserMetrics, ViewLinksPageData } fr
 import { DashboardStat } from "../components/Charts/DashboardStat";
 import { LineGraph } from "../components/Charts/LineGraph";
 import { ListChart } from "../components/Charts/ListChart";
+import { BarHorizontalGraph } from "../components/Charts/BarHorizontalGraph";
 
 const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicksData[], views: ViewLinksPageData[] }) => {
     function countByDate<T extends Record<string, any>>(items: T[], dateKey: keyof T) {
@@ -43,6 +44,22 @@ const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicks
     }
 
     return result;
+};
+
+const formatMetricsForLocationChart = (views: ViewLinksPageData[]) => {
+    const locationsCount: Record<string, number> = {};
+
+    views.forEach((view) => {
+        if (!view.location) return;
+
+        const label = `${view.location.city} - ${view.location.country}`;
+        locationsCount[label] = (locationsCount[label] || 0) + 1;
+    });
+
+    return Object.entries(locationsCount).map(([location, count]) => ({
+        name: location,
+        value: count,
+    }));
 };
 
 export const MetricsPage = () => {
@@ -130,9 +147,14 @@ export const MetricsPage = () => {
 
                     <div className="charts-row">
                         <ListChart title={"Links mais clickados"} isPremium={isPremium} data={metrics?.receivedClicks ?? null} />
-
                         <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} isPremium={isPremium} data={metrics?.views ? metrics.views.map(item => ({ origin: item.origin })) : null} />
                     </div>
+
+                    <BarHorizontalGraph
+                        title="Localização dos visitantes"
+                        data={metrics?.views ? formatMetricsForLocationChart(metrics?.views) : null}
+                        isPremium={isPremium}
+                    />
 
                 </div>
             </div>
