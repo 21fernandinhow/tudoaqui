@@ -206,7 +206,7 @@ export const MetricsPage = () => {
 
                     <BarHorizontalGraph
                         title="Localização dos visitantes"
-                        data={metrics?.views ? formatMetricsForLocationChart(metrics?.views) : null}
+                        data={metrics?.views ? formatMetricsForLocationChart(metrics?.views).sort((a,b) => b.value - a.value).slice(0, 10) : null}
                         isPremium={isPremium}
                     />
 

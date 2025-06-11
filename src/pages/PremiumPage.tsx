@@ -18,7 +18,7 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const checkoutUrl = await getCheckoutUrl(user.uid, priceId);
-    
+
     if (checkoutUrl) {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
@@ -37,7 +37,7 @@ export const PremiumPage = () => {
 
     setShowButtonLoader(true);
     const portalUrl = await getPortalUrl();
-    
+
     if (portalUrl) {
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
@@ -78,7 +78,22 @@ export const PremiumPage = () => {
 
       <div id="premium-page">
         <div className="container">
-          <h2>Assinatura</h2>
+
+          <h3>Sendo Premium você...</h3>
+          <p>
+            🌟 Tem um <strong>selo exclusivo</strong> exibido na sua página
+          </p>
+          <p>
+            🚫 Pode <strong>remover a marca d'agua</strong> do TudoAqui no
+            rodapé
+          </p>
+          <p>
+            📊 Tem acesso as <strong>métricas avançadas</strong> e outros recursos futuros
+          </p>
+          <p>💖 Ajuda o TudoAqui a continuar existindo!</p>
+          <h4>Por apenas R$ 9,90 !!!</h4>
+
+          <hr className="custom-hr-secondary" />
 
           {isPremium ? (
             <p>
@@ -87,7 +102,7 @@ export const PremiumPage = () => {
           ) : (
             <p>
               No momento, você está utilizando o <strong>plano gratuito</strong>
-              .
+              . Vamos para o próximo nível?
             </p>
           )}
 
@@ -105,50 +120,10 @@ export const PremiumPage = () => {
               onClick={openCheckout}
               disabled={showButtonLoader}
             >
-              Assine Premium {showButtonLoader && <Loader isSmall />}
+              Quero ser Premium {showButtonLoader && <Loader isSmall />}
             </button>
           )}
 
-          <hr className="custom-hr-secondary" />
-
-          <h3>Sendo Premium você...</h3>
-          <p>
-            🌟 Tem um <strong>selo exclusivo</strong> exibido na sua página
-          </p>
-          <p>
-            🚫 Pode <strong>remover a marca d'agua</strong> do TudoAqui no
-            rodapé
-          </p>
-          <p>
-            📊 Tem acesso as <strong>métricas avançadas</strong> e outros recursos futuros
-          </p>
-          <p>💖 Ajuda o TudoAqui a continuar existindo!</p>
-          <h4>Por apenas R$ 9,90 !!!</h4>
-
-          {isPremium ? (
-            <>
-              <hr className="custom-hr-terciary" />
-              <p>
-                Muito obrigado por estar do nosso lado nessa! Esperamos que
-                esteja curtindo sua assinatura 😊
-              </p>
-            </>
-          ) : (
-            <div className="sign-premium-please">
-              <button className="btn-outline" onClick={openCheckout}>
-                {" "}
-                Quero ser Premium 🤩{" "}
-              </button>
-              <button className="btn-outline-secondary" onClick={openCheckout}>
-                {" "}
-                9,90 é baratinho, eu quero! 😉{" "}
-              </button>
-              <button className="btn-outline-terciary" onClick={openCheckout}>
-                {" "}
-                Seja Premium pfv 🥺{" "}
-              </button>
-            </div>
-          )}
         </div>
       </div>
 

@@ -28,7 +28,7 @@ export const BarHorizontalGraph = ({ data, title, isPremium = false }: BarHorizo
         :
 
         data ?
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={data.length * 65}>
             <BarChart
               layout="vertical"
               data={data}
@@ -37,7 +37,12 @@ export const BarHorizontalGraph = ({ data, title, isPremium = false }: BarHorizo
             >
               <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={true} />
               <XAxis type="number" />
-              <YAxis dataKey="name" type="category" width={80} />
+              <YAxis
+                dataKey="name"
+                type="category"
+                width={85}
+                tickFormatter={(value: string) => value.split("-")[0]}
+              />
               <Tooltip />
               <Bar dataKey="value" radius={[0, 5, 5, 0]} name="Visitas">
                 {data.map((_, index) => (
