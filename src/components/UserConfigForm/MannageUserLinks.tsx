@@ -50,8 +50,7 @@ export const MannageUserLinks = ({ links, updateLinksArray }: MannageUserLinksPr
 
     return (
         <>
-            <p>Chegou a hora de definir seus links! </p> 
-            <p>Você pode adicionar links como <strong>Icones 3D animados</strong> ou <strong>botões</strong>, conforme preferir:</p>
+            <h4>Gerenciar Links</h4>
             <button className="btn" onClick={handleAddLink} disabled={links && links.length > 19}>Adicionar novo link</button>
 
             {links && links.map((item, index) =>

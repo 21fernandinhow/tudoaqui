@@ -3,12 +3,13 @@ interface UserUrlInputProps {
     updateUserUrl: (key: string, value: any) => void
 }
 
-export const UserUrlInput = ({userUrl, updateUserUrl}: UserUrlInputProps) => {
+export const UserUrlInput = ({ userUrl, updateUserUrl }: UserUrlInputProps) => {
 
     return (
         <>
-            <p>Vamos começar definindo o seu link personalizado:</p>
+            <h4>Sua URL</h4>
             <input
+                id="url-input"
                 type="text"
                 onChange={(e) => updateUserUrl("userUrl", e.target.value.replace(/\s+/g, '').slice(0, 40))}
                 value={userUrl}

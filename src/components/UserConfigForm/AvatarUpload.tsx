@@ -54,7 +54,7 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
         try {
             const storageRef = ref(storage, `users/${userUid}/${data.avatarImgName}`);
             await deleteObject(storageRef);
-            
+
             updateData("avatarImgUrl", "");
             updateData("avatarImgName", "");
             setDeleteModalIsOpen(false);
@@ -67,10 +67,9 @@ export const AvatarUpload = ({ data, userUid, updateData }: AvatarUploadProps) =
 
     return (
         <>
-            <p>Escolha uma foto para ser seu avatar: </p>
             <div className="img-input">
                 <input type="file" accept="image/*" onChange={handleImageUpload} id="img-input" />
-                <label htmlFor="img-input" className={showButtonLoader ? "disabled" : ""}> Selecionar Imagem </label>
+                <label htmlFor="img-input" className={showButtonLoader ? "disabled" : ""}> Escolher avatar </label>
                 <span>
                     {data.avatarImgName && data.avatarImgName.length > 16 ?
                         data.avatarImgName.slice(0, 16) + "..." : data.avatarImgName

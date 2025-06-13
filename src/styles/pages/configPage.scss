@@ -15,8 +15,14 @@
         z-index: 10;
         overflow-y: auto;
 
+        h4 {
+            color: var(--shadow-color);
+            margin: 0.75rem 0rem;
+        }
+
         p {
-            margin: 1rem 0rem;
+            margin: 0.5rem 0rem;
+            font-size: 0.9rem;
         }
 
         input,

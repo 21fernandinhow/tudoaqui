@@ -27,7 +27,7 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
     ]
     return (
         <>
-            <p>Agora vamos aplicar um estilo que seja a sua vibe!</p>
+            <h4>Crie seu próprio tema</h4>
 
             <ColorInput
                 label="Cor Principal"
@@ -60,7 +60,7 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
             />
 
             <SelectInput
-                label={"Selecione uma fonte: "}
+                label={"Fonte: "}
                 name="font"
                 value={font}
                 onChange={(e) => updateData("font", e.target.value)}

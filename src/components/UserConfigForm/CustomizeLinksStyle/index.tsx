@@ -25,7 +25,6 @@ export const CustomizeLinksStyle = ({
 }: CustomizeLinksStyleProps) => {
   return (
     <>
-      <p>Estamos quase lá! Vamos aos detalhes finais sobre a aparência dos seus links: </p>
 
       {hasButton && (
         <CustomizeButtonsStyle
@@ -41,7 +40,7 @@ export const CustomizeLinksStyle = ({
         />
       )}
 
-      <hr className="custom-hr-secondary" />
+      <br/> <br/>
     </>
   );
 };

@@ -5,7 +5,6 @@ import { UserInformationsInputs } from "./UserInformationInputs"
 import { SetAppearenceData } from "./SetAppearenceData"
 import { UserUrlInput } from "./UserUrlInput"
 import { MannageUserLinks } from "./MannageUserLinks"
-import { DisableCredits } from "./DisableCredits"
 import { UserLinksPageContent } from "../UserLinksPageContent.tsx"
 import { saveUserData } from "../../utils/saveUserData.ts"
 import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid.tsx"
@@ -96,17 +95,15 @@ export const UserConfigForm = () => {
                 <UserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
                 <hr className="custom-hr-terciary" />
 
-                <AvatarUpload
-                    data={userLinksPageData}
-                    updateData={handleChange}
-                    userUid={user?.uid}
-                />
-                <hr className="custom-hr-primary" />
-
                 <UserInformationsInputs
                     name={userLinksPageData.name}
                     bio={userLinksPageData.bio}
                     updateData={handleChange}
+                />
+                <AvatarUpload
+                    data={userLinksPageData}
+                    updateData={handleChange}
+                    userUid={user?.uid}
                 />
                 <ToggleSwitch
                     isOn={userLinksPageData.isPremium && userLinksPageData.showPremiumIcon}
@@ -116,14 +113,20 @@ export const UserConfigForm = () => {
                     disabledMessage={"Recurso Premium"}
                     disabledMessagePosition="right"
                 />
-                <hr className="custom-hr-secondary" />
-
-                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} />
-                <hr className="custom-hr-terciary" />
-
-                <MannageUserLinks updateLinksArray={(value) => handleChange("links", value)} links={userLinksPageData.links} />
                 <hr className="custom-hr-primary" />
 
+                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} />
+                <ToggleSwitch
+                    label="Ocultar créditos no rodapé: "
+                    isOn={userLinksPageData.hideCredits}
+                    disabled={!userLinksPageData.isPremium}
+                    disabledMessage={"Recurso Premium"}
+                    disabledMessagePosition="right"
+                    onToggle={(value) => handleChange("hideCredits", value)}
+                />
+                <hr className="custom-hr-secondary" />
+
+                <MannageUserLinks updateLinksArray={(value) => handleChange("links", value)} links={userLinksPageData.links} />
                 {userLinksPageData?.links?.length > 0 &&
                     <CustomizeLinksStyle
                         hasButton={userLinksPageData.links.some(item => item.type === "button")}
@@ -133,12 +136,6 @@ export const UserConfigForm = () => {
                         handleChange={handleChange}
                     />
                 }
-
-                <DisableCredits
-                    handleChange={handleChange}
-                    isUserPremium={userLinksPageData.isPremium}
-                    hideCredits={userLinksPageData.hideCredits}
-                />
                 <hr className="custom-hr-terciary" />
 
                 <div id="save-div">
@@ -150,11 +147,11 @@ export const UserConfigForm = () => {
                         :
                         <>
                             <p>Tudo certo ? Salve suas alterações: </p>
-                            <button 
-                                className="btn" 
+                            <button
+                                className="btn"
                                 onClick={handleSave}
-                            > 
-                                Salvar 
+                            >
+                                Salvar
                             </button>
                         </>
                     }
@@ -164,7 +161,7 @@ export const UserConfigForm = () => {
             </div>
 
             <div id="preview">
-                <UserLinksPageContent data={userLinksPageData} isPreview uid={user?.uid ?? ""}/>
+                <UserLinksPageContent data={userLinksPageData} isPreview uid={user?.uid ?? ""} />
             </div>
 
         </div>
