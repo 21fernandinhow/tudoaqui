@@ -88,7 +88,7 @@ export const UserLinkOptionConfigBox = ({
 
                     <input
                         placeholder={linkOptionData.type === "button" ? "Texto" : "Texto (opcional)"}
-                        value={linkOptionData.label.slice(0, 20)}
+                        value={linkOptionData.label.slice(0, 80)}
                         onChange={(e) => updateLinkOptionData(index, "label", e.target.value)}
                     />
 
