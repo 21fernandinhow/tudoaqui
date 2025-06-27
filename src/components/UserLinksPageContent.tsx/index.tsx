@@ -28,6 +28,7 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
         root.style.setProperty("--user-shadow-color", data.colors.shadow);
         root.style.setProperty("--user-button-border-radius", data.buttonOptions.borderRadius + "rem");
         root.style.setProperty("--user-icons-background-color", data.iconOptions.bgColor);
+        root.style.setProperty("--user-wave-color", data.colors.waves);
         root.style.setProperty("--select-color", data.colors.bg);
         root.style.setProperty("--select-background", data.colors.primary);
 

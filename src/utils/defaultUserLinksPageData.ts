@@ -12,7 +12,8 @@ export const defaultUserLinksPageData: UserLinksPageData = {
         bg: "#fff",
         bgSecondary: "#f5f5f5",
         contrast: "#000",
-        shadow: "rgba(0,0,0, 0.4)"
+        shadow: "rgba(0,0,0, 0.4)",
+        waves: "#8c8c8c",
     },
     bgImage: "",
     font: "",

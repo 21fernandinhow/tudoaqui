@@ -26,6 +26,7 @@ export interface UserLinksPageData {
         bgSecondary: string
         contrast: string
         shadow: string
+        waves: string
     }
     bgImage: string
     font: string
@@ -117,7 +118,7 @@ export const UserConfigForm = () => {
                 />
                 <hr className="custom-hr-primary" />
 
-                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} />
+                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} showWavesInput={userLinksPageData?.hasSideWaves}/>
                 <ToggleSwitch
                     label="Ocultar créditos no rodapé: "
                     isOn={userLinksPageData.hideCredits}

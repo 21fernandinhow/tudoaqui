@@ -12,9 +12,10 @@ interface SetAppearenceDataProps {
         shadow: string;
     };
     font: string
+    showWavesInput?: boolean
 }
 
-export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDataProps) => {
+export const SetAppearenceData = ({ colors, font, updateData, showWavesInput }: SetAppearenceDataProps) => {
     const fontOptions = [
         { value: "Teko", label: "Teko" },
         { value: "Montserrat", label: "Montserrat" },
@@ -54,10 +55,18 @@ export const SetAppearenceData = ({ colors, font, updateData }: SetAppearenceDat
             />
 
             <ColorInput
-                label="Cor de Contraste"
+                label="Cor do Texto"
                 value={colors?.contrast}
                 onChange={(color) => updateData("colors", { ...colors, contrast: color })}
             />
+
+            {showWavesInput &&
+                <ColorInput
+                    label="Cor das Ondas Laterais"
+                    value={colors?.contrast}
+                    onChange={(color) => updateData("colors", { ...colors, waves: color })}
+                />
+            }
 
             <SelectInput
                 label={"Fonte: "}
