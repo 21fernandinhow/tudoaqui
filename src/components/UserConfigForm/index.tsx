@@ -43,6 +43,7 @@ export interface UserLinksPageData {
         bgColor: "#fff" | "#000"
         floatingMode: boolean
     }
+    hasSideWaves: boolean
 }
 
 export interface UserLinkOption {
@@ -72,6 +73,7 @@ export const UserConfigForm = () => {
 
     const handleChange = (key: string, value: any) => {
         setUserLinksPageData((prevState => ({ ...prevState, [key]: value })))
+        console.log(userLinksPageData)
     }
 
     const handleSave = async () => {
@@ -123,6 +125,11 @@ export const UserConfigForm = () => {
                     disabledMessage={"Recurso Premium"}
                     disabledMessagePosition="right"
                     onToggle={(value) => handleChange("hideCredits", value)}
+                />
+                <ToggleSwitch
+                    isOn={userLinksPageData?.hasSideWaves}
+                    onToggle={(e) => handleChange("hasSideWaves", e)}
+                    label="Animação lateral de ondas: "
                 />
                 <hr className="custom-hr-secondary" />
 

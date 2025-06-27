@@ -31,7 +31,7 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
         root.style.setProperty("--select-color", data.colors.bg);
         root.style.setProperty("--select-background", data.colors.primary);
 
-        if(!isPreview){
+        if (!isPreview) {
             root.style.setProperty("--scrollbar-color", data.colors.primary);
             root.style.setProperty("--scrollbar-background", data.colors.bgSecondary);
         }
@@ -50,9 +50,16 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
     return (
         <div id="user-links-page-content">
 
+            {data.hasSideWaves &&
+                <div className="user-links-page-wave">
+                    <div className="wave wave-1"></div>
+                    <div className="wave wave-2"></div>
+                </div>
+            }
+
             <div className="user-links-page-container">
 
-                <UserLinksPageOptionsMenu isPreview={isPreview} uid={uid}/>
+                <UserLinksPageOptionsMenu isPreview={isPreview} uid={uid} />
 
                 <UserLinksPageHeader
                     imageUrl={data.avatarImgUrl}

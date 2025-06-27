@@ -4,9 +4,32 @@
     color: var(--user-contrast-color);
     font-family: var(--user-font);
     background: linear-gradient(to bottom, var(--user-bg-color), var(--user-bg-secondary-color));
+    display: flex;
 
     canvas {
         touch-action: none;
+    }
+
+    .user-links-page-wave {
+        position: relative;
+        min-width: 10vw;
+        min-height: 100vh;
+        min-height: 100dvh;
+        .wave {
+            background: var(--user-primary-color);
+            position: absolute;
+            border-radius: 0 100% 100% 0;
+            height: 100%;
+        }
+        .wave-1{
+            width: 60%;
+            z-index: 999;
+            animation: wave1 3s linear infinite;
+        }
+        .wave-2{
+            opacity: 0.75;
+            animation: wave2 3s linear infinite;
+        }
     }
 
     .user-links-page-container {

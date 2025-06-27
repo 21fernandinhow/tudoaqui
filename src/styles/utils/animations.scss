@@ -29,3 +29,28 @@
     transform: rotate(-360deg);
   }
 }
+
+@keyframes wave1 {
+  0%{
+      width: 50%;
+  }
+  50%{
+      width: 70%;
+  }
+  100%{
+      width: 50%;
+  }
+}
+
+@keyframes wave2 {
+  0%{
+      width: 70%;
+  }
+  50%{
+      width: 100%;
+  }
+  100%{
+      width: 70%;
+  }
+}
+

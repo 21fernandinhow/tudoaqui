@@ -29,5 +29,6 @@ export const defaultUserLinksPageData: UserLinksPageData = {
         floatingMode: true
     },
     isPremium: false,
-    showPremiumIcon: false
+    showPremiumIcon: false,
+    hasSideWaves: false
 }
