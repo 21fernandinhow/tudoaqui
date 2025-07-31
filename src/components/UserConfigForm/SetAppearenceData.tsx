@@ -10,6 +10,7 @@ interface SetAppearenceDataProps {
         bgSecondary: string;
         contrast: string;
         shadow: string;
+        waves?: string;
     };
     font: string
     showWavesInput?: boolean
@@ -63,7 +64,7 @@ export const SetAppearenceData = ({ colors, font, updateData, showWavesInput }: 
             {showWavesInput &&
                 <ColorInput
                     label="Cor das Ondas Laterais"
-                    value={colors?.contrast}
+                    value={colors?.waves ?? "#8c8c8c"}
                     onChange={(color) => updateData("colors", { ...colors, waves: color })}
                 />
             }
