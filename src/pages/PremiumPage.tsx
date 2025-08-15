@@ -91,7 +91,7 @@ export const PremiumPage = () => {
             📊 Tem acesso as <strong>métricas avançadas</strong> e outros recursos futuros
           </p>
           <p>💖 Ajuda o TudoAqui a continuar existindo!</p>
-          <h4>Por apenas R$ 9,90 !!!</h4>
+          <h4>Por apenas R$ 4,99 !!!</h4>
 
           <hr className="custom-hr-secondary" />
 
