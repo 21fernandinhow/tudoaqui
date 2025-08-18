@@ -13,7 +13,7 @@ export const HomePage = () => {
             <Header />
             <LandingPageSession imgSrc={FirstImage}>
                 <h1>tudoaqui</h1>
-                <p>Seu link-in-bio com identidade. Bonito, moderno e com 3D interativo.</p>
+                <p>Seu link na bio com identidade. Bonito, moderno e com 3D interativo.</p>
                 <div>
                     <a href="#about-session" className="btn">Saiba mais</a>
                     <LoginButton />
@@ -21,7 +21,7 @@ export const HomePage = () => {
             </LandingPageSession>
             <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg>
                 <h3> Chega dos mesmos layouts de sempre! </h3>
-                <p>Nós oferecemos uma interface diferenciada de <strong>links in bio</strong>, para te destacar da multidão.</p>
+                <p>Nós oferecemos uma interface diferenciada de <strong>links na bio</strong>, para te destacar da multidão.</p>
                 <a href="#demo-session" className="btn">Diferente como?</a>
             </LandingPageSession>
             <LandingPageSession imgSrc={ThirdImage} id="demo-session">
