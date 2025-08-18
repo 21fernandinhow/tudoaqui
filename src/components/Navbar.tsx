@@ -4,6 +4,7 @@ import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
 import { useUserData } from '../context/UserDataContext'
 import { HiViewGrid } from 'react-icons/hi'
+import { ImNewspaper } from 'react-icons/im'
 
 export const Navbar = () => {
     const { user } = useUserData();
@@ -22,6 +23,7 @@ export const Navbar = () => {
     return (
         <nav ref={menuRef}>
             <HiViewGrid className='explore-menu-icon' onClick={() => window.location.href = '/explore'}/>
+            <ImNewspaper className='blog-menu-icon' onClick={() => window.location.href = 'https://blog.tudoaqui.click'}/>
             <FaUser 
                 onClick={() => setMenuIsOpen(prev => !prev)} 
                 className='user-menu-icon'

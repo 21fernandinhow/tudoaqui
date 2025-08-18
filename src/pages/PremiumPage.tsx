@@ -101,8 +101,8 @@ export const PremiumPage = () => {
             </p>
           ) : (
             <p>
-              No momento, você está utilizando o <strong>plano gratuito</strong>
-              . Vamos para o próximo nível?
+              No momento, você está utilizando o <strong>plano gratuito</strong>. 
+              Vamos para o próximo nível?
             </p>
           )}
 
