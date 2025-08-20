@@ -12,6 +12,8 @@ import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 import ToggleSwitch from "../ToggleSwitch.tsx"
 import { useSnackbar } from "../../contexts/SnackbarContext"
 import { defaultUserLinksPageData } from "../../utils/defaultUserLinksPageData.ts"
+import { GeneratePageByAI } from "./GeneratePageByAi.tsx"
+import { RiAiGenerate2 } from "react-icons/ri"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -61,6 +63,7 @@ export const UserConfigForm = () => {
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
     const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
+    const [isOpenModalAI, setIsOpenModalAI] = useState(false)
 
     const getUserLinksPageData = async () => {
         if (user?.uid) {
@@ -68,13 +71,13 @@ export const UserConfigForm = () => {
             if (data) {
                 setUserLinksPageData(data)
                 setBackupUserLinksPageData(data)
+                setIsOpenModalAI(true)
             }
         }
     }
 
     const handleChange = (key: string, value: any) => {
         setUserLinksPageData((prevState => ({ ...prevState, [key]: value })))
-        console.log(userLinksPageData)
     }
 
     const handleSave = async () => {
@@ -118,7 +121,7 @@ export const UserConfigForm = () => {
                 />
                 <hr className="custom-hr-primary" />
 
-                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} showWavesInput={userLinksPageData?.hasSideWaves}/>
+                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} showWavesInput={userLinksPageData?.hasSideWaves} />
                 <ToggleSwitch
                     label="Ocultar créditos no rodapé: "
                     isOn={userLinksPageData.hideCredits}
@@ -146,6 +149,7 @@ export const UserConfigForm = () => {
                 }
                 <hr className="custom-hr-terciary" />
 
+                <p>Tudo certo ? Salve suas alterações: </p>
                 <div id="save-div">
                     {JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData) ?
                         <>
@@ -154,12 +158,17 @@ export const UserConfigForm = () => {
                         </>
                         :
                         <>
-                            <p>Tudo certo ? Salve suas alterações: </p>
                             <button
                                 className="btn"
                                 onClick={handleSave}
                             >
                                 Salvar
+                            </button>
+                            <button
+                                className="btn"
+                                onClick={() => setUserLinksPageData(backupUserLinksPageData)}
+                            >
+                                Descartar
                             </button>
                         </>
                     }
@@ -170,6 +179,16 @@ export const UserConfigForm = () => {
 
             <div id="preview">
                 <UserLinksPageContent data={userLinksPageData} isPreview uid={user?.uid ?? ""} />
+            </div>
+
+            <GeneratePageByAI
+                isOpen={isOpenModalAI}
+                onClose={() => setIsOpenModalAI(false)} currentData={userLinksPageData}
+                updateData={setUserLinksPageData}
+            />
+
+            <div className="generate-ai-icon" onClick={() => setIsOpenModalAI(prevState => !prevState)}>
+                <RiAiGenerate2 />
             </div>
 
         </div>

@@ -43,14 +43,7 @@
         #save-div {
             display: flex;
             align-items: center;
-
-            p {
-                margin: 0rem;
-            }
-
-            .btn {
-                margin: 0rem 1rem;
-            }
+            gap: 1rem;
         }
     }
 
