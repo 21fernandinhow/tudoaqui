@@ -9,11 +9,11 @@ import { UserLinksPageContent } from "../UserLinksPageContent.tsx"
 import { saveUserData } from "../../utils/saveUserData.ts"
 import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid.tsx"
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
-import ToggleSwitch from "../ToggleSwitch.tsx"
 import { useSnackbar } from "../../contexts/SnackbarContext"
 import { defaultUserLinksPageData } from "../../utils/defaultUserLinksPageData.ts"
 import { GeneratePageByAI } from "./GeneratePageByAi.tsx"
 import { RiAiGenerate2 } from "react-icons/ri"
+import ToggleSwitch from "../ToggleSwitch.tsx"
 
 export interface UserLinksPageData {
     userUrl: string
