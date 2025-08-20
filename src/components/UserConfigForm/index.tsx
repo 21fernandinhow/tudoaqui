@@ -11,7 +11,7 @@ import { getUserLinksPageDataByUid } from "../../utils/getUserLinksPageDataByUid
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 import { useSnackbar } from "../../contexts/SnackbarContext"
 import { defaultUserLinksPageData } from "../../utils/defaultUserLinksPageData.ts"
-import { GeneratePageByAI } from "./GeneratePageByAi.tsx"
+import { GeneratePageByAI } from "./GeneratePageByAI.tsx"
 import { RiAiGenerate2 } from "react-icons/ri"
 import ToggleSwitch from "../ToggleSwitch.tsx"
 

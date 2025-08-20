@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { UserLinkOption, UserLinksPageData } from "."
 import { Modal } from "../Modal"
+import { UserLinkOption, UserLinksPageData } from "."
 
 interface GeneratePageByAIProps {
     currentData: UserLinksPageData
