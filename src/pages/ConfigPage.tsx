@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import { UserConfigForm } from "../components/UserConfigForm";
 import { useUserData } from "../context/UserDataContext";
 
-export const ConfigPage = () => {
+const ConfigPage = () => {
     const { user, loading } = useUserData();
 
     if (loading) return <Header />;
@@ -16,3 +16,5 @@ export const ConfigPage = () => {
         </>
     );
 };
+
+export default ConfigPage

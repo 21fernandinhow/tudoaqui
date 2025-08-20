@@ -4,8 +4,8 @@ import { collection, getDocs, query, where, doc, updateDoc, arrayUnion } from "f
 import { db } from "../firebase";
 import { UserLinksPageData } from "../components/UserConfigForm";
 import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx";
-import { Loader } from "../components/Loader.tsx";
-import { UserNotFound } from "./UserNotFound.tsx";
+import UserNotFound  from "./UserNotFound.tsx";
+import { LoadingPage } from "./LoadingPage.tsx";
 
 export interface VisitLocationData {
     city: string;
@@ -15,7 +15,7 @@ export interface VisitLocationData {
     longitude: number;
 };
 
-export const UserLinksPage = () => {
+const UserLinksPage = () => {
     const { userUrl } = useParams();
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData | null>(null);
     const [uid, setUid] = useState<string | null>(null);
@@ -99,8 +99,10 @@ export const UserLinksPage = () => {
     }, [userUrl]);
 
     if (loading) {
-        return <div className="loading-page"> <Loader /> </div>
+        return <LoadingPage />
     }
 
     return userLinksPageData && uid ? <UserLinksPageContent data={userLinksPageData} uid={uid} visitLocation={visitLocation} /> : <UserNotFound />
 };
+
+export default UserLinksPage

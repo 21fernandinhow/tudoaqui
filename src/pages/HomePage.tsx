@@ -6,12 +6,12 @@ import SecondImage from "../assets/ilustrations/undraw_online-posts_avfn.svg"
 import ThirdImage from "../assets/ilustrations/undraw_social-ideas_3znc.svg"
 import { LoginButton } from "../components/LoginButton";
 
-export const HomePage = () => {
+const HomePage = () => {
 
     return (
         <>
             <Header />
-            <LandingPageSession imgSrc={FirstImage}>
+            <LandingPageSession imgSrc={FirstImage} imgWidth={596} imgHeight={728} priority>
                 <h1>tudoaqui</h1>
                 <p>Seu link na bio com identidade. Bonito, moderno e com 3D interativo.</p>
                 <div>
@@ -19,12 +19,12 @@ export const HomePage = () => {
                     <LoginButton />
                 </div>
             </LandingPageSession>
-            <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg>
+            <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg imgWidth={731} imgHeight={731}>
                 <h3> Chega dos mesmos layouts de sempre! </h3>
                 <p>Nós oferecemos uma interface diferenciada de <strong>links na bio</strong>, para te destacar da multidão.</p>
                 <a href="#demo-session" className="btn">Diferente como?</a>
             </LandingPageSession>
-            <LandingPageSession imgSrc={ThirdImage} id="demo-session">
+            <LandingPageSession imgSrc={ThirdImage} id="demo-session" imgWidth={747} imgHeight={649}>
                 <h3>Sua página não será "só mais uma" </h3>
                 <p>Encante seus visitantes com ícones 3D animados que se movem conforme a interação.</p>
                 <p>Simples, bonito, impactante. E altamente personalizável!</p>
@@ -37,3 +37,5 @@ export const HomePage = () => {
         </>
     );
 };
+
+export default HomePage

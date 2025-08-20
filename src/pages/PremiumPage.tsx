@@ -5,8 +5,9 @@ import { getCheckoutUrl, getPortalUrl } from "../utils/stripePayment";
 import { getPremiumStatus } from "../utils/getPremiumStatus";
 import { Footer } from "../components/Footer";
 import { Loader } from "../components/Loader";
+import { LoadingPage } from "./LoadingPage";
 
-export const PremiumPage = () => {
+const PremiumPage = () => {
   const { user, loading } = useUserData();
   const [isPremium, setIsPremium] = useState(false);
   const [showButtonLoader, setShowButtonLoader] = useState(false);
@@ -64,9 +65,7 @@ export const PremiumPage = () => {
     return (
       <>
         <Header />
-        <div className="loading-page">
-          <Loader />
-        </div>
+        <LoadingPage />
       </>
     );
 
@@ -101,7 +100,7 @@ export const PremiumPage = () => {
             </p>
           ) : (
             <p>
-              No momento, você está utilizando o <strong>plano gratuito</strong>. 
+              No momento, você está utilizando o <strong>plano gratuito</strong>.
               Vamos para o próximo nível?
             </p>
           )}
@@ -131,3 +130,5 @@ export const PremiumPage = () => {
     </>
   );
 };
+
+export default PremiumPage

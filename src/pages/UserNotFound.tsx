@@ -1,7 +1,7 @@
 import { IoEnterOutline } from "react-icons/io5";
 import { MdError } from "react-icons/md";
 
-export const UserNotFound = () => (
+const UserNotFound = () => (
     <div id="not-found-user">
         <MdError />
         <h2>Ooops... usuário não encontrado</h2>
@@ -11,3 +11,4 @@ export const UserNotFound = () => (
     </div>
 )
 
+export default UserNotFound

@@ -4,9 +4,9 @@ import { UserPagePreview } from "../components/UserPagePreview";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Footer } from "../components/Footer";
-import { Loader } from "../components/Loader";
 import { LoginButton } from "../components/LoginButton";
 import { useUserData } from "../context/UserDataContext";
+import { LoadingPage } from "./LoadingPage";
 
 interface User {
     id: string;
@@ -14,7 +14,7 @@ interface User {
     score: number;
 }
 
-export const ExplorePage = () => {
+const ExplorePage = () => {
     const { user } = useUserData();
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
@@ -75,9 +75,7 @@ export const ExplorePage = () => {
                 {loading ?
 
                     (
-                        <div className="loading-page">
-                            <Loader />
-                        </div>
+                        <LoadingPage />
                     )
 
                     : users.length > 0 ? (
@@ -105,3 +103,5 @@ export const ExplorePage = () => {
         </>
     );
 };
+
+export default ExplorePage

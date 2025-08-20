@@ -3,7 +3,6 @@ import { Header } from "../components/Header";
 import { useUserData } from "../context/UserDataContext";
 import { getPremiumStatus } from "../utils/getPremiumStatus";
 import { Footer } from "../components/Footer";
-import { Loader } from "../components/Loader";
 import { getUserMetrics, ReceivedClicksData, UserMetrics, ViewLinksPageData } from "../utils/getUserMetrics";
 import { DashboardStat } from "../components/Charts/DashboardStat";
 import { LineGraph } from "../components/Charts/LineGraph";
@@ -13,6 +12,7 @@ import { checkDeviceType } from "../utils/checkDeviceType";
 import { ComparativeChart } from "../components/Charts/ComparativeChart";
 import { FaMobile } from "react-icons/fa6";
 import { MdComputer } from "react-icons/md";
+import { LoadingPage } from "./LoadingPage";
 
 const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicksData[], views: ViewLinksPageData[] }) => {
     function countByDate<T extends Record<string, any>>(items: T[], dateKey: keyof T) {
@@ -101,22 +101,22 @@ const formatDevicesDataForComparativeChart = (views: ViewLinksPageData[], clicks
     desktop.percentageOfViews = desktop.views / (mobile.views + desktop.views) * 100
 
     return [
-        { 
-            label: "Mobile", 
-            value: mobile.percentageOfViews.toFixed(0), 
+        {
+            label: "Mobile",
+            value: mobile.percentageOfViews.toFixed(0),
             icon: <FaMobile />,
-            obs: `Clickrate: ${mobile.clickRate.toFixed(0)} %` 
+            obs: `Clickrate: ${mobile.clickRate.toFixed(0)} %`
         },
-        { 
-            label: "Desktop", 
+        {
+            label: "Desktop",
             icon: <MdComputer />,
-            value: desktop.percentageOfViews.toFixed(0), 
-            obs: `Clickrate: ${desktop.clickRate.toFixed(0)} %` 
+            value: desktop.percentageOfViews.toFixed(0),
+            obs: `Clickrate: ${desktop.clickRate.toFixed(0)} %`
         }
     ]
 };
 
-export const MetricsPage = () => {
+const MetricsPage = () => {
     const { user, loading } = useUserData();
     const [metrics, setMetrics] = useState<UserMetrics | null>(null)
     const [isPremium, setIsPremium] = useState(false);
@@ -144,9 +144,7 @@ export const MetricsPage = () => {
         return (
             <>
                 <Header />
-                <div className="loading-page">
-                    <Loader />
-                </div>
+                <LoadingPage />
                 <Footer />
             </>
         );
@@ -206,7 +204,7 @@ export const MetricsPage = () => {
 
                     <BarHorizontalGraph
                         title="Localização dos visitantes"
-                        data={metrics?.views ? formatMetricsForLocationChart(metrics?.views).sort((a,b) => b.value - a.value).slice(0, 10) : null}
+                        data={metrics?.views ? formatMetricsForLocationChart(metrics?.views).sort((a, b) => b.value - a.value).slice(0, 10) : null}
                         isPremium={isPremium}
                     />
 
@@ -223,3 +221,5 @@ export const MetricsPage = () => {
         </>
     );
 };
+
+export default MetricsPage

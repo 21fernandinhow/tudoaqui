@@ -5,10 +5,22 @@ interface SessionLayoutProps {
     secondaryBg?: boolean
     children: ReactNode
     imgSrc: string
+    imgWidth?: number
+    imgHeight?: number
     id?: string
+    priority?: boolean
 }
 
-export const LandingPageSession = ({ reverse = false, children, imgSrc, id = "", secondaryBg = false }: SessionLayoutProps) => (
+export const LandingPageSession = ({
+    reverse = false,
+    children,
+    imgSrc,
+    imgWidth,
+    imgHeight,
+    id = "",
+    secondaryBg = false,
+    priority = false
+}: SessionLayoutProps) => (
     <div className={`lp-session ${secondaryBg ? 'secondary-bg' : ''}`}>
         <div className={`container row ${reverse ? 'row-reverse' : ''}`} id={id}>
             <div className="col-half fade-in-up">
@@ -18,6 +30,11 @@ export const LandingPageSession = ({ reverse = false, children, imgSrc, id = "",
                 <img
                     src={imgSrc}
                     alt="imagem"
+                    width={imgWidth}
+                    height={imgHeight}
+                    fetchPriority={priority ? "high" : undefined}
+                    loading={priority ? "eager" : "lazy"}
+                    decoding="async"
                 />
             </div>
         </div>
