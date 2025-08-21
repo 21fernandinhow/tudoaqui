@@ -16,6 +16,9 @@
     #config-page {
         flex-direction: column !important;
 
+        #user-config-form{
+            max-width: 100% !important;
+        }
         #preview {
             flex-grow: 0;
         }
