@@ -208,6 +208,7 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     const handleFinish = () => {
         scrollToSaveButton()
         setSuccess(false)
+        setPrompt("")
         onClose()
     }
 
