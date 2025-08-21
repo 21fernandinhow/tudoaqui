@@ -161,6 +161,8 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                                     ${currentData}
 
                                     Altere-a de acordo com o que ele pedir em seu prompt.
+                                    A chave de uma boa personalização visual está não só nas cores de destaque (primaryColor e 
+                                    secondaryColor) mas também nas cores de fundo (bg e bgSecondary).
                                     ***Lembre-se de RETORNAR SOMENTE O JSON VÁLIDO***
                                 `
                         },
@@ -205,6 +207,7 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
 
     const handleFinish = () => {
         scrollToSaveButton()
+        setSuccess(false)
         onClose()
     }
 
