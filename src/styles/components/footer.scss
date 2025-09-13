@@ -1,6 +1,29 @@
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 1rem;
     text-align: center;
     border-top: 2px solid var(--primary-color);
+    font-size: 1rem;
+
+    .social-icons {
+        display: inline-flex;
+        gap: 0.5rem;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+    }
+
+    .social-icons a {
+        color: inherit;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: var(--primary-color);
+    }
 }
