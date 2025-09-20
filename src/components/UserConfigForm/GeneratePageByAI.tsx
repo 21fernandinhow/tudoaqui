@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { Modal } from "../Modal"
 import { UserLinkOption, UserLinksPageData } from "."
+import { z } from "zod"
+import { linkIconOptions } from "./UserLinkOptionConfigBox"
+import { fontOptions } from "./SetAppearenceData"
 
 interface GeneratePageByAIProps {
     currentData: UserLinksPageData
@@ -9,6 +12,36 @@ interface GeneratePageByAIProps {
     onClose: () => void
 }
 
+const visualDataSchema = z.object({
+    colors: z.object({
+        primary: z.string(),
+        secondary: z.string(),
+        bg: z.string(),
+        bgSecondary: z.string(),
+        contrast: z.string(),
+        shadow: z.string(),
+        waves: z.string(),
+    }),
+    font: z.string(),
+    buttonOptions: z.object({
+        style: z.enum(["default", "outline"]),
+        borderRadius: z.enum(["0", "0.5", "1", "1.5"])
+    }),
+    iconOptions: z.object({
+        bgColor: z.enum(["#fff", "#ffffff", "#000", "#000000"]),
+        floatingMode: z.boolean(),
+        iconsColor: z.string().optional()
+    }).passthrough(),
+    links: z.array(
+        z.object({
+            icon: z.string().optional(),
+            label: z.string(),
+            url: z.string(),
+            type: z.enum(["icon", "button"]),
+        })
+    )
+})
+
 export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: GeneratePageByAIProps) => {
     const [prompt, setPrompt] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -16,26 +49,34 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     const [success, setSuccess] = useState(false)
 
     const encriptedKey = import.meta.env.VITE_OPENAI_APIKEY
-    const decriptedKey = atob(encriptedKey).split("").reverse().join("");
-
+    const decriptedKey = atob(encriptedKey).split("").reverse().join("")
     const model = "gpt-4o-mini"
 
     const removeDuplicateLinks = (links: UserLinkOption[]) => {
-        const seen = new Set<string>();
+        const seen = new Set<string>()
         return links.filter(link => {
-            if (seen.has(link.url)) {
-                return false;
-            }
-            seen.add(link.url);
-            return true;
-        });
+            if (seen.has(link.url)) return false
+            seen.add(link.url)
+            return true
+        })
+    }
+
+    const normalizeIcon = (icon?: string) => {
+        const validIcons = linkIconOptions.map(opt => opt.value)
+        if (!icon || !validIcons.includes(icon)) return "logos/default.webp"
+        return icon
+    }
+
+    const normalizeBgColor = (color: string): "#fff" | "#ffffff" | "#000" | "#000000" => {
+        const c = color.toLowerCase()
+        if (c === "#000" || c === "#000000") return "#000"
+        if (c === "#fff" || c === "#ffffff") return "#fff"
+        return "#000"
     }
 
     const scrollToSaveButton = () => {
         const button = document.getElementById("save-div")
-        if (button) {
-            button.scrollIntoView({ behavior: "smooth", block: "center" })
-        }
+        if (button) button.scrollIntoView({ behavior: "smooth", block: "center" })
     }
 
     const sanitizeJSON = (text: string) => {
@@ -56,7 +97,7 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${decriptedKey}`,
+                    Authorization: `Bearer ${decriptedKey}`,
                 },
                 body: JSON.stringify({
                     model,
@@ -64,139 +105,96 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                         {
                             role: "system",
                             content: `
-              
-                                Você é responsável por gerar páginas de links  para clientes do tudoaqui.click, um site de link in bio 
-                                que conta com liberdade de customização e variações de icones interativos 3d alem do design tradicional. 
+                                Você é responsável por gerar APENAS os dados visuais e links para uma página de links do tudoaqui.click.
 
-                                Leia atentamente o prompt que receberá sobre como o usuario quer sua pagina de links e retorne um JSON 
-                                com a estrutura adequada, essa estrutura será usada pelo nosso sistema pra montar a pagina dele. 
-                                Veja abaixo o exemplo de estrutura:
-
+                                **Formato exato que o JSON deve ter**:
                                 {
-                                    userUrl: "", // keep the value you receive from this field, dont change it!
-                                    avatarImgUrl: "https://firebasestorage.googleapis.com/v0/b/tudoaqui-2936b.firebasestorage.app/o/users%2FBs2nV5ovXcYborimonm8Uxax9a53%2Fdefault-avatar-icon-of-social-media-user-vector.jpg?alt=media&token=9c367c77-04cf-48e4-bfd6-38ab1af39780", keep the value you receive from this field, dont change it!
-                                    avatarImgName: "default-avatar.jpg", // keep the value you receive from this field, dont change it!
-                                    name: "", // user name
-                                    bio: "", // user bio
-                                    colors: {
-                                        primary: "#8c8c8c", // color of the title and buttons
-                                        secondary: "#ddd", // color of the image border and other details
-                                        bg: "#fff", // color of background, used on a gradient with bgSecondary
-                                        bgSecondary: "#f5f5f5", // color of background, used on a gradient with bg
-                                        contrast: "#000", // text color
-                                        shadow: "rgba(0,0,0, 0.4)", // don change this value
-                                        waves: "#8c8c8c", // color of waves animations, change only if user said that wants another color
-                                    },
-                                    bgImage: "", keep the value you receive from this field, dont change it!
-                                    font: "", // font family, look at the font options
-                                    showShareBtn: false, // premium user only, dont change this value
-                                    showAIAssistant: false, keep the value you receive from this field, dont change it!
-                                    hideCredits: false, keep the value you receive from this field, dont change it!, premium user only
-                                    links: [], // array of links of the user, look bellow the links structure and icon options
-                                    buttonOptions: {
-                                        style: "default", // can be default or outlined
-                                        borderRadius: "0.5" // border radius of buttons, the defaults is 0.5
-                                    },
-                                    iconOptions: {
-                                        bgColor: "#fff", // bg color of the icon, can be light (#fff) or dark (#000), the default is light
-                                        floatingMode: true // if icons are floating or not, the default is true, change only if user ask for
-                                    },
-                                    isPremium: false, // DONT TOUCH THIS ONE
-                                    showPremiumIcon: false, // DONT TOUCH THIS ONE
-                                    hasSideWaves: false // if waves animations is disabled or not, keep false if user dont ask for
+                                "colors": {
+                                    "primary": "#hex",
+                                    "secondary": "#hex",
+                                    "bg": "#hex",
+                                    "bgSecondary": "#hex",
+                                    "contrast": "#hex",
+                                    "shadow": "rgba(...)",
+                                    "waves": "#hex"
+                                },
+                                "font": "string",
+                                "buttonOptions": {
+                                    "style": "default" | "outline",
+                                    "borderRadius": "0" | "0.5" | "1" | "1.5"
+                                },
+                                "iconOptions": {
+                                    "bgColor": "#fff" | "#ffffff" | "#000" | "#000000",
+                                    "floatingMode": boolean,
+                                    "iconsColor": "#hex"
+                                },
+                                "links": [
+                                    {
+                                    "type": "icon" | "button",
+                                    "label": "string",
+                                    "url": "string",
+                                    "icon": "logos/default.webp" | "logos/whatsapp.webp" | "logos/facebook.webp" | "logos/instagram_logo.webp" | ...
+                                    }
+                                ]
                                 }
 
-                                font options:
-                                const fontOptions = [
-                                        { value: "Teko", label: "Teko" },
-                                        { value: "Montserrat", label: "Montserrat" },
-                                        { value: "sans-serif", label: "Sans Serif" },
-                                        { value: "monospace", label: "Monospace" },
-                                        { value: "Times New Roman", label: "Times New Roman" },
-                                        { value: "Verdana", label: "Verdana" },
-                                        { value: "Comic Sans MS, Comic Sans, Comic Relief", label: "Comic Sans MS" },
-                                        { value: "cursive ", label: "Caligrafia" },
-                                    ]
-
-
-                                links structure:
-                                export interface UserLinkOption {
-                                    icon?: string, // is undefined if the link is not an 3d animated icon
-                                    label: string
-                                    url: string
-                                    type: "icon" | "button"
-                                }
-
-                                icon options:
-                                const iconOptions = [
-                                        { label: "Outro...", value: "logos/default.webp" },
-                                        { label: "Whatsapp", value: "logos/whatsapp.webp" },
-                                        { label: "Facebook", value: "logos/facebook.webp" },
-                                        { label: "Instagram", value: "logos/instagram_logo.webp" },
-                                        { label: "Pinterest", value: "logos/pinterest.webp" },
-                                        { label: "Vsco", value: "logos/vsco.webp" },
-                                        { label: "X", value: "logos/x.webp" },
-                                        { label: "Tiktok", value: "logos/tiktok.webp" },
-                                        { label: "Youtube", value: "logos/youtube_logo.webp" },
-                                        { label: "Twitch", value: "logos/twitch_logo.webp" },
-                                        { label: "Discord", value: "logos/discord_logo.webp" },
-                                        { label: "Spotify", value: "logos/spotify.webp" },
-                                        { label: "Soundcloud", value: "logos/soundcloud.webp" },
-                                        { label: "Deezer", value: "logos/deezer.webp" },
-                                        { label: "iFood", value: "logos/ifood.webp" },
-                                        { label: "LinkedIn", value: "logos/linkedin.webp" },
-                                        { label: "Github", value: "logos/github.webp" },
-                                        { label: "Hotmart", value: "logos/hotmart.webp" },
-                                        { label: "Pix", value: "logos/pix.webp" },
-                                        { label: "Telegram", value: "logos/telegram.webp" },
-                                        { label: "Onlyfans", value: "logos/onlyfans.webp" },
-                                        { label: "Privacy", value: "logos/privacy.webp" },
-                                        { label: "Amazon", value: "logos/amazon_logo.webp" },
-                                        { label: "E-mail", value: "logos/email_logo.webp" },
-                                        { label: "Localização", value: "logos/location.webp" },
-                                        { label: "Ligação", value: "logos/call.webp" },
-                                    ]
-
-                                    Essa é a configuração atual do usuário:     
-                                    ${currentData}
-
-                                    Altere-a de acordo com o que ele pedir em seu prompt.
-                                    A chave de uma boa personalização visual está não só nas cores de destaque (primaryColor e 
-                                    secondaryColor) mas também nas cores de fundo (bg e bgSecondary).
-                                    ***Lembre-se de RETORNAR SOMENTE O JSON VÁLIDO***
-                                `
+                                **Regras:**
+                                - Retorne apenas JSON válido, sem comentários ou texto adicional.
+                                - Use apenas os ícones disponíveis: ${linkIconOptions.map(i => i.value).join(", ")}
+                                - Use apenas as fontes válidas: ${fontOptions.map(f => `[${f.value}]`).join(", ")}.
+                                - As cores de fundo (bg e bgSecondary) são cruciais.
+                                - Para campos não mencionados, use valores default neutros.
+                             `
                         },
-                        {
-                            role: "user",
-                            content: prompt
-                        }
+                        { role: "user", content: prompt }
                     ],
-                    temperature: 0.5,
-                    max_tokens: 4000,
+                    temperature: 0.3,
+                    max_tokens: 1500,
                 }),
             })
 
             const data = await response.json()
-            const rawContent = data.choices[0].message.content
+            const rawContent = data.choices?.[0]?.message?.content
+            const parsed = sanitizeJSON(rawContent)
 
-            const parsed: UserLinksPageData | null = sanitizeJSON(rawContent)
-            if (parsed) {
-                updateData({
-                    ...parsed,
-                    name: currentData.name,
-                    bio: currentData.bio,
-                    avatarImgName: currentData.avatarImgName,
-                    avatarImgUrl: currentData.avatarImgUrl,
-                    isPremium: currentData.isPremium,
-                    userUrl: currentData.userUrl,
-                    links: removeDuplicateLinks([...parsed.links, ...currentData.links])
-                })
-                setSuccess(true)
-            } else {
-                console.error("Falha ao parsear JSON:", rawContent)
-                setError("A IA não retornou uma configuração válida. Tente novamente mais tarde.")
+            if (!parsed) {
+                setError("A IA não retornou um JSON válido. Tente novamente.")
+                return
             }
 
+            if (parsed.iconOptions) {
+                parsed.iconOptions = {
+                    ...parsed.iconOptions,
+                    bgColor: normalizeBgColor(parsed.iconOptions.bgColor)
+                }
+            }
+
+            let validated
+            try {
+                validated = visualDataSchema.parse(parsed)
+            } catch (err) {
+                console.error("Erro de validação Zod:", err)
+                setError("A configuração retornada pela IA é inválida. Tente detalhar melhor seu prompt.")
+                return
+            }
+
+            const merged: UserLinksPageData = {
+                ...currentData,
+                colors: validated.colors,
+                font: validated.font,
+                buttonOptions: validated.buttonOptions,
+                iconOptions: {
+                    ...currentData.iconOptions,
+                    ...validated.iconOptions
+                },
+                links: removeDuplicateLinks(validated.links.map(link => ({
+                    ...link,
+                    icon: normalizeIcon(link.icon)
+                })))
+            }
+
+            updateData(merged)
+            setSuccess(true)
         } catch (err) {
             console.error("Erro ao gerar com IA:", err)
             setError("Erro ao se comunicar com a IA.")
@@ -220,11 +218,9 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                         <h4>Novidade!</h4>
                         <h2>🚀 Configure sua página com IA</h2>
                         <p>Descreva como gostaria que sua página fosse.</p>
-                        <p>Lembre-se de fornecer os links e especificar o tipo, quanto mais detalhado melhor.</p>
-
                         <textarea
                             rows={6}
-                            placeholder="Exemplo: Quero fundo preto, cor de destaque verde e links de icone para WhatsApp (o link é x) e Instagram (link y)"
+                            placeholder="Exemplo: Quero fundo preto, cor de destaque verde e links de ícone para WhatsApp (meu número é X) e mais um link pra e-book (link é tal)"
                             value={prompt}
                             onChange={e => setPrompt(e.target.value)}
                             disabled={isLoading}
@@ -237,19 +233,15 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                             onClick={handleGenerate}
                             disabled={isLoading || !prompt.trim()}
                         >
-                            {isLoading ? "✨ Gerando..." : "GERAR MEU TUDOAQUI"}
+                            {"✨ " + (isLoading ? "Gerando..." : "Gerar Página")}
                         </button>
 
                         <button className="btn" onClick={onClose}>Configurar manualmente</button>
-
                     </>
                 ) : (
                     <>
                         <h2>✅ Página criada com sucesso!</h2>
-                        <p>
-                            Agora basta clicar em "salvar" para publica-la ou editar os detalhes que você preferir {"=)"}
-                        </p>
-
+                        <p>Basta clicar em "salvar" para publicar ou editar os detalhes que quiser {"=)"}</p>
                         <div className="modal-actions">
                             <button className="btn" onClick={handleFinish}>
                                 Continuar

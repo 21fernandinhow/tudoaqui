@@ -16,6 +16,35 @@ interface UserLinkOptionConfigBoxProps {
     showMoveLinkBackward: boolean
 }
 
+export const linkIconOptions = [
+    { label: "Outro...", value: "logos/default.webp" },
+    { label: "Whatsapp", value: "logos/whatsapp.webp" },
+    { label: "Facebook", value: "logos/facebook.webp" },
+    { label: "Instagram", value: "logos/instagram_logo.webp" },
+    { label: "Pinterest", value: "logos/pinterest.webp" },
+    { label: "Vsco", value: "logos/vsco.webp" },
+    { label: "X", value: "logos/x.webp" },
+    { label: "Tiktok", value: "logos/tiktok.webp" },
+    { label: "Youtube", value: "logos/youtube_logo.webp" },
+    { label: "Twitch", value: "logos/twitch_logo.webp" },
+    { label: "Discord", value: "logos/discord_logo.webp" },
+    { label: "Spotify", value: "logos/spotify.webp" },
+    { label: "Soundcloud", value: "logos/soundcloud.webp" },
+    { label: "Deezer", value: "logos/deezer.webp" },
+    { label: "iFood", value: "logos/ifood.webp" },
+    { label: "LinkedIn", value: "logos/linkedin.webp" },
+    { label: "Github", value: "logos/github.webp" },
+    { label: "Hotmart", value: "logos/hotmart.webp" },
+    { label: "Pix", value: "logos/pix.webp" },
+    { label: "Telegram", value: "logos/telegram.webp" },
+    { label: "Onlyfans", value: "logos/onlyfans.webp" },
+    { label: "Privacy", value: "logos/privacy.webp" },
+    { label: "Amazon", value: "logos/amazon_logo.webp" },
+    { label: "E-mail", value: "logos/email_logo.webp" },
+    { label: "Localização", value: "logos/location.webp" },
+    { label: "Ligação", value: "logos/call.webp" },
+]
+
 export const UserLinkOptionConfigBox = ({
     index,
     linkOptionData,
@@ -28,34 +57,6 @@ export const UserLinkOptionConfigBox = ({
 }: UserLinkOptionConfigBoxProps) => {
 
     const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false)
-    const iconOptions = [
-        { label: "Outro...", value: "logos/default.webp" },
-        { label: "Whatsapp", value: "logos/whatsapp.webp" },
-        { label: "Facebook", value: "logos/facebook.webp" },
-        { label: "Instagram", value: "logos/instagram_logo.webp" },
-        { label: "Pinterest", value: "logos/pinterest.webp" },
-        { label: "Vsco", value: "logos/vsco.webp" },
-        { label: "X", value: "logos/x.webp" },
-        { label: "Tiktok", value: "logos/tiktok.webp" },
-        { label: "Youtube", value: "logos/youtube_logo.webp" },
-        { label: "Twitch", value: "logos/twitch_logo.webp" },
-        { label: "Discord", value: "logos/discord_logo.webp" },
-        { label: "Spotify", value: "logos/spotify.webp" },
-        { label: "Soundcloud", value: "logos/soundcloud.webp" },
-        { label: "Deezer", value: "logos/deezer.webp" },
-        { label: "iFood", value: "logos/ifood.webp" },
-        { label: "LinkedIn", value: "logos/linkedin.webp" },
-        { label: "Github", value: "logos/github.webp" },
-        { label: "Hotmart", value: "logos/hotmart.webp" },
-        { label: "Pix", value: "logos/pix.webp" },
-        { label: "Telegram", value: "logos/telegram.webp" },
-        { label: "Onlyfans", value: "logos/onlyfans.webp" },
-        { label: "Privacy", value: "logos/privacy.webp" },
-        { label: "Amazon", value: "logos/amazon_logo.webp" },
-        { label: "E-mail", value: "logos/email_logo.webp" },
-        { label: "Localização", value: "logos/location.webp" },
-        { label: "Ligação", value: "logos/call.webp" },
-    ]
 
     return (
         <>
@@ -80,7 +81,7 @@ export const UserLinkOptionConfigBox = ({
                         <SelectInput
                             name={`select-link-icon-${index}`}
                             label="Icone"
-                            options={iconOptions}
+                            options={linkIconOptions}
                             value={linkOptionData.icon ?? ""}
                             onChange={(e) => updateLinkOptionData(index, "icon", e.target.value)}
                         />

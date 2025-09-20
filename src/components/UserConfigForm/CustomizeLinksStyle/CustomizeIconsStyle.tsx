@@ -3,7 +3,7 @@ import ToggleSwitch from "../../ToggleSwitch"
 
 interface CustomizeIconsStyleProps {
     iconsData: {
-        bgColor: "#fff" | "#000"
+        bgColor: "#fff" | "#ffffff" | "#000000" | "#000"
         floatingMode: boolean
     }
     updateData: (key: string, value: any) => void

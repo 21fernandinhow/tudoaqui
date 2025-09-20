@@ -10,7 +10,7 @@ interface CustomizeLinksStyleProps {
     borderRadius: "0" | "0.5" | "1" | "1.5"
   };
   iconOptions: {
-    bgColor: "#fff" | "#000";
+    bgColor: "#fff" | "#ffffff" | "#000" | "#000000";
     floatingMode: boolean
   }
   handleChange: (key: string, value: any) => void;
