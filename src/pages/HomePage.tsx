@@ -13,25 +13,22 @@ const HomePage = () => (
             <h1>Crie sua página de links com IA</h1>
             <p>Visual moderno e totalmente personalizável em apenas 60 segundos.</p>
             <div>
-                <a href="#about-session" className="btn">Saiba mais</a>
                 <LoginButton />
+                <a href="#about-session" className="btn">Saiba mais</a>
             </div>
         </LandingPageSession>
         <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg imgWidth={731} imgHeight={731}>
             <h3> Chega dos mesmos layouts de sempre! </h3>
-            <p>
-                No <strong>tudoaqui</strong> nós oferecemos liberdade total de personalização — do tema às animações.
-                Crie algo único, do seu jeito!
-            </p>
+            <p>Oferecemos liberdade total de personalização — do tema às animações. Crie algo único, do seu jeito!</p>
             <a href="#demo-session" className="btn">Conheça os resultados</a>
         </LandingPageSession>
         <LandingPageSession imgSrc={ThirdImage} id="demo-session" imgWidth={747} imgHeight={649}>
             <h3>Sua página não será "só mais uma" </h3>
-            <p>Encante seus visitantes com ícones 3D animados que se movem conforme a interação.</p>
-            <p>Simples, bonito, impactante. E altamente personalizável!</p>
+            <p>Encante seus visitantes com ícones 3D animados e interativos!</p>
+            <p>Mais conversões ao transformar sua página em uma experiência marcante.</p>
             <div>
-                <a href="/explore" className="btn">Veja na prática</a>
                 <LoginButton />
+                <a href="/explore" className="btn">Veja exemplos</a>
             </div>
         </LandingPageSession>
         <Footer />
