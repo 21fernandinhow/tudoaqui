@@ -80,7 +80,7 @@ const ExplorePage = () => {
 
                     : users.length > 0 ? (
                         <div className="grid-container">
-                            {users.slice(0, 5).map((user) => (
+                            {users.slice(0, 9).map((user) => (
                                 <UserPagePreview
                                     key={user.id}
                                     url={"https://tudoaqui.click/" + user.userUrl}
