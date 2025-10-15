@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { Modal } from "../Modal"
-import { UserLinkOption, UserLinksPageData } from "."
 import { z } from "zod"
-import { linkIconOptions } from "./UserLinkOptionConfigBox"
-import { fontOptions } from "./SetAppearenceData"
+import { UserLinkOption, UserLinksPageData } from ".."
+import { linkIconOptions } from "../UserLinkOptionConfigBox"
+import { Modal } from "../../Modal"
+import { AiPrompt } from "./prompt"
 
 interface GeneratePageByAIProps {
     currentData: UserLinksPageData
@@ -99,57 +99,7 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        contents: [
-                            {
-                                role: "user",
-                                parts: [
-                                    {
-                                        text: `
-                                            Você é responsável por gerar APENAS os dados visuais e links para uma página de links do tudoaqui.click.
-
-                                            **Formato exato que o JSON deve ter**:
-                                            
-                                            {
-                                            "colors": {
-                                                "primary": "#hex",
-                                                "secondary": "#hex",
-                                                "bg": "#hex",
-                                                "bgSecondary": "#hex",
-                                                "contrast": "#hex",
-                                                "shadow": "rgba(...)",
-                                                "waves": "#hex"
-                                            },
-                                            "font": "string",
-                                            "buttonOptions": {
-                                                "style": "default" | "outline",
-                                                "borderRadius": "0" | "0.5" | "1" | "1.5"
-                                            },
-                                            "iconOptions": {
-                                                "bgColor": "#fff" | "#ffffff" | "#000" | "#000000",
-                                                "floatingMode": boolean,
-                                                "iconsColor": "#hex"
-                                            },
-                                            "links": [
-                                                {
-                                                "type": "icon" | "button",
-                                                "label": "string",
-                                                "url": "string",
-                                                "icon": "logos/default.webp" | "logos/whatsapp.webp" | "logos/facebook.webp" | "logos/instagram_logo.webp" | ...
-                                                }
-                                            ]
-                                            }
-
-                                            **Regras:**
-                                            - Retorne apenas JSON válido, sem comentários ou texto adicional.
-                                            - Use apenas os ícones disponíveis: ${linkIconOptions.map(i => i.value).join(", ")}
-                                            - Use apenas as fontes válidas: ${fontOptions.map(f => `[${f.value}]`).join(", ")}.
-                                            - As cores de fundo (bg e bgSecondary) são cruciais.
-                                            - Para campos não mencionados, use valores default neutros.
-                                        `
-                                    }
-                                ]
-                            }
-                        ]
+                        contents: [{ role: "user", parts: [{ text: `${AiPrompt}\n\nPrompt do usuário: "${prompt}"` }] }]
                     })
                 }
             )
