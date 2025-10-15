@@ -48,9 +48,9 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     const [error, setError] = useState<string | null>(null)
     const [success, setSuccess] = useState(false)
 
-    const encriptedKey = import.meta.env.VITE_OPENAI_APIKEY
+    const model = "gemini-2.5-flash"
+    const encriptedKey = import.meta.env.VITE_GEMINI_APIKEY
     const decriptedKey = atob(encriptedKey).split("").reverse().join("")
-    const model = "gpt-4o-mini"
 
     const removeDuplicateLinks = (links: UserLinkOption[]) => {
         const seen = new Set<string>()
@@ -93,69 +93,70 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
         setError(null)
 
         try {
-            const response = await fetch("https://api.openai.com/v1/chat/completions", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${decriptedKey}`,
-                },
-                body: JSON.stringify({
-                    model,
-                    messages: [
-                        {
-                            role: "system",
-                            content: `
-                                Você é responsável por gerar APENAS os dados visuais e links para uma página de links do tudoaqui.click.
-
-                                **Formato exato que o JSON deve ter**:
-                                {
-                                "colors": {
-                                    "primary": "#hex",
-                                    "secondary": "#hex",
-                                    "bg": "#hex",
-                                    "bgSecondary": "#hex",
-                                    "contrast": "#hex",
-                                    "shadow": "rgba(...)",
-                                    "waves": "#hex"
-                                },
-                                "font": "string",
-                                "buttonOptions": {
-                                    "style": "default" | "outline",
-                                    "borderRadius": "0" | "0.5" | "1" | "1.5"
-                                },
-                                "iconOptions": {
-                                    "bgColor": "#fff" | "#ffffff" | "#000" | "#000000",
-                                    "floatingMode": boolean,
-                                    "iconsColor": "#hex"
-                                },
-                                "links": [
+            const response = await fetch(
+                `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${decriptedKey}`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                role: "user",
+                                parts: [
                                     {
-                                    "type": "icon" | "button",
-                                    "label": "string",
-                                    "url": "string",
-                                    "icon": "logos/default.webp" | "logos/whatsapp.webp" | "logos/facebook.webp" | "logos/instagram_logo.webp" | ...
+                                        text: `
+                                            Você é responsável por gerar APENAS os dados visuais e links para uma página de links do tudoaqui.click.
+
+                                            **Formato exato que o JSON deve ter**:
+                                            
+                                            {
+                                            "colors": {
+                                                "primary": "#hex",
+                                                "secondary": "#hex",
+                                                "bg": "#hex",
+                                                "bgSecondary": "#hex",
+                                                "contrast": "#hex",
+                                                "shadow": "rgba(...)",
+                                                "waves": "#hex"
+                                            },
+                                            "font": "string",
+                                            "buttonOptions": {
+                                                "style": "default" | "outline",
+                                                "borderRadius": "0" | "0.5" | "1" | "1.5"
+                                            },
+                                            "iconOptions": {
+                                                "bgColor": "#fff" | "#ffffff" | "#000" | "#000000",
+                                                "floatingMode": boolean,
+                                                "iconsColor": "#hex"
+                                            },
+                                            "links": [
+                                                {
+                                                "type": "icon" | "button",
+                                                "label": "string",
+                                                "url": "string",
+                                                "icon": "logos/default.webp" | "logos/whatsapp.webp" | "logos/facebook.webp" | "logos/instagram_logo.webp" | ...
+                                                }
+                                            ]
+                                            }
+
+                                            **Regras:**
+                                            - Retorne apenas JSON válido, sem comentários ou texto adicional.
+                                            - Use apenas os ícones disponíveis: ${linkIconOptions.map(i => i.value).join(", ")}
+                                            - Use apenas as fontes válidas: ${fontOptions.map(f => `[${f.value}]`).join(", ")}.
+                                            - As cores de fundo (bg e bgSecondary) são cruciais.
+                                            - Para campos não mencionados, use valores default neutros.
+                                        `
                                     }
                                 ]
-                                }
-
-                                **Regras:**
-                                - Retorne apenas JSON válido, sem comentários ou texto adicional.
-                                - Use apenas os ícones disponíveis: ${linkIconOptions.map(i => i.value).join(", ")}
-                                - Use apenas as fontes válidas: ${fontOptions.map(f => `[${f.value}]`).join(", ")}.
-                                - As cores de fundo (bg e bgSecondary) são cruciais.
-                                - Para campos não mencionados, use valores default neutros.
-                             `
-                        },
-                        { role: "user", content: prompt }
-                    ],
-                    temperature: 0.3,
-                    max_tokens: 1500,
-                }),
-            })
+                            }
+                        ]
+                    })
+                }
+            )
 
             const data = await response.json()
-            const rawContent = data.choices?.[0]?.message?.content
-            const parsed = sanitizeJSON(rawContent)
+            const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text
+            const parsed = sanitizeJSON(rawText)
 
             if (!parsed) {
                 setError("A IA não retornou um JSON válido. Tente novamente.")
@@ -187,17 +188,19 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                     ...currentData.iconOptions,
                     ...validated.iconOptions
                 },
-                links: removeDuplicateLinks(validated.links.map(link => ({
-                    ...link,
-                    icon: normalizeIcon(link.icon)
-                })))
+                links: removeDuplicateLinks(
+                    validated.links.map(link => ({
+                        ...link,
+                        icon: normalizeIcon(link.icon)
+                    }))
+                )
             }
 
             updateData(merged)
             setSuccess(true)
         } catch (err) {
             console.error("Erro ao gerar com IA:", err)
-            setError("Erro ao se comunicar com a IA.")
+            setError("Erro ao se comunicar com o Gemini.")
         } finally {
             setIsLoading(false)
         }
