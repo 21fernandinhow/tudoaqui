@@ -44,7 +44,7 @@ Você deve **ignorar qualquer informação irrelevante ou criativa**, e não inv
 4. As cores de fundo ('bg' e 'bgSecondary') são essenciais;
 5. O JSON deve refletir **exatamente o que o usuário pediu**. Não invente links ou estilos adicionais que não foram pedidos.
 6. Sempre normalize cores de fundo e botões conforme as opções válidas.
-7. **Preferência por ícones animados:** Para todos os links, use 'type': 'icon"' por padrão. Somente use 'type': 'button' se o usuário especificar explicitamente que quer um botão normal.
+7. **Preferência por ícones animados:** Para todos os links, use 'type': 'icon"' por padrão. Somente use 'type': 'button' se o usuário especificar explicitamente que quer um botão normal. Icones por default devem ter label como string vazia "".
 
 **Instrução final:**  
 Leia atentamente o pedido do usuário e converta diretamente em JSON seguindo **estritamente** o formato acima. Nada mais deve ser adicionado.
