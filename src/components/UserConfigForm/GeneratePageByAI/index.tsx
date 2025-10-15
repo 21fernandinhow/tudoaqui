@@ -138,19 +138,20 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
                     ...currentData.iconOptions,
                     ...validated.iconOptions
                 },
-                links: removeDuplicateLinks(
-                    validated.links.map(link => ({
+                links: removeDuplicateLinks([
+                    ...currentData.links,
+                    ...validated.links.map(link => ({
                         ...link,
                         icon: normalizeIcon(link.icon)
                     }))
-                )
+                ])
             }
 
             updateData(merged)
             setSuccess(true)
         } catch (err) {
             console.error("Erro ao gerar com IA:", err)
-            setError("Erro ao se comunicar com o Gemini.")
+            setError("Erro ao se comunicar com a IA.")
         } finally {
             setIsLoading(false)
         }
