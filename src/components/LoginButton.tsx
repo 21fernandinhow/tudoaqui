@@ -5,14 +5,17 @@ import { auth, db, googleAuthProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useSnackbar } from "../contexts/SnackbarContext";
 import { defaultUserLinksPageData } from "../utils/defaultUserLinksPageData";
+import { useNavigate } from "react-router-dom";
 
 export const LoginButton = () => {
   const { user, setUser } = useUserData();
   const { showSnackbar } = useSnackbar();
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
 
     if (user) {
+      if (location.pathname === "/") navigate("/config");
       showSnackbar("Você ja está logado!")
       return
     }
