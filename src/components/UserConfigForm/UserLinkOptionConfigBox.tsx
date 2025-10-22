@@ -1,9 +1,9 @@
 import { MdDeleteSweep } from "react-icons/md"
-import { UserLinkOption } from "."
 import { SelectInput } from "../SelectInput"
 import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6"
 import { Modal } from "../Modal"
 import { useState } from "react"
+import { UserLinkOption } from "../../pages/UserLinksPage"
 
 interface UserLinkOptionConfigBoxProps {
     linkOptionData: UserLinkOption

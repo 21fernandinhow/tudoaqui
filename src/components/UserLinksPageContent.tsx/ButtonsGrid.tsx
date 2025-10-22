@@ -1,4 +1,4 @@
-import { UserLinkOption } from "../UserConfigForm";
+import { UserLinkOption } from "../../pages/UserLinksPage";
 
 interface ButtonsGridProps {
     buttons: UserLinkOption[];

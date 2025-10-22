@@ -1,4 +1,4 @@
-import { UserLinkOption } from "."
+import { UserLinkOption } from "../../pages/UserLinksPage"
 import { UserLinkOptionConfigBox } from "./UserLinkOptionConfigBox"
 
 interface MannageUserLinksProps {

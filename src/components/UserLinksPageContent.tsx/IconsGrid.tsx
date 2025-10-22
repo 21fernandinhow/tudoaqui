@@ -1,8 +1,7 @@
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import { UserLinkOption } from "../UserConfigForm";
 import { IconCanvas } from "./IconCanvas";
 import { db } from "../../firebase";
-import { VisitLocationData } from "../../pages/UserLinksPage";
+import { UserLinkOption, VisitLocationData } from "../../pages/UserLinksPage";
 
 interface IconsGridProps {
   icons: UserLinkOption[];

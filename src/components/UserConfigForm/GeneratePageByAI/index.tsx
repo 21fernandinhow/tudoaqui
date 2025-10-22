@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { z } from "zod"
-import { UserLinkOption, UserLinksPageData } from ".."
 import { linkIconOptions } from "../UserLinkOptionConfigBox"
 import { Modal } from "../../Modal"
 import { AiPrompt } from "./prompt"
+import { UserLinkOption, UserLinksPageData } from "../../../pages/UserLinksPage"
 
 interface GeneratePageByAIProps {
     currentData: UserLinksPageData
