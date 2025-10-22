@@ -1,19 +1,27 @@
 #config-page {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh; // fallback for dvh
-    min-height: 100dvh;
-    position: relative;
-
     #user-config-form {
-
-        min-height: 100%;
-        padding: 1.5rem;
-        padding-bottom: 3rem;
+        width: 100%;
+        position: fixed;
+        margin: 3.75rem 2rem 3.75rem 0rem;
+        border-radius: 0rem 2rem 2rem 0rem;
+        max-height: 70vh;
+        background: var(--bg-color);
+        padding: 1.5rem 1rem;
         box-shadow: 2px 2px 8px var(--shadow-color);
         max-width: 488px;
-        z-index: 10;
-        overflow-y: auto;
+        z-index: 9999;
+        overflow: hidden;
+
+        animation-duration: 0.4s;
+        animation-fill-mode: forwards;
+
+        &.enter {
+            animation-name: slideInFromLeft;
+        }
+
+        &.exit {
+            animation-name: slideOutToLeft;
+        }
 
         h4 {
             color: var(--shadow-color);
@@ -40,18 +48,65 @@
             margin-bottom: 1.25rem;
         }
 
-        #save-div {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .user-config-form-content {
+            height: 50vh;
+            overflow-y: scroll;
+            padding: 0rem 1rem 0rem 0.5rem;
+
+            &::-webkit-scrollbar {
+                width: 7px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: var(--scrollbar-background);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--scrollbar-color);
+                border-radius: 20px;
+                border: 1px solid var(--scrollbar-background);
+            }
+
+            &::selection {
+                background-color: var(--select-background);
+                color: var(--select-color);
+            }
         }
+
     }
 
-    #preview {
-        flex-grow: 1;
-        position: sticky;
-        top: 0;
-        height: 100%;
+    #toggle-form-button {
+        position: absolute;
+        padding: 0.5rem 0.75rem 0.75rem 0.5rem;
+        border-radius: 0rem 0rem 2rem 0rem;
+        box-shadow: 2px 3px 4px var(--shadow-color);
+    }
+
+    #save-button {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0.5rem 0.5rem 1rem;
+        border-radius: 2rem 0rem 0rem 0rem;
+        box-shadow: 2px 3px 4px var(--shadow-color);
+    }
+
+    .config-corner-button {
+        cursor: pointer;
+        z-index: 99999;
+        font-size: 1.5rem;
+        background: var(--primary-color);
+        color: var(--bg-color);
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            transition: 0.3s;
+            background: var(--secondary-color);
+            box-shadow: 0px 0px 10px var(--secondary-color);
+        }
     }
 }
 
@@ -71,4 +126,28 @@
 
 .custom-hr-terciary {
     border: 1px solid var(--terciary-color);
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 }

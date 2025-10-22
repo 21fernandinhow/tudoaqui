@@ -19,7 +19,6 @@ export const UserUrlInput = ({ userUrl, updateUserUrl }: UserUrlInputProps) => {
 
     return (
         <>
-            <h4>Sua URL</h4>
             <input
                 id="url-input"
                 type="text"

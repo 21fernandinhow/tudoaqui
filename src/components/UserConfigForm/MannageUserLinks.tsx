@@ -50,7 +50,6 @@ export const MannageUserLinks = ({ links, updateLinksArray }: MannageUserLinksPr
 
     return (
         <>
-            <h4>Gerenciar Links</h4>
             <button className="btn" onClick={handleAddLink} disabled={links && links.length > 19}>Adicionar novo link</button>
 
             {links && links.map((item, index) =>

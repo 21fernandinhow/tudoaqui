@@ -29,8 +29,6 @@ export const fontOptions = [
 
 export const SetAppearenceData = ({ colors, font, updateData, showWavesInput }: SetAppearenceDataProps) => (
     <>
-        <h4>Crie seu próprio tema</h4>
-
         <ColorInput
             label="Cor Principal"
             value={colors?.primary}

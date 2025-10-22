@@ -74,11 +74,6 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
         return "#000"
     }
 
-    const scrollToSaveButton = () => {
-        const button = document.getElementById("save-div")
-        if (button) button.scrollIntoView({ behavior: "smooth", block: "center" })
-    }
-
     const sanitizeJSON = (text: string) => {
         try {
             const match = text.match(/\{[\s\S]*\}/)
@@ -158,7 +153,6 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     }
 
     const handleFinish = () => {
-        scrollToSaveButton()
         setSuccess(false)
         setPrompt("")
         onClose()

@@ -14,6 +14,8 @@ import { defaultUserLinksPageData } from "../../utils/defaultUserLinksPageData.t
 import { RiAiGenerate2 } from "react-icons/ri"
 import ToggleSwitch from "../ToggleSwitch.tsx"
 import { GeneratePageByAI } from "./GeneratePageByAI/index.tsx"
+import { MdEdit } from "react-icons/md"
+import { FaSave } from "react-icons/fa"
 
 export interface UserLinksPageData {
     userUrl: string
@@ -57,13 +59,14 @@ export interface UserLinkOption {
 }
 
 export const UserConfigForm = () => {
-
     const { user } = useUserData()
     const { showSnackbar } = useSnackbar()
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
     const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
     const [isOpenModalAI, setIsOpenModalAI] = useState(false)
+    const [visible, setVisible] = useState(false)
+    const [animation, setAnimation] = useState<"enter" | "exit">("enter")
 
     const getUserLinksPageData = async () => {
         if (user?.uid) {
@@ -76,13 +79,25 @@ export const UserConfigForm = () => {
         }
     }
 
-    const handleChange = (key: string, value: any) => {
-        setUserLinksPageData((prevState => ({ ...prevState, [key]: value })))
-    }
+    const handleChange = (key: string, value: any) => setUserLinksPageData(prev => ({ ...prev, [key]: value }))
 
     const handleSave = async () => {
-        const successfullSave = await saveUserData(user, userLinksPageData, showSnackbar)
-        if (successfullSave) setBackupUserLinksPageData(userLinksPageData)
+        if (JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData)) {
+            showSnackbar("Não há alterações para serem salvas")
+        } else {
+            const successfullSave = await saveUserData(user, userLinksPageData, showSnackbar)
+            if (successfullSave) setBackupUserLinksPageData(userLinksPageData)
+        }
+    }
+
+    const openForm = () => {
+        setVisible(true)
+        setAnimation("enter")
+    }
+
+    const closeForm = () => {
+        setAnimation("exit")
+        setTimeout(() => setVisible(false), 400)
     }
 
     useEffect(() => {
@@ -91,106 +106,125 @@ export const UserConfigForm = () => {
 
     return (
         <div id="config-page">
+            <button
+                id="toggle-form-button"
+                className="config-corner-button"
+                onClick={visible ? closeForm : openForm}
+            >
+                <MdEdit />
+            </button>
 
-            <div id="user-config-form">
+            {visible && (
+                <div id="user-config-form" className={animation}>
+                    <h2>Olá {user?.displayName}!</h2>
+                    <p>Aqui você configura a sua página de links personalizada!</p>
+                    <hr className="custom-hr-secondary" />
 
-                <h2> Olá {user?.displayName} !</h2>
-                <p>Aqui você configura a sua página de links personalizada!</p>
-                <hr className="custom-hr-secondary" />
+                    <div className="user-config-form-content">
 
-                <UserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
-                <hr className="custom-hr-terciary" />
+                        <details open>
+                            <summary><strong>🌐 URL da Página</strong></summary>
+                            <UserUrlInput updateUserUrl={handleChange} userUrl={userLinksPageData.userUrl} />
+                        </details>
 
-                <UserInformationsInputs
-                    name={userLinksPageData.name}
-                    bio={userLinksPageData.bio}
-                    updateData={handleChange}
-                />
-                <AvatarUpload
-                    data={userLinksPageData}
-                    updateData={handleChange}
-                    userUid={user?.uid}
-                />
-                <ToggleSwitch
-                    isOn={userLinksPageData.isPremium && userLinksPageData.showPremiumIcon}
-                    onToggle={(e) => handleChange("showPremiumIcon", e)}
-                    label="Exibir ícone premium: "
-                    disabled={!userLinksPageData.isPremium}
-                    disabledMessage={"Recurso Premium"}
-                    disabledMessagePosition="right"
-                />
-                <hr className="custom-hr-primary" />
+                        <hr className="custom-hr-terciary" />
 
-                <SetAppearenceData updateData={handleChange} colors={userLinksPageData.colors} font={userLinksPageData.font} showWavesInput={userLinksPageData?.hasSideWaves} />
-                <ToggleSwitch
-                    label="Ocultar créditos no rodapé: "
-                    isOn={userLinksPageData.hideCredits}
-                    disabled={!userLinksPageData.isPremium}
-                    disabledMessage={"Recurso Premium"}
-                    disabledMessagePosition="right"
-                    onToggle={(value) => handleChange("hideCredits", value)}
-                />
-                <ToggleSwitch
-                    isOn={userLinksPageData?.hasSideWaves}
-                    onToggle={(e) => handleChange("hasSideWaves", e)}
-                    label="Animação lateral de ondas: "
-                />
-                <hr className="custom-hr-secondary" />
+                        <details>
+                            <summary><strong>👤 Personalizar Cabeçalho</strong></summary>
+                            <UserInformationsInputs
+                                name={userLinksPageData.name}
+                                bio={userLinksPageData.bio}
+                                updateData={handleChange}
+                            />
+                            <AvatarUpload
+                                data={userLinksPageData}
+                                updateData={handleChange}
+                                userUid={user?.uid}
+                            />
+                            <ToggleSwitch
+                                isOn={userLinksPageData.isPremium && userLinksPageData.showPremiumIcon}
+                                onToggle={(e) => handleChange("showPremiumIcon", e)}
+                                label="Exibir ícone premium: "
+                                disabled={!userLinksPageData.isPremium}
+                                disabledMessage={"Recurso Premium"}
+                                disabledMessagePosition="right"
+                            />
+                        </details>
 
-                <MannageUserLinks updateLinksArray={(value) => handleChange("links", value)} links={userLinksPageData.links} />
-                {userLinksPageData?.links?.length > 0 &&
-                    <CustomizeLinksStyle
-                        hasButton={userLinksPageData.links.some(item => item.type === "button")}
-                        hasIcon={userLinksPageData.links.some(item => item.type === "icon")}
-                        buttonOptions={userLinksPageData.buttonOptions}
-                        iconOptions={userLinksPageData.iconOptions}
-                        handleChange={handleChange}
-                    />
-                }
-                <hr className="custom-hr-terciary" />
+                        <hr className="custom-hr-primary" />
 
-                <p>Tudo certo ? Salve suas alterações: </p>
-                <div id="save-div">
-                    {JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData) ?
-                        <>
-                            <p>Ainda não há alterações para serem salvas</p>
-                            <button className="btn" disabled> Salvar </button>
-                        </>
-                        :
-                        <>
-                            <button
-                                className="btn"
-                                onClick={handleSave}
-                            >
-                                Salvar
-                            </button>
-                            <button
-                                className="btn"
-                                onClick={() => setUserLinksPageData(backupUserLinksPageData)}
-                            >
-                                Descartar
-                            </button>
-                        </>
-                    }
+                        <details>
+                            <summary><strong>🎨 Crie seu tema</strong></summary>
+                            <SetAppearenceData
+                                updateData={handleChange}
+                                colors={userLinksPageData.colors}
+                                font={userLinksPageData.font}
+                                showWavesInput={userLinksPageData?.hasSideWaves}
+                            />
+                            <ToggleSwitch
+                                label="Ocultar créditos no rodapé: "
+                                isOn={userLinksPageData.hideCredits}
+                                disabled={!userLinksPageData.isPremium}
+                                disabledMessage={"Recurso Premium"}
+                                disabledMessagePosition="right"
+                                onToggle={(value) => handleChange("hideCredits", value)}
+                            />
+                            <ToggleSwitch
+                                isOn={userLinksPageData?.hasSideWaves}
+                                onToggle={(e) => handleChange("hasSideWaves", e)}
+                                label="Animação lateral de ondas: "
+                            />
+                        </details>
 
+                        <hr className="custom-hr-secondary" />
+
+                        <details>
+                            <summary><strong>🔗 Gerenciar Links</strong></summary>
+                            <MannageUserLinks
+                                updateLinksArray={(value) => handleChange("links", value)}
+                                links={userLinksPageData.links}
+                            />
+                            {userLinksPageData?.links?.length > 0 && (
+                                <CustomizeLinksStyle
+                                    hasButton={userLinksPageData.links.some(item => item.type === "button")}
+                                    hasIcon={userLinksPageData.links.some(item => item.type === "icon")}
+                                    buttonOptions={userLinksPageData.buttonOptions}
+                                    iconOptions={userLinksPageData.iconOptions}
+                                    handleChange={handleChange}
+                                />
+                            )}
+                        </details>
+
+                    </div>
                 </div>
-
-            </div>
+            )}
 
             <div id="preview">
-                <UserLinksPageContent data={userLinksPageData} isPreview uid={user?.uid ?? ""} />
+                <UserLinksPageContent
+                    data={userLinksPageData}
+                    isPreview
+                    uid={user?.uid ?? ""}
+                />
             </div>
 
             <GeneratePageByAI
                 isOpen={isOpenModalAI}
-                onClose={() => setIsOpenModalAI(false)} currentData={userLinksPageData}
+                onClose={() => setIsOpenModalAI(false)}
+                currentData={userLinksPageData}
                 updateData={setUserLinksPageData}
             />
 
-            <div className="generate-ai-icon" onClick={() => setIsOpenModalAI(prevState => !prevState)}>
+            <div className="generate-ai-icon" onClick={() => setIsOpenModalAI(prev => !prev)}>
                 <RiAiGenerate2 />
             </div>
 
+            <button
+                id="save-button"
+                className="config-corner-button"
+                onClick={handleSave}
+            >
+                <FaSave />
+            </button>
         </div>
     )
 }
