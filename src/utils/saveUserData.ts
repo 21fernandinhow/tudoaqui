@@ -1,7 +1,7 @@
 import { User } from "firebase/auth"
-import { UserLinksPageData } from "../components/UserConfigForm"
 import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore"
 import { db } from "../firebase"
+import { UserLinksPageData } from "../pages/UserLinksPage"
 
 export const saveUserData = async (user: User | null, data: UserLinksPageData, showSnackbar: (message: string) => void) => {
     if (!user) return false

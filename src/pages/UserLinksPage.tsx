@@ -2,10 +2,50 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // Para pegar a URL dinâmica
 import { collection, getDocs, query, where, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase";
-import { UserLinksPageData } from "../components/UserConfigForm";
 import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx";
 import UserNotFound  from "./UserNotFound.tsx";
 import { LoadingPage } from "./LoadingPage.tsx";
+
+export interface UserLinksPageData {
+    userUrl: string
+    avatarImgUrl: string
+    avatarImgName: string
+    name: string
+    bio: string
+    colors: {
+        primary: string
+        secondary: string
+        bg: string
+        bgSecondary: string
+        contrast: string
+        shadow: string
+        waves: string
+    }
+    bgImage: string
+    font: string
+    showShareBtn: boolean
+    showAIAssistant: boolean
+    hideCredits: boolean
+    isPremium: boolean
+    showPremiumIcon: boolean
+    links: UserLinkOption[]
+    buttonOptions: {
+        style: "default" | "outline"
+        borderRadius: "0" | "0.5" | "1" | "1.5"
+    }
+    iconOptions: {
+        bgColor: "#fff" | "#ffffff" | "#000" | "#000000",
+        floatingMode: boolean
+    }
+    hasSideWaves: boolean
+}
+
+export interface UserLinkOption {
+    icon?: string,
+    label: string
+    url: string
+    type: "icon" | "button"
+}
 
 export interface VisitLocationData {
     city: string;

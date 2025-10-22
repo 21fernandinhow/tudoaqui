@@ -1,11 +1,11 @@
 import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 import { storage } from "../../firebase";
-import { UserLinksPageData } from "../UserConfigForm";
 import { useState } from "react";
 import { Loader } from "../Loader";
 import { MdDeleteSweep } from "react-icons/md";
 import { Modal } from "../Modal";
 import { useSnackbar } from "../../contexts/SnackbarContext";
+import { UserLinksPageData } from "../../pages/UserLinksPage";
 
 interface AvatarUploadProps {
     data: UserLinksPageData, // use all data and not just avatarImgName because this component made a save for himself

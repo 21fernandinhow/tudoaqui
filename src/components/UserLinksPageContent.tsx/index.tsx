@@ -1,4 +1,3 @@
-import { UserLinksPageData } from "../UserConfigForm"
 import "../../styles/pages/userLinksPage/index.scss"
 import { useEffect } from "react";
 import { UserLinksPageHeader } from "./UserLinksPageHeader";
@@ -6,7 +5,7 @@ import { IconsGrid } from "./IconsGrid";
 import { ButtonsGrid } from "./ButtonsGrid";
 import { PoweredBy } from "./PoweredBy";
 import { UserLinksPageOptionsMenu } from "./UserLinksPageOptionsMenu";
-import { VisitLocationData } from "../../pages/UserLinksPage";
+import { UserLinksPageData, VisitLocationData } from "../../pages/UserLinksPage";
 
 interface UserLinksPageContentProps {
     data: UserLinksPageData

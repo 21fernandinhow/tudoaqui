@@ -1,4 +1,4 @@
-import { UserLinksPageData } from "../components/UserConfigForm";
+import { UserLinksPageData } from "../pages/UserLinksPage";
 
 export const defaultUserLinksPageData: UserLinksPageData = {
     userUrl: "",
