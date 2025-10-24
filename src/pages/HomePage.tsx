@@ -11,11 +11,7 @@ const HomePage = () => (
         <Header />
         <LandingPageSession imgSrc={FirstImage} imgWidth={596} imgHeight={728} priority>
             <h1>Crie sua página de links com IA</h1>
-            <p>Visual moderno e totalmente personalizável em apenas 60 segundos.</p>
-            <div>
-                <LoginButton />
-                <a href="#about-session" className="btn">Saiba mais</a>
-            </div>
+            <LoginButton />
         </LandingPageSession>
         <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg imgWidth={731} imgHeight={731}>
             <h3> Chega dos mesmos layouts de sempre! </h3>
