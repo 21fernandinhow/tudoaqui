@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactNode } from "react";
 
 interface LoginButtonProps {
-  children: ReactNode
+  children?: ReactNode
 }
 
 export const LoginButton = ({ children }: LoginButtonProps) => {
