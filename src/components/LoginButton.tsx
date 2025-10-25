@@ -6,8 +6,13 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useSnackbar } from "../contexts/SnackbarContext";
 import { defaultUserLinksPageData } from "../utils/defaultUserLinksPageData";
 import { useNavigate } from "react-router-dom";
+import { ReactNode } from "react";
 
-export const LoginButton = () => {
+interface LoginButtonProps {
+  children: ReactNode
+}
+
+export const LoginButton = ({ children }: LoginButtonProps) => {
   const { user, setUser } = useUserData();
   const { showSnackbar } = useSnackbar();
   const navigate = useNavigate()
@@ -79,7 +84,7 @@ export const LoginButton = () => {
 
   return (
     <button onClick={handleLogin} className="btn">
-      <FcGoogle /> Entrar com Google
+      <FcGoogle /> {children || "Entrar com Google"}
     </button>
   );
 }

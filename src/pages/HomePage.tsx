@@ -10,25 +10,26 @@ const HomePage = () => (
     <>
         <Header />
         <LandingPageSession imgSrc={FirstImage} imgWidth={596} imgHeight={728} priority>
-            <h1>Crie sua página de links com IA</h1>
-            <LoginButton />
+            <h1>Crie sua página de links com IA em segundos!</h1>
+            <p>Diga adeus aos layouts genéricos: personalize cores, fontes e ícones sem complicação.</p>
+            <LoginButton>Comece Grátis</LoginButton>
         </LandingPageSession>
         <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg imgWidth={731} imgHeight={731}>
-            <h3> Chega dos mesmos layouts de sempre! </h3>
-            <p>Oferecemos liberdade total de personalização — do tema às animações. Crie algo único, do seu jeito!</p>
-            <a href="#demo-session" className="btn">Conheça os resultados</a>
+            <h3>Chega de páginas iguais!</h3>
+            <p>Com a nossa IA, você cria seu próprio tema e transforma sua página em algo que chama atenção. Total liberdade de personalização, do seu jeito.</p>
+            <a href="#demo-session" className="btn">Veja o que é possível</a>
         </LandingPageSession>
         <LandingPageSession imgSrc={ThirdImage} id="demo-session" imgWidth={747} imgHeight={649}>
-            <h3>Sua página não será "só mais uma" </h3>
-            <p>Encante seus visitantes com ícones 3D animados e interativos!</p>
-            <p>Mais conversões ao transformar sua página em uma experiência marcante.</p>
+            <h3>Mais cliques, mais destaque</h3>
+            <p>Use ícones interativos e layouts únicos para fazer sua página se destacar e aumentar a conversão.</p>
+            <p>Seja mais você, impacte seu público e turbine seus resultados em poucos minutos.</p>
             <div>
-                <LoginButton />
-                <a href="/explore" className="btn">Veja exemplos</a>
+                <LoginButton>Comece Grátis</LoginButton>
+                <a href="/explore" className="btn">Veja páginas de nossos usuários</a>
             </div>
         </LandingPageSession>
         <Footer />
     </>
 );
 
-export default HomePage
+export default HomePage;
