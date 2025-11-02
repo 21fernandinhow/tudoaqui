@@ -13,6 +13,7 @@ export const useGoogleLogin = () => {
 
     const handleLogin = async (redirectPath?: string, customCreationData?: UserLinksPageData) => {
         if (!user) {
+            
             const userAgent = window.navigator.userAgent.toLowerCase();
             const url = window.location.href;
             const inAppBrowsers = [
@@ -62,7 +63,7 @@ export const useGoogleLogin = () => {
                 showSnackbar("Erro ao autenticar com o Google!");
                 console.error("Erro ao autenticar com o Google:", error);
             }
-        }
+        } else showSnackbar("Você já está logado!")
     };
 
     return { handleLogin };

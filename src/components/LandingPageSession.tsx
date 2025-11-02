@@ -23,10 +23,10 @@ export const LandingPageSession = ({
 }: SessionLayoutProps) => (
     <div className={`lp-session ${secondaryBg ? 'secondary-bg' : ''}`}>
         <div className={`container row ${reverse ? 'row-reverse' : ''}`} id={id}>
-            <div className="col-half fade-in-up">
+            <div className="col-half">
                 {children}
             </div>
-            <div className="col-half">
+            <div className="col-half fade-in-up">
                 <img
                     src={imgSrc}
                     alt="imagem"

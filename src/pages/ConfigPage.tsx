@@ -15,11 +15,15 @@ import { UserLinksPageData } from "./UserLinksPage.tsx";
 import { useGoogleLogin } from "../hooks/useGoogleLogin.ts";
 
 const ConfigPage = () => {
+
     const { user, loading } = useUserData();
     const { handleLogin } = useGoogleLogin()
     const { showSnackbar } = useSnackbar()
 
-    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
+    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(
+        { ...defaultUserLinksPageData, userUrl: sessionStorage.getItem("userUrl") ?? "" }
+    )
+
     const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
     const [isOpenModalAI, setIsOpenModalAI] = useState(false)
     const [visible, setVisible] = useState(false)
@@ -54,8 +58,8 @@ const ConfigPage = () => {
             if (successfullSave) {
                 setBackupUserLinksPageData(userLinksPageData)
                 if (unloggedSave) setUnloggedSave(false)
+                if (`${sessionStorage.getItem("userUrl") ?? ""}`.length > 0) sessionStorage.removeItem("userUrl")
             }
-
         }
 
     }
@@ -77,7 +81,6 @@ const ConfigPage = () => {
     useEffect(() => {
         if (unloggedSave && user) handleSave()
     }, [unloggedSave])
-
 
     if (loading) return <Header />;
 

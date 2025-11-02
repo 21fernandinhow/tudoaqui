@@ -1,18 +1,18 @@
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { LandingPageSession } from "../components/LandingPageSession";
+import { StartCreateUser } from "../components/StartCreateUser";
 import FirstImage from "../assets/ilustrations/undraw_in-real-life_8znn.svg"
 import SecondImage from "../assets/ilustrations/undraw_online-posts_avfn.svg"
 import ThirdImage from "../assets/ilustrations/undraw_social-ideas_3znc.svg"
-import { LoginButton } from "../components/LoginButton";
 
 const HomePage = () => (
     <>
         <Header />
+        <StartCreateUser />
         <LandingPageSession imgSrc={FirstImage} imgWidth={596} imgHeight={728} priority>
-            <h1>Crie sua página de links com IA em segundos!</h1>
+            <h2>Crie sua página de links com IA em segundos!</h2>
             <p>Diga adeus aos layouts genéricos: personalize cores, fontes e ícones sem complicação.</p>
-            <LoginButton>Comece Grátis</LoginButton>
         </LandingPageSession>
         <LandingPageSession imgSrc={SecondImage} id="about-session" reverse secondaryBg imgWidth={731} imgHeight={731}>
             <h3>Chega de páginas iguais!</h3>
@@ -24,7 +24,6 @@ const HomePage = () => (
             <p>Use ícones interativos e layouts únicos para fazer sua página se destacar e aumentar a conversão.</p>
             <p>Seja mais você, impacte seu público e turbine seus resultados em poucos minutos.</p>
             <div>
-                <LoginButton>Comece Grátis</LoginButton>
                 <a href="/explore" className="btn">Veja páginas de nossos usuários</a>
             </div>
         </LandingPageSession>

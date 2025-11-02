@@ -1,6 +1,6 @@
 @media(max-width: 530px) {
     .row {
-        flex-direction: column-reverse !important;
+        flex-direction: column !important;
 
         .col-half {
             width: 100%;
@@ -19,6 +19,10 @@
         .user-config-form-content{
             height: 40vh !important;
         }
+    }
+
+    .start-create-user-wrapper{
+        bottom: 5vh !important;
     }
 
     #metrics-page {
