@@ -4,6 +4,8 @@ import { db } from "../firebase"
 import { UserLinksPageData } from "../pages/UserLinksPage"
 
 export const saveUserData = async (user: User | null, data: UserLinksPageData, showSnackbar: (message: string) => void) => {
+    console.log("bateu aqui na savveUserData", user, data)
+
     if (!user) return false
 
     const userUrl = data.userUrl

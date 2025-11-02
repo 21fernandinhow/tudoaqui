@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import { FaUser } from 'react-icons/fa'
-import { useUserData } from '../context/UserDataContext'
+import { useUserData } from '../contexts/UserDataContext'
 import { HiViewGrid } from 'react-icons/hi'
 import { ImNewspaper } from 'react-icons/im'
 

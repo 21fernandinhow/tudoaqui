@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
-import { useUserData } from "../context/UserDataContext";
+import { useUserData } from "../contexts/UserDataContext";
 import { getCheckoutUrl, getPortalUrl } from "../utils/stripePayment";
 import { getPremiumStatus } from "../utils/getPremiumStatus";
 import { Footer } from "../components/Footer";

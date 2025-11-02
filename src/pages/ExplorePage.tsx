@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Footer } from "../components/Footer";
 import { LoginButton } from "../components/LoginButton";
-import { useUserData } from "../context/UserDataContext";
+import { useUserData } from "../contexts/UserDataContext";
 import { LoadingPage } from "./LoadingPage";
 
 interface User {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { UserConfigForm } from "../components/UserConfigForm";
-import { useUserData } from "../context/UserDataContext.tsx";
+import { useUserData } from "../contexts/UserDataContext.tsx";
 import { useSnackbar } from "../contexts/SnackbarContext.tsx";
 import { defaultUserLinksPageData } from "../utils/defaultUserLinksPageData.ts";
 import { getUserLinksPageDataByUid } from "../utils/getUserLinksPageDataByUid.tsx";
@@ -12,9 +12,11 @@ import { GeneratePageByAI } from "../components/UserConfigForm/GeneratePageByAI/
 import { RiAiGenerate2 } from "react-icons/ri";
 import { FaSave } from "react-icons/fa";
 import { UserLinksPageData } from "./UserLinksPage.tsx";
+import { useGoogleLogin } from "../hooks/useGoogleLogin.ts";
 
 const ConfigPage = () => {
     const { user, loading } = useUserData();
+    const { handleLogin } = useGoogleLogin()
     const { showSnackbar } = useSnackbar()
 
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
@@ -22,6 +24,7 @@ const ConfigPage = () => {
     const [isOpenModalAI, setIsOpenModalAI] = useState(false)
     const [visible, setVisible] = useState(false)
     const [animation, setAnimation] = useState<"enter" | "exit">("enter")
+    const [unloggedSave, setUnloggedSave] = useState(false)
 
     const getUserLinksPageData = async () => {
         if (user?.uid) {
@@ -37,12 +40,24 @@ const ConfigPage = () => {
     const handleChange = (key: string, value: any) => setUserLinksPageData(prev => ({ ...prev, [key]: value }))
 
     const handleSave = async () => {
+
         if (JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData)) {
             showSnackbar("Não há alterações para serem salvas")
+            return
+        }
+
+        if (!user) {
+            await handleLogin(undefined, userLinksPageData)
+            setUnloggedSave(true)
         } else {
             const successfullSave = await saveUserData(user, userLinksPageData, showSnackbar)
-            if (successfullSave) setBackupUserLinksPageData(userLinksPageData)
+            if (successfullSave) {
+                setBackupUserLinksPageData(userLinksPageData)
+                if (unloggedSave) setUnloggedSave(false)
+            }
+
         }
+
     }
 
     const openForm = () => {
@@ -56,13 +71,15 @@ const ConfigPage = () => {
     }
 
     useEffect(() => {
-        if (user) getUserLinksPageData()
+        if (user && JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData)) getUserLinksPageData()
     }, [user])
+
+    useEffect(() => {
+        if (unloggedSave && user) handleSave()
+    }, [unloggedSave])
 
 
     if (loading) return <Header />;
-
-    if (!loading && !user) window.location.href = '/'
 
     return (
         <>
