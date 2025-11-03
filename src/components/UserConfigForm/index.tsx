@@ -11,13 +11,13 @@ interface UserConfigFormProps {
     userLinksPageData: UserLinksPageData
     handleChange: (key: string, value: any) => void
     animation: "enter" | "exit"
-    displayName: string
+    displayName?: string
     userUid: string
 }
 
 export const UserConfigForm = ({ userLinksPageData, handleChange, animation, displayName, userUid }: UserConfigFormProps) => (
     <div id="user-config-form" className={animation}>
-        <h2>Olá {displayName}!</h2>
+        <h2>Olá {displayName ?? "Visitante"}!</h2>
         <p>Aqui você configura a sua página de links personalizada!</p>
         <hr className="custom-hr-secondary" />
 
