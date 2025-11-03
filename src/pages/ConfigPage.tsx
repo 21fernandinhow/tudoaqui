@@ -20,12 +20,11 @@ const ConfigPage = () => {
     const { handleLogin } = useGoogleLogin()
     const { showSnackbar } = useSnackbar()
 
-    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(
-        { ...defaultUserLinksPageData, userUrl: sessionStorage.getItem("userUrl") ?? "" }
-    )
-
-    const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(defaultUserLinksPageData)
-    const [isOpenModalAI, setIsOpenModalAI] = useState(false)
+    const initialData = { ...defaultUserLinksPageData, userUrl: sessionStorage.getItem("userUrl") ?? "" }
+    
+    const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(initialData)
+    const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(initialData)
+    const [isOpenModalAI, setIsOpenModalAI] = useState(true)
     const [visible, setVisible] = useState(false)
     const [animation, setAnimation] = useState<"enter" | "exit">("enter")
     const [unloggedSave, setUnloggedSave] = useState(false)
@@ -36,7 +35,7 @@ const ConfigPage = () => {
             if (data) {
                 setUserLinksPageData(data)
                 setBackupUserLinksPageData(data)
-                setIsOpenModalAI(true)
+                sessionStorage.removeItem("userUrl")
             }
         }
     }
@@ -76,7 +75,7 @@ const ConfigPage = () => {
 
     useEffect(() => {
         if (user && JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData)) getUserLinksPageData()
-    }, [user])
+    }, [user, loading])
 
     useEffect(() => {
         if (unloggedSave && user) handleSave()
