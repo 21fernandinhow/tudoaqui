@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { LoginButton } from "../components/LoginButton";
 import { useUserData } from "../contexts/UserDataContext";
 import { LoadingPage } from "./LoadingPage";
+import { GoToPremiumButton } from "../components/GoToPremiumButton";
 
 interface User {
     id: string;
@@ -66,12 +67,17 @@ const ExplorePage = () => {
     return (
         <>
             <Header />
+
+            {user && <GoToPremiumButton />}
+
             <div id="explore-page" className="container">
+
                 <h2>Explorar</h2>
                 <p>
                     Conheça os perfis que estão se destacando no <strong>tudoaqui</strong>. <br />
                     Gente como você, criando páginas únicas e cheias de personalidade.
                 </p>
+
                 {loading ?
 
                     (
@@ -98,7 +104,9 @@ const ExplorePage = () => {
                         </div>
                     )
                 }
+
             </div>
+
             <Footer />
         </>
     );

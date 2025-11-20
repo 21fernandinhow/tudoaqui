@@ -9,10 +9,11 @@ import { saveUserData } from "../utils/saveUserData.ts";
 import { MdEdit } from "react-icons/md";
 import { UserLinksPageContent } from "../components/UserLinksPageContent.tsx/index.tsx";
 import { GeneratePageByAI } from "../components/UserConfigForm/GeneratePageByAI/index.tsx";
-import { RiAiGenerate2, RiVipCrownLine } from "react-icons/ri";
+import { RiAiGenerate2 } from "react-icons/ri";
 import { FaSave } from "react-icons/fa";
 import { UserLinksPageData } from "./UserLinksPage.tsx";
 import { useGoogleLogin } from "../hooks/useGoogleLogin.ts";
+import { GoToPremiumButton } from "../components/GoToPremiumButton.tsx";
 
 const ConfigPage = () => {
 
@@ -73,14 +74,6 @@ const ConfigPage = () => {
         setTimeout(() => setVisible(false), 400)
     }
 
-    const goToPremiumPage = () => {
-        if(user){
-            window.open("https://tudoaqui.click/premium", "_blank");
-        } else {
-            showSnackbar('Você precisa estar logado para explorar os recursos premium!')
-        }
-    }
-
     useEffect(() => {
         if (user && JSON.stringify(userLinksPageData) === JSON.stringify(backupUserLinksPageData)) getUserLinksPageData()
     }, [user, loading])
@@ -104,13 +97,7 @@ const ConfigPage = () => {
                     <MdEdit />
                 </button>
 
-                <button
-                    id="go-to-premium-button"
-                    className="config-corner-button"
-                    onClick={goToPremiumPage}
-                >
-                    <RiVipCrownLine />
-                </button>
+                <GoToPremiumButton />
 
                 {visible &&
                     <UserConfigForm
