@@ -7,11 +7,10 @@ import { FiShare } from "react-icons/fi";
 import { SlOptionsVertical } from "react-icons/sl";
 
 interface UserLinksPageOptionsMenuProps {
-    isPreview: boolean | undefined
     uid: string
 }
 
-export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOptionsMenuProps) => {
+export const UserLinksPageOptionsMenu = ({ uid }: UserLinksPageOptionsMenuProps) => {
 
     const { showSnackbar } = useSnackbar();
 
@@ -21,8 +20,6 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
     const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
 
     const handleShare = () => {
-        if(isPreview) return;
-
         const url = window.location.href;
         const message = `Olha só! Criei minha página no tudoaqui.click! \n\n${url}`;
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
@@ -30,7 +27,7 @@ export const UserLinksPageOptionsMenu = ({ isPreview, uid }: UserLinksPageOption
     };
 
     const handleLikeDislike = async (type: "like" | "dislike") => {
-        if (!uid || isPreview) return;
+        if (!uid) return;
 
         try {  
             const userRef = doc(db, "users", uid);

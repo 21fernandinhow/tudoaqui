@@ -78,7 +78,8 @@ const PremiumPage = () => {
       <div id="premium-page">
         <div className="container">
 
-          <h3>Sendo Premium você...</h3>
+          <h3>Seja Premium !!!</h3>
+          <p>Assim você...</p>
           <p>
             🌟 Tem um <strong>selo exclusivo</strong> exibido na sua página
           </p>

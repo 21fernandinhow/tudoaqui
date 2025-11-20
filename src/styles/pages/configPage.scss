@@ -82,6 +82,14 @@
         box-shadow: 2px 3px 4px var(--shadow-color);
     }
 
+    #go-to-premium-button{
+        position: absolute;
+        right: 0;
+        padding: 0.5rem 0.5rem 0.75rem 1rem;
+        border-radius: 0rem 0rem 0rem 2rem;
+        box-shadow: 2px 3px 4px var(--shadow-color);
+    }
+
     #save-button {
         position: fixed;
         right: 0;

@@ -59,7 +59,7 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
 
             <div className="user-links-page-container">
 
-                <UserLinksPageOptionsMenu isPreview={isPreview} uid={uid} />
+                {!isPreview && <UserLinksPageOptionsMenu uid={uid} />}
 
                 <UserLinksPageHeader
                     imageUrl={data.avatarImgUrl}
