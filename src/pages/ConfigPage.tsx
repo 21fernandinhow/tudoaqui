@@ -14,6 +14,7 @@ import { FaSave } from "react-icons/fa";
 import { UserLinksPageData } from "./UserLinksPage.tsx";
 import { useGoogleLogin } from "../hooks/useGoogleLogin.ts";
 import { GoToPremiumButton } from "../components/GoToPremiumButton.tsx";
+import { useUnsavedChanges } from "../hooks/useUnsavedChanges.ts";
 
 const ConfigPage = () => {
 
@@ -22,7 +23,7 @@ const ConfigPage = () => {
     const { showSnackbar } = useSnackbar()
 
     const initialData = { ...defaultUserLinksPageData, userUrl: sessionStorage.getItem("userUrl") ?? "" }
-    
+
     const [userLinksPageData, setUserLinksPageData] = useState<UserLinksPageData>(initialData)
     const [backupUserLinksPageData, setBackupUserLinksPageData] = useState<UserLinksPageData>(initialData)
     const [isOpenModalAI, setIsOpenModalAI] = useState(true)
@@ -81,6 +82,12 @@ const ConfigPage = () => {
     useEffect(() => {
         if (unloggedSave && user) handleSave()
     }, [unloggedSave])
+
+    const isDirty =
+        JSON.stringify(userLinksPageData) !==
+        JSON.stringify(backupUserLinksPageData);
+
+    useUnsavedChanges({ isDirty });
 
     if (loading) return <Header />;
 
