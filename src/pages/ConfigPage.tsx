@@ -13,8 +13,8 @@ import { RiAiGenerate2 } from "react-icons/ri";
 import { FaSave } from "react-icons/fa";
 import { UserLinksPageData } from "./UserLinksPage.tsx";
 import { useGoogleLogin } from "../hooks/useGoogleLogin.ts";
-import { GoToPremiumButton } from "../components/GoToPremiumButton.tsx";
 import { useUnsavedChanges } from "../hooks/useUnsavedChanges.ts";
+import { DonateButton } from "../components/DonateButton.tsx";
 
 const ConfigPage = () => {
 
@@ -104,7 +104,7 @@ const ConfigPage = () => {
                     <MdEdit />
                 </button>
 
-                <GoToPremiumButton />
+                <DonateButton />
 
                 {visible &&
                     <UserConfigForm

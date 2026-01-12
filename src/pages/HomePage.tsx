@@ -5,12 +5,12 @@ import { StartCreateUser } from "../components/StartCreateUser";
 import FirstImage from "../assets/ilustrations/undraw_in-real-life_8znn.svg"
 import SecondImage from "../assets/ilustrations/undraw_online-posts_avfn.svg"
 import ThirdImage from "../assets/ilustrations/undraw_social-ideas_3znc.svg"
-import { GoToPremiumButton } from "../components/GoToPremiumButton";
+import { DonateButton } from "../components/DonateButton";
 
 const HomePage = () => (
     <>
         <Header />
-        <GoToPremiumButton />
+        <DonateButton />
         <StartCreateUser />
         <LandingPageSession imgSrc={FirstImage} imgWidth={596} imgHeight={728} priority>
             <h2>Crie sua página de links com IA em segundos!</h2>

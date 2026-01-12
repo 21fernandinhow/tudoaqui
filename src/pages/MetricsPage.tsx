@@ -12,7 +12,7 @@ import { ComparativeChart } from "../components/Charts/ComparativeChart";
 import { FaMobile } from "react-icons/fa6";
 import { MdComputer } from "react-icons/md";
 import { LoadingPage } from "./LoadingPage";
-import { GoToPremiumButton } from "../components/GoToPremiumButton";
+import { DonateButton } from "../components/DonateButton";
 
 const formatMetricsForActivityGraph = (metrics: { receivedClicks: ReceivedClicksData[], views: ViewLinksPageData[] }) => {
     function countByDate<T extends Record<string, any>>(items: T[], dateKey: keyof T) {
@@ -158,7 +158,7 @@ const MetricsPage = () => {
 
             <div id="metrics-page">
 
-                <GoToPremiumButton />
+                <DonateButton />
 
                 <div className="container">
                     <h2>Métricas</h2>

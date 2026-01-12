@@ -5,9 +5,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Footer } from "../components/Footer";
 import { LoginButton } from "../components/LoginButton";
-import { useUserData } from "../contexts/UserDataContext";
 import { LoadingPage } from "./LoadingPage";
-import { GoToPremiumButton } from "../components/GoToPremiumButton";
+import { DonateButton } from "../components/DonateButton";
 
 interface User {
     id: string;
@@ -16,7 +15,6 @@ interface User {
 }
 
 const ExplorePage = () => {
-    const { user } = useUserData();
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -68,7 +66,7 @@ const ExplorePage = () => {
         <>
             <Header />
 
-            {user && <GoToPremiumButton />}
+            <DonateButton />
 
             <div id="explore-page" className="container">
 
@@ -95,7 +93,7 @@ const ExplorePage = () => {
                             ))}
                             <div className="create-your-page-cta">
                                 <h3>O que está esperando? Faça o seu também!</h3>
-                                {user?.uid ? <a className="btn" href="/config">Criar página agora!</a> : <LoginButton />}
+                                <LoginButton />
                             </div>
                         </div>
                     ) : (
