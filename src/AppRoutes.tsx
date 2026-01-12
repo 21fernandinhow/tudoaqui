@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const PremiumPage = lazy(() => import("./pages/PremiumPage"));
 const ExplorePage = lazy(() => import("./pages/ExplorePage"));
 const MetricsPage = lazy(() => import("./pages/MetricsPage"));
 
@@ -18,14 +17,6 @@ export const AppRoutes = () => {
         element={
           <Suspense fallback={null}>
             <HomePage />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/premium"
-        element={
-          <Suspense fallback={null}>
-            <PremiumPage />
           </Suspense>
         }
       />

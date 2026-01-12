@@ -65,7 +65,6 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
                     imageUrl={data.avatarImgUrl}
                     name={data.name ? data.name : isPreview ? "Aqui aparecerá seu nome" : ""}
                     bio={data.bio ? data.bio : isPreview ? "Aqui aparecerá sua bio" : ""}
-                    showPremiumIcon={data.isPremium && data.showPremiumIcon}
                 />
 
                 <IconsGrid

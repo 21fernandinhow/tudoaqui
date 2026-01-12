@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { useUserData } from "../contexts/UserDataContext";
-import { getPremiumStatus } from "../utils/getPremiumStatus";
 import { Footer } from "../components/Footer";
 import { getUserMetrics, ReceivedClicksData, UserMetrics, ViewLinksPageData } from "../utils/getUserMetrics";
 import { DashboardStat } from "../components/Charts/DashboardStat";
@@ -120,13 +119,7 @@ const formatDevicesDataForComparativeChart = (views: ViewLinksPageData[], clicks
 const MetricsPage = () => {
     const { user, loading } = useUserData();
     const [metrics, setMetrics] = useState<UserMetrics | null>(null)
-    const [isPremium, setIsPremium] = useState(false);
     const [isLoadingMetrics, setIsLoadingMetrics] = useState(true)
-
-    const verifyIsPremium = async (uid: string) => {
-        const answer = await getPremiumStatus(uid);
-        setIsPremium(answer);
-    };
 
     const fetchMetrics = async (uid: string) => {
         const data = await getUserMetrics(uid);
@@ -135,10 +128,7 @@ const MetricsPage = () => {
     };
 
     useEffect(() => {
-        if (user) {
-            verifyIsPremium(user.uid)
-            fetchMetrics(user.uid)
-        };
+        if (user)fetchMetrics(user.uid)
     }, [user]);
 
     if (loading || isLoadingMetrics)
@@ -168,7 +158,7 @@ const MetricsPage = () => {
 
             <div id="metrics-page">
 
-                {user && <GoToPremiumButton />}
+                <GoToPremiumButton />
 
                 <div className="container">
                     <h2>Métricas</h2>
@@ -202,20 +192,18 @@ const MetricsPage = () => {
                     }
 
                     <div className="charts-row">
-                        <ListChart title={"Links mais clickados"} isPremium={isPremium} data={metrics?.receivedClicks ?? null} />
-                        <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} isPremium={isPremium} data={metrics?.views ? metrics.views.map(item => ({ origin: item.origin })) : null} />
+                        <ListChart title={"Links mais clickados"} data={metrics?.receivedClicks ?? null} />
+                        <ListChart title={"De onde vieram seus visitantes"} keyField={"origin"} data={metrics?.views ? metrics.views.map(item => ({ origin: item.origin })) : null} />
                     </div>
 
                     <BarHorizontalGraph
                         title="Localização dos visitantes"
                         data={metrics?.views ? formatMetricsForLocationChart(metrics?.views).sort((a, b) => b.value - a.value).slice(0, 10) : null}
-                        isPremium={isPremium}
                     />
 
                     <ComparativeChart
                         title="Dispositivos dos Visitantes"
                         data={formatDevicesDataForComparativeChart(metrics?.views ?? [], metrics?.receivedClicks ?? [])}
-                        isPremium={isPremium}
                     />
 
                 </div>

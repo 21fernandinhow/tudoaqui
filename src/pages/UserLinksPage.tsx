@@ -26,8 +26,6 @@ export interface UserLinksPageData {
     showShareBtn: boolean
     showAIAssistant: boolean
     hideCredits: boolean
-    isPremium: boolean
-    showPremiumIcon: boolean
     links: UserLinkOption[]
     buttonOptions: {
         style: "default" | "outline"

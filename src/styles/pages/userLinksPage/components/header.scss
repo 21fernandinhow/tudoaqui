@@ -24,24 +24,6 @@
                 font-size: 1.5rem;
                 color: var(--user-primary-color);
             }
-
-            .premium-icon {
-                padding: 0.2rem;
-                color: invert($color: var(--user-bg-color));
-                background-color: var(--shadow-color);
-                border-radius: 100%;
-                font-size: 1.2rem;
-                opacity: 0.4;
-
-                &:hover {
-                    color: #fff;
-                    padding: 0.15rem;
-                    box-shadow: 1px 1px 5px var(--shadow-color);
-                    background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color));
-                    opacity: 1;
-                    transition: 0.3s;
-                }
-            }
         }
 
         p {

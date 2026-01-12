@@ -29,7 +29,5 @@ export const defaultUserLinksPageData: UserLinksPageData = {
         bgColor: "#fff",
         floatingMode: true
     },
-    isPremium: false,
-    showPremiumIcon: false,
     hasSideWaves: false
 }

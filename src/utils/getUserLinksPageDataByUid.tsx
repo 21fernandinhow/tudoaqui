@@ -1,6 +1,5 @@
 import { doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase"
-import { getPremiumStatus } from "./getPremiumStatus"
 
 export const getUserLinksPageDataByUid = async (uid: string) => {
     if (uid) {
@@ -9,8 +8,6 @@ export const getUserLinksPageDataByUid = async (uid: string) => {
             const docSnap = await getDoc(userRef)
             if (docSnap.exists()) {
                 const userLinksPageData = docSnap.data().userLinksPageData
-                const isUserPremium = await getPremiumStatus(uid)
-                userLinksPageData.isPremium = isUserPremium
                 return userLinksPageData
             }
         } catch (error) {

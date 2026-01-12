@@ -42,14 +42,6 @@ export const UserConfigForm = ({ userLinksPageData, handleChange, animation, dis
                     updateData={handleChange}
                     userUid={userUid}
                 />
-                <ToggleSwitch
-                    isOn={userLinksPageData.isPremium && userLinksPageData.showPremiumIcon}
-                    onToggle={(e) => handleChange("showPremiumIcon", e)}
-                    label="Exibir ícone premium: "
-                    disabled={!userLinksPageData.isPremium}
-                    disabledMessage={"Recurso Premium"}
-                    disabledMessagePosition="right"
-                />
             </details>
 
             <hr className="custom-hr-primary" />
@@ -65,9 +57,6 @@ export const UserConfigForm = ({ userLinksPageData, handleChange, animation, dis
                 <ToggleSwitch
                     label="Ocultar créditos no rodapé: "
                     isOn={userLinksPageData.hideCredits}
-                    disabled={!userLinksPageData.isPremium}
-                    disabledMessage={"Recurso Premium"}
-                    disabledMessagePosition="right"
                     onToggle={(value) => handleChange("hideCredits", value)}
                 />
                 <ToggleSwitch
