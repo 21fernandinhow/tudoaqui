@@ -1,30 +1,52 @@
-.modal-backdrop{
+.modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 1rem;
     width: 100vw;
-    height: 100vh; // fallback for dvh
+    height: 100vh;
     height: 100dvh;
     padding: 1rem;
     background-color: var(--shadow-color);
     display: flex;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center;
+    justify-content: center;
     z-index: 999998;
-    .modal-container{
+
+    .modal-container {
         z-index: 999999;
+        width: 100%;
         max-width: 450px;
+        max-height: calc(100dvh - 2rem);
         background-color: var(--bg-color);
         box-shadow: 2px 3px 4px var(--shadow-color);
         border-radius: 1rem;
-        margin: 1.5rem;
         padding: 1.5rem;
-        .modal-actions{
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; 
+
+        .modal-actions {
             display: flex;
             justify-content: flex-end;
             gap: 1rem;
             margin-top: 2rem;
+            flex-shrink: 0;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        textarea::-webkit-scrollbar-track {
+            margin: 10px;
+            background: var(--bg-secondary-color);
+            border-radius: 20px;
+        }
+        
+        textarea::-webkit-scrollbar-thumb {
+            background-color: var(--shadow-color);
+            border-radius: 20px;
+            border: 1px solid var(--bg-secondary-color);
         }
     }
 }
