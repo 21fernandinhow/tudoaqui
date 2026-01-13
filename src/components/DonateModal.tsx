@@ -22,6 +22,7 @@ export const DonateModal = ({isOpen, onClose}: DonateModalProps) => {
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
+                showCloseButton
             >
                 <div className="donate-modal-content">
                     <h3>Apoie o TudoAqui 💖</h3>

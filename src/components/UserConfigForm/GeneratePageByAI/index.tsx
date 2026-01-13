@@ -159,7 +159,7 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     }
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} showCloseButton>
             <div id="generate-page-by-ai">
                 {!success ? (
                     <>

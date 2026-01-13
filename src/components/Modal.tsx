@@ -1,19 +1,18 @@
 import { ReactNode } from "react"
 import { createPortal } from "react-dom"
 
-interface Modal {
+interface ModalProps {
     isOpen: boolean
     children: ReactNode
     onClose: () => void
+    showCloseButton?: boolean
 }
 
-export const Modal = ({ isOpen, children, onClose }: Modal) => {
+export const Modal = ({ children, isOpen, onClose, showCloseButton = false }: ModalProps) => {
 
-    if (!isOpen) {
-        return false
-    }
+    if (!isOpen) return null
 
-    const root = document.querySelector('body')
+    const root = document.body
 
     return (
         <>
@@ -21,6 +20,7 @@ export const Modal = ({ isOpen, children, onClose }: Modal) => {
                 createPortal(
                     <div className="modal-backdrop" onClick={onClose}>
                         <div className="modal-container" onClick={(event) => event.stopPropagation()}>
+                            {showCloseButton && <button className="modal-close" onClick={onClose} aria-label="Fechar modal"> × </button>}
                             {children}
                         </div>
                     </div>, root
