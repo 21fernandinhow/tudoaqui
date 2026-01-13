@@ -28,13 +28,12 @@ export const DonateModal = ({isOpen, onClose}: DonateModalProps) => {
                     <h3>Apoie o TudoAqui 💖</h3>
 
                     <p>
-                        O TudoAqui é um projeto independente, feito com carinho e foco em
-                        design, liberdade e simplicidade.
+                        O TudoAqui é um projeto independente, com atenção a cada detalhe.
                     </p>
 
                     <p>
-                        Se essa plataforma te ajuda de alguma forma, considere fazer uma
-                        doação via PIX.
+                        Se essa plataforma te ajuda de alguma forma, uma doação via PIX é uma forma direta de
+                        apoiar sua continuidade.
                     </p>
 
                     <hr className="custom-hr-secondary" />
