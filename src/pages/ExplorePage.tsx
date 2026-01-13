@@ -4,11 +4,8 @@ import { UserPagePreview } from "../components/UserPagePreview";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Footer } from "../components/Footer";
-import { LoginButton } from "../components/LoginButton";
 import { LoadingPage } from "./LoadingPage";
 import { DonateButton } from "../components/DonateButton";
-import { FaPalette } from "react-icons/fa";
-import { IoIosColorPalette } from "react-icons/io";
 
 interface User {
     id: string;
