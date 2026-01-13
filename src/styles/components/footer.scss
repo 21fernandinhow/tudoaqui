@@ -2,9 +2,34 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 0.25rem;
     width: 100%;
     padding: 1rem;
     text-align: center;
     border-top: 2px solid var(--primary-color);
     font-size: 1rem;
+
+    a{
+        text-decoration: none;
+        color: var(--text-color);
+
+        &:hover{
+            color: var(--secondary-color);
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+    }
+
+    .donate-option{
+        cursor: pointer;
+        margin-left: 0.5rem;
+        color: var(--primary-color);
+        font-weight: bold;
+
+        &:hover{
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+    }
 }
