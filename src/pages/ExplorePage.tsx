@@ -7,6 +7,8 @@ import { Footer } from "../components/Footer";
 import { LoginButton } from "../components/LoginButton";
 import { LoadingPage } from "./LoadingPage";
 import { DonateButton } from "../components/DonateButton";
+import { FaPalette } from "react-icons/fa";
+import { IoIosColorPalette } from "react-icons/io";
 
 interface User {
     id: string;
@@ -93,7 +95,7 @@ const ExplorePage = () => {
                             ))}
                             <div className="create-your-page-cta">
                                 <h3>O que está esperando? Faça o seu também!</h3>
-                                <LoginButton />
+                                <a href="/config" className="btn">Vamos lá! ✨</a>
                             </div>
                         </div>
                     ) : (
