@@ -41,7 +41,7 @@ const ExplorePage = () => {
                     const likes = data.likes || 0;
                     const dislikes = data.dislikes || 0;
 
-                    const score = views + likes * 10 - dislikes * 20;
+                    const score = views + likes * 50 - dislikes * 100;
 
                     return {
                         id: doc.id,
