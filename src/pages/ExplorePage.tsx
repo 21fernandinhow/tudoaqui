@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import { Footer } from "../components/Footer";
 import { LoadingPage } from "./LoadingPage";
 import { DonateButton } from "../components/DonateButton";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 interface User {
     id: string;
@@ -108,7 +109,7 @@ const ExplorePage = () => {
                                     onClick={() => setCurrentPage((prev) => prev - 1)}
                                     className="btn"
                                 >
-                                    ← Anterior
+                                    <FaArrowLeftLong />
                                 </button>
 
                                 <span>
@@ -120,7 +121,7 @@ const ExplorePage = () => {
                                     onClick={() => setCurrentPage((prev) => prev + 1)}
                                     className="btn"
                                 >
-                                    Próxima →
+                                    <FaArrowRightLong />
                                 </button>
                             </div>
                         )}
