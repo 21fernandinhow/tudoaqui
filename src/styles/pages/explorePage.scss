@@ -85,4 +85,13 @@
             transition: 0.3s;
         }
     }
+
+    .pagination{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        text-align: center;
+    }
 }

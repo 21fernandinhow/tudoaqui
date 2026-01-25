@@ -13,9 +13,17 @@ interface User {
     score: number;
 }
 
+
 const ExplorePage = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const ITEMS_PER_PAGE = 5;
+    const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedUsers = users.slice(startIndex, endIndex);
 
     const blackList = ["mariasilva_"];
 
@@ -75,31 +83,54 @@ const ExplorePage = () => {
                     Gente como você, criando páginas únicas e cheias de personalidade.
                 </p>
 
-                {loading ?
+                {loading ? <LoadingPage /> : users.length > 0 ?
 
-                    (
-                        <LoadingPage />
-                    )
-
-                    : users.length > 0 ? (
+                    <>
                         <div className="grid-container">
-                            {users.slice(0, 5).map((user) => (
+                            {paginatedUsers.map((user) => (
                                 <UserPagePreview
                                     key={user.id}
                                     url={"https://tudoaqui.click/" + user.userUrl}
                                     title={user.userUrl || ""}
                                 />
                             ))}
+
                             <div className="create-your-page-cta">
                                 <h3>O que está esperando? Faça o seu também!</h3>
                                 <a href="/config" className="btn">Vamos lá! ✨</a>
                             </div>
                         </div>
-                    ) : (
-                        <div className="loading-page">
-                            <h3>Erro ao carregar :/ </h3>
-                        </div>
-                    )
+
+                        {totalPages > 1 && (
+                            <div className="pagination">
+                                <button
+                                    disabled={currentPage === 1}
+                                    onClick={() => setCurrentPage((prev) => prev - 1)}
+                                    className="btn"
+                                >
+                                    ← Anterior
+                                </button>
+
+                                <span>
+                                    Página {currentPage} de {totalPages}
+                                </span>
+
+                                <button
+                                    disabled={currentPage === totalPages}
+                                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                                    className="btn"
+                                >
+                                    Próxima →
+                                </button>
+                            </div>
+                        )}
+                    </>
+
+                    :
+
+                    <div className="loading-page">
+                        <h3>Erro ao carregar :/</h3>
+                    </div>
                 }
 
             </div>
@@ -109,4 +140,4 @@ const ExplorePage = () => {
     );
 };
 
-export default ExplorePage
+export default ExplorePage;
