@@ -7,7 +7,7 @@ header {
 
     nav {
 
-        .manifest-menu-icon,
+        .blog-menu-icon,
         .explore-menu-icon {
             cursor: pointer;
             font-size: 1.75rem;
@@ -16,20 +16,14 @@ header {
             margin-bottom: 0.25rem;
 
             &:hover {
+                scale: 1.15;
+                color: var(--terciary-color);
                 transition: 0.3s;
-            }
-        }
-
-        .manifest-menu-icon {
-            &:hover {
-                color: var(--secondary-color);
             }
         }
 
         .explore-menu-icon {
             &:hover {
-                scale: 1.15;
-                color: var(--terciary-color);
                 transform: rotate(90deg);
             }
         }

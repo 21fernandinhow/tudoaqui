@@ -4,7 +4,6 @@ import { Suspense, lazy } from "react";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ExplorePage = lazy(() => import("./pages/ExplorePage"));
 const MetricsPage = lazy(() => import("./pages/MetricsPage"));
-const ManifestPage = lazy(() => import("./pages/ManifestPage"));
 
 import ConfigPage from "./pages/ConfigPage";
 import UserLinksPage from "./pages/UserLinksPage";
@@ -39,7 +38,6 @@ export const AppRoutes = () => {
       />
 
       <Route path="/config" element={<ConfigPage />} />
-      <Route path="/manifest" element={<ManifestPage />} />
       <Route path="/:userUrl" element={<UserLinksPage />} />
     </Routes>
   );
