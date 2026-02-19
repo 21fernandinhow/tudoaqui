@@ -22,6 +22,7 @@ export const linkIconOptions = [
     { label: "Facebook", value: "logos/facebook.webp" },
     { label: "Instagram", value: "logos/instagram_logo.webp" },
     { label: "Pinterest", value: "logos/pinterest.webp" },
+    { label: "Skoob", value: "logos/skoob.webp" },
     { label: "Vsco", value: "logos/vsco.webp" },
     { label: "X", value: "logos/x.webp" },
     { label: "Tiktok", value: "logos/tiktok.webp" },
