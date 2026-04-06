@@ -1,4 +1,5 @@
 import { AvatarUpload } from "./AvatarUpload"
+import { MusicUpload } from "./MusicUpload"
 import { UserInformationsInputs } from "./UserInformationInputs"
 import { SetAppearenceData } from "./SetAppearenceData"
 import { UserUrlInput } from "./UserUrlInput"
@@ -38,6 +39,11 @@ export const UserConfigForm = ({ userLinksPageData, handleChange, animation, dis
                     updateData={handleChange}
                 />
                 <AvatarUpload
+                    data={userLinksPageData}
+                    updateData={handleChange}
+                    userUid={userUid}
+                />
+                <MusicUpload
                     data={userLinksPageData}
                     updateData={handleChange}
                     userUid={userUid}

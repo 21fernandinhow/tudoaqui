@@ -5,6 +5,7 @@ import { IconsGrid } from "./IconsGrid";
 import { ButtonsGrid } from "./ButtonsGrid";
 import { PoweredBy } from "./PoweredBy";
 import { UserLinksPageOptionsMenu } from "./UserLinksPageOptionsMenu";
+import { MusicPlayerButton } from "./MusicPlayerButton";
 import { UserLinksPageData, VisitLocationData } from "../../pages/UserLinksPage";
 
 interface UserLinksPageContentProps {
@@ -60,6 +61,10 @@ export const UserLinksPageContent = ({ data, isPreview, uid, visitLocation }: Us
             <div className="user-links-page-container">
 
                 {!isPreview && <UserLinksPageOptionsMenu uid={uid} />}
+
+                {data.musicFileUrl && data.musicFileUrl !== "" && (
+                    <MusicPlayerButton musicFileUrl={data.musicFileUrl} />
+                )}
 
                 <UserLinksPageHeader
                     imageUrl={data.avatarImgUrl}

@@ -10,6 +10,8 @@ export interface UserLinksPageData {
     userUrl: string
     avatarImgUrl: string
     avatarImgName: string
+    musicFileUrl: string
+    musicFileName: string
     name: string
     bio: string
     colors: {

@@ -4,6 +4,8 @@ export const defaultUserLinksPageData: UserLinksPageData = {
     userUrl: "",
     avatarImgUrl: "https://firebasestorage.googleapis.com/v0/b/tudoaqui-2936b.firebasestorage.app/o/users%2FBs2nV5ovXcYborimonm8Uxax9a53%2Fdefault-avatar-icon-of-social-media-user-vector.jpg?alt=media&token=9c367c77-04cf-48e4-bfd6-38ab1af39780",
     avatarImgName: "default-avatar.jpg",
+    musicFileUrl: "",
+    musicFileName: "",
     name: "",
     bio: "",
     colors: {
