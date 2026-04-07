@@ -16,7 +16,12 @@ export const IconsGrid = ({ icons, activateFloating, isPreview, uid, visitLocati
   const handleClickIcon = (itemData: UserLinkOption) => {
     if (!isPreview) {
 
-      window.open(itemData.url, "_blank")
+      const mailtoIndex = itemData.url.indexOf("mailto:")
+      const url = mailtoIndex !== -1
+        ? itemData.url.slice(mailtoIndex)
+        : itemData.url
+
+      window.open(url, "_blank")
       handleSaveClickMetric(itemData)
 
     }
