@@ -16,6 +16,8 @@
         max-width: 488px;
         z-index: 9999;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
 
         animation-duration: 0.4s;
         animation-fill-mode: forwards;
@@ -54,7 +56,8 @@
         }
 
         .user-config-form-content {
-            height: 50vh;
+            flex: 1 1 auto;
+            min-height: 0;
             overflow-y: scroll;
             padding: 0rem 1rem 0rem 0.5rem;
 

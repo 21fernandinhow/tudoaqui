@@ -21,7 +21,7 @@ export const linkIconOptions = [
     { label: "Tiktok", value: "logos/tiktok.webp" },
     { label: "Youtube", value: "logos/youtube_logo.webp" },
     { label: "Twitch", value: "logos/twitch_logo.webp" },
-    { label: "Twitch", value: "logos/kick_logo.webp" },
+    { label: "Kick", value: "logos/kick_logo.webp" },
     { label: "Discord", value: "logos/discord_logo.webp" },
     { label: "Spotify", value: "logos/spotify.webp" },
     { label: "Soundcloud", value: "logos/soundcloud.webp" },
