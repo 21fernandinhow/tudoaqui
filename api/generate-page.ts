@@ -18,7 +18,8 @@ export async function POST(request: Request): Promise<Response> {
 
     let prompt: unknown
     try {
-        prompt = (await request.json())?.prompt
+        const body = (await request.json()) as { prompt?: unknown } | null
+        prompt = body?.prompt
     } catch {
         return json({ error: "Corpo da requisição inválido." }, 400)
     }
@@ -46,7 +47,9 @@ export async function POST(request: Request): Promise<Response> {
         }
     )
 
-    const data = await geminiResponse.json().catch(() => null)
+    const data = (await geminiResponse.json().catch(() => null)) as {
+        candidates?: { content?: { parts?: { text?: unknown }[] } }[]
+    } | null
 
     if (!geminiResponse.ok) {
         console.error("Gemini error:", geminiResponse.status, JSON.stringify(data))
