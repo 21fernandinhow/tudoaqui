@@ -1,5 +1,6 @@
 import { ColorInput } from "../ColorInput";
 import { SelectInput } from "../SelectInput";
+import { fontOptions } from "./options"
 
 interface SetAppearenceDataProps {
     updateData: (key: string, value: any) => void
@@ -16,16 +17,7 @@ interface SetAppearenceDataProps {
     showWavesInput?: boolean
 }
 
-export const fontOptions = [
-    { value: "Teko", label: "Teko" },
-    { value: "Montserrat", label: "Montserrat" },
-    { value: "sans-serif", label: "Sans Serif" },
-    { value: "monospace", label: "Monospace" },
-    { value: "Times New Roman", label: "Times New Roman" },
-    { value: "Verdana", label: "Verdana" },
-    { value: "Comic Sans MS, Comic Sans, Comic Relief", label: "Comic Sans MS" },
-    { value: "cursive ", label: "Caligrafia" },
-]
+export { fontOptions }
 
 export const SetAppearenceData = ({ colors, font, updateData, showWavesInput }: SetAppearenceDataProps) => (
     <>

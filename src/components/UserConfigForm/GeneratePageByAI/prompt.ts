@@ -1,5 +1,4 @@
-import { fontOptions } from "../SetAppearenceData";
-import { linkIconOptions } from "../UserLinkOptionConfigBox";
+import { fontOptions, linkIconOptions } from "../options.js";
 
 export const AiPrompt = `
 Você é um gerador de páginas de links do tudoaqui.click. Seu objetivo é criar APENAS os dados visuais e links conforme a solicitação do usuário. 

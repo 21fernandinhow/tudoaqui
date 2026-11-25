@@ -2,7 +2,6 @@ import { useState } from "react"
 import { z } from "zod"
 import { linkIconOptions } from "../UserLinkOptionConfigBox"
 import { Modal } from "../../Modal"
-import { AiPrompt } from "./prompt"
 import { UserLinkOption, UserLinksPageData } from "../../../pages/UserLinksPage"
 
 interface GeneratePageByAIProps {
@@ -48,10 +47,6 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
     const [error, setError] = useState<string | null>(null)
     const [success, setSuccess] = useState(false)
 
-    const model = "gemini-2.5-flash"
-    const encriptedKey = import.meta.env.VITE_GEMINI_APIKEY
-    const decriptedKey = atob(encriptedKey).split("").reverse().join("")
-
     const removeDuplicateLinks = (links: UserLinkOption[]) => {
         const seen = new Set<string>()
         return links.filter(link => {
@@ -88,20 +83,26 @@ export const GeneratePageByAI = ({ currentData, updateData, isOpen, onClose }: G
         setError(null)
 
         try {
-            const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${decriptedKey}`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ role: "user", parts: [{ text: `${AiPrompt}\n\nPrompt do usuário: "${prompt}"` }] }]
-                    })
-                }
-            )
+            const response = await fetch("/api/generate-page", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt })
+            })
 
-            const data = await response.json()
-            const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text
-            const parsed = sanitizeJSON(rawText)
+            const data = await response.json().catch(() => null)
+
+            if (response.status === 429) {
+                setError("Muitas tentativas seguidas. Aguarde um minuto e tente de novo.")
+                return
+            }
+
+            if (!response.ok) {
+                console.error("Erro da API de geração:", response.status, data)
+                setError(data?.error ?? "Erro ao se comunicar com a IA.")
+                return
+            }
+
+            const parsed = sanitizeJSON(data?.text ?? "")
 
             if (!parsed) {
                 setError("A IA não retornou um JSON válido. Tente novamente.")
