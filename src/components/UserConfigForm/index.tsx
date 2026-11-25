@@ -7,19 +7,20 @@ import { MannageUserLinks } from "./MannageUserLinks"
 import { CustomizeLinksStyle } from "./CustomizeLinksStyle/index.tsx"
 import ToggleSwitch from "../ToggleSwitch.tsx"
 import { UserLinksPageData } from "../../pages/UserLinksPage.tsx"
-
 interface UserConfigFormProps {
     userLinksPageData: UserLinksPageData
     handleChange: (key: string, value: any) => void
     animation: "enter" | "exit"
     displayName?: string
     userUid: string
+    onSave: () => void
 }
 
-export const UserConfigForm = ({ userLinksPageData, handleChange, animation, displayName, userUid }: UserConfigFormProps) => (
+export const UserConfigForm = ({ userLinksPageData, handleChange, animation, displayName, userUid, onSave }: UserConfigFormProps) => (
     <div id="user-config-form" className={animation}>
         <h2>Olá {displayName ?? "Visitante"}!</h2>
         <p>Aqui você configura a sua página de links personalizada!</p>
+        <button className="btn" onClick={onSave} id="form-save-btn">Salvar</button>
         <hr className="custom-hr-secondary" />
 
         <div className="user-config-form-content">

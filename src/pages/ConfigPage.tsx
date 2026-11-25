@@ -113,6 +113,7 @@ const ConfigPage = () => {
                         animation={animation}
                         displayName={user?.displayName ?? ""}
                         userUid={user?.uid ?? ""}
+                        onSave={handleSave}
                     />
                 }
 
